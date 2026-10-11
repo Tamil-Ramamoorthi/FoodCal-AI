@@ -1,37 +1,20 @@
-# Render Blueprint for FoodCal AI: a FastAPI web service and a static React
-# site. Read docs/DEPLOYMENT.md first: it explains the plan, the disk, and the
-# two URLs that must be filled in after the first deploy.
+# FoodCal AI — Free-tier deployment attempt
 services:
-  # FastAPI + EfficientNet-B0 on CPU. Runs from the repository root because
-  # the backend reads models/, reports/ and data/metadata/ from there.
+  # FastAPI backend
   - type: web
     name: foodcal-ai-api
     runtime: python
-    # 2 GB RAM. Measured peak memory: ~325 MB idle, ~470 MB for a 12 MP photo,
-    # ~640 MB for a 27 MP photo, so 512 MB plans (Free, Starter) can run out.
-    plan: standard
+    plan: free
     buildCommand: pip install -r backend/requirements.txt
-    # One worker: each worker loads its own copy of the model.
     startCommand: uvicorn backend.app.main:app --host 0.0.0.0 --port $PORT --workers 1
     healthCheckPath: /
     envVars:
-      # The static site's URL, e.g. https://foodcal-ai.onrender.com
       - key: FOODCAL_CORS_ORIGINS
         sync: false
-      # Prediction history (SQLite) and thumbnails, on the persistent disk below.
-      - key: FOODCAL_DATA_DIR
-        value: /var/data/foodcal
-      # Match PyTorch's thread count to the instance's CPU allowance.
       - key: OMP_NUM_THREADS
         value: "1"
-    # Without a disk the history is lost on every deploy and restart.
-    # Disks need a paid plan, and a service with a disk cannot scale to
-    # several instances or deploy with zero downtime.
-    disk:
-      name: foodcal-data
-      mountPath: /var/data
-      sizeGB: 1
 
+  # React frontend
   - type: web
     name: foodcal-ai
     runtime: static
@@ -39,8 +22,6 @@ services:
     buildCommand: npm ci && npm run build
     staticPublishPath: dist
     envVars:
-      # The API service's URL, e.g. https://foodcal-ai-api.onrender.com
-      # The build fails if this is missing, not https, or a local address.
       - key: VITE_API_BASE_URL
         sync: false
       - key: NODE_VERSION
