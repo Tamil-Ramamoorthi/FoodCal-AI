@@ -1,0 +1,51 @@
+{
+  "total_manifest_entries": 23873,
+  "valid_images": 23873,
+  "invalid_images": 0,
+  "image_dimensions": [
+    224,
+    224
+  ],
+  "class_distribution": {
+    "Baked Potato": 1500,
+    "Crispy Chicken": 1500,
+    "Donut": 1500,
+    "Fries": 1500,
+    "Hot Dog": 1548,
+    "Sandwich": 1500,
+    "Taco": 1500,
+    "Taquito": 1500,
+    "apple_pie": 1000,
+    "burger": 331,
+    "butter_naan": 307,
+    "chai": 344,
+    "chapati": 327,
+    "cheesecake": 1000,
+    "chicken_curry": 1000,
+    "chole_bhature": 376,
+    "dal_makhani": 295,
+    "dhokla": 245,
+    "fried_rice": 350,
+    "ice_cream": 1000,
+    "idli": 302,
+    "jalebi": 288,
+    "kaathi_rolls": 279,
+    "kadai_paneer": 334,
+    "kulfi": 214,
+    "masala_dosa": 273,
+    "momos": 323,
+    "omelette": 1000,
+    "paani_puri": 144,
+    "pakode": 269,
+    "pav_bhaji": 305,
+    "pizza": 275,
+    "samosa": 244,
+    "sushi": 1000
+  },
+  "split_distribution": {
+    "test": 3602,
+    "train": 16699,
+    "validation": 3572
+  },
+  "errors": []
+}

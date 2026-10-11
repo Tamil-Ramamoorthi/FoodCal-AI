@@ -1,0 +1,31 @@
+path,label,reason,decided_by
+data/real_world_test/Donut/pexels-tijana-drndarski-449691-3338681.jpg,Donut,Overlaps model data: processed/train data/processed/train/Donut/000386.jpg (distance 0),reviewer
+data/real_world_test/Hot Dog/pexels-kamila-bairam-80608214-12123657.jpg,Hot Dog,Overlaps model data: processed/validation data/processed/validation/Hot Dog/000006.jpg (distance 0); processed/validation data/processed/validation/Hot Dog/000160.jpg (distance 0),reviewer
+data/real_world_test/Hot Dog/pexels-polina-tankilevitch-4518656.jpg,Hot Dog,Overlaps model data: processed/train data/processed/train/Hot Dog/000501.jpg (distance 2),reviewer
+data/real_world_test/Sandwich/pexels-karola-g2-6467.jpg,Sandwich,Overlaps model data: processed/train data/processed/train/Sandwich/000568.jpg (distance 0),reviewer
+data/real_world_test/apple_pie/pexels-hilalbulbul-12782728 (1).jpg,apple_pie,Exact copy of data/real_world_test/apple_pie/pexels-hilalbulbul-12782728.jpg.,rule
+data/real_world_test/butter_naan/pexels-yarensphotoworks-30556657.jpg,butter_naan,Flatbread could be chapati or roti.,reviewer
+data/real_world_test/chicken_curry/pexels-drmkhawarnazir-38003495.jpg,chicken_curry,Yellow cubes in curry; chicken is not clearly visible.,reviewer
+data/real_world_test/chicken_curry/pexels-jkreat0r-32986463.jpg,chicken_curry,Curry contents are not identifiable.,reviewer
+data/real_world_test/dhokla/pexels-marcelochagas-3324431.jpg,dhokla,Food is not clearly identifiable as dhokla.,reviewer
+data/real_world_test/idli/pexels-mahesh-kumar-ganesan-2148232589-35514447 (1).jpg,idli,Food could be egg curry rather than idli.,reviewer
+data/real_world_test/idli/pexels-ryshy-s-2149956588-35539315.jpg,idli,"Same file is in several class folders (idli, masala_dosa); reviewer excluded every copy.",reviewer
+data/real_world_test/kaathi_rolls/pexels-magda-ehlers-pexels-12758949.jpg,kaathi_rolls,Image looks like spring rolls rather than kathi rolls.,reviewer
+data/real_world_test/kulfi/istockphoto-2154324654-1024x1024.jpg,kulfi,Watermarked stock preview; licence uncertain.,reviewer
+data/real_world_test/kulfi/istockphoto-657073780-1024x1024.jpg,kulfi,Same stock photograph as training image; not independent.,reviewer
+data/real_world_test/kulfi/pexels-sahaab-38678811.jpg,kulfi,121 MP street photo; food is a small part of the frame.,reviewer
+data/real_world_test/masala_dosa/pexels-ryshy-s-2149956588-35539315.jpg,masala_dosa,"Same file is in several class folders (idli, masala_dosa); reviewer excluded every copy.",reviewer
+data/real_world_test/momos/pexels-bishop-tamrakar-2246201-3926123.jpg,momos,Overlaps model data: processed/train data/processed/train/momos/000219.jpg (distance 1),reviewer
+data/real_world_test/sushi/pexels-valeriya-28291554 (1).jpg,sushi,Exact copy of data/real_world_test/sushi/pexels-valeriya-28291554.jpg.,rule
+data/real_world_test/sushi/pexels-valeriya-28291554 (10).jpg,sushi,Exact copy of data/real_world_test/sushi/pexels-valeriya-28291554.jpg.,rule
+data/real_world_test/sushi/pexels-valeriya-28291554 (11).jpg,sushi,Exact copy of data/real_world_test/sushi/pexels-valeriya-28291554.jpg.,rule
+data/real_world_test/sushi/pexels-valeriya-28291554 (12).jpg,sushi,Exact copy of data/real_world_test/sushi/pexels-valeriya-28291554.jpg.,rule
+data/real_world_test/sushi/pexels-valeriya-28291554 (13).jpg,sushi,Exact copy of data/real_world_test/sushi/pexels-valeriya-28291554.jpg.,rule
+data/real_world_test/sushi/pexels-valeriya-28291554 (2).jpg,sushi,Exact copy of data/real_world_test/sushi/pexels-valeriya-28291554.jpg.,rule
+data/real_world_test/sushi/pexels-valeriya-28291554 (3).jpg,sushi,Exact copy of data/real_world_test/sushi/pexels-valeriya-28291554.jpg.,rule
+data/real_world_test/sushi/pexels-valeriya-28291554 (4).jpg,sushi,Exact copy of data/real_world_test/sushi/pexels-valeriya-28291554.jpg.,rule
+data/real_world_test/sushi/pexels-valeriya-28291554 (5).jpg,sushi,Exact copy of data/real_world_test/sushi/pexels-valeriya-28291554.jpg.,rule
+data/real_world_test/sushi/pexels-valeriya-28291554 (6).jpg,sushi,Exact copy of data/real_world_test/sushi/pexels-valeriya-28291554.jpg.,rule
+data/real_world_test/sushi/pexels-valeriya-28291554 (7).jpg,sushi,Exact copy of data/real_world_test/sushi/pexels-valeriya-28291554.jpg.,rule
+data/real_world_test/sushi/pexels-valeriya-28291554 (8).jpg,sushi,Exact copy of data/real_world_test/sushi/pexels-valeriya-28291554.jpg.,rule
+data/real_world_test/sushi/pexels-valeriya-28291554 (9).jpg,sushi,Exact copy of data/real_world_test/sushi/pexels-valeriya-28291554.jpg.,rule

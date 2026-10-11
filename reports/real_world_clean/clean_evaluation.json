@@ -1,0 +1,5099 @@
+{
+  "report_type": "real_world_clean_evaluation",
+  "status": "ok",
+  "generated_at": "2026-10-11T05:18:22+00:00",
+  "reports": {
+    "old": "reports/real_world/real_world_evaluation.json",
+    "new": "reports/real_world_v2/real_world_evaluation.json"
+  },
+  "models": {
+    "old": {
+      "path": "models/efficientnet_b0/food_efficientnet_b0_best.pth",
+      "sha256": "39363ab4f70d68fb579904f6424fdd59f6c69197822eeba7d544a2b7f0084f41",
+      "model_name": "EfficientNet-B0",
+      "epoch": 4,
+      "val_accuracy": 0.8311870100783875,
+      "image_size": 224
+    },
+    "new": {
+      "path": "models/efficientnet_b0_v2/food_efficientnet_b0_v2_best.pth",
+      "sha256": "e34b83ee0b1e078c03dfec4819214ed2f99b0aeec53074d65f711f4879c0ebf7",
+      "model_name": "EfficientNet-B0",
+      "epoch": 21,
+      "val_accuracy": 0.9280515117581187,
+      "image_size": 224
+    }
+  },
+  "image_manifest": {
+    "images": 233,
+    "sha256": "e73856a83adb081d452e470f357e6f0a947a0c1393f9de2640c980c34e5614da"
+  },
+  "checks": {
+    "same_class_mapping": true,
+    "same_images_labels_and_file_hashes": true
+  },
+  "overall": {
+    "old": {
+      "total": 233,
+      "correct": 126,
+      "accuracy": 0.5407725321888412,
+      "macro_precision": 0.5232809673986144,
+      "macro_recall": 0.5111227824463118,
+      "macro_f1": 0.4744808582825338,
+      "weighted_f1": 0.5110575022860596,
+      "macro_f1_classes": 34
+    },
+    "new": {
+      "total": 233,
+      "correct": 157,
+      "accuracy": 0.6738197424892703,
+      "macro_precision": 0.6795655325067089,
+      "macro_recall": 0.6493814192343603,
+      "macro_f1": 0.6282097018301718,
+      "weighted_f1": 0.6604681383332442,
+      "macro_f1_classes": 34
+    }
+  },
+  "paired_test": {
+    "old_right_new_wrong": 9,
+    "old_wrong_new_right": 40,
+    "p_value": 9.263546409954415e-06
+  },
+  "bootstrap": {
+    "accuracy_difference_95ci": [
+      0.07725321888412018,
+      0.18884120171673818
+    ],
+    "macro_f1_difference_95ci": [
+      0.09057924536305946,
+      0.20937681115927248
+    ],
+    "resamples": 2000
+  },
+  "per_class": [
+    {
+      "food": "Baked Potato",
+      "support": 5,
+      "old": {
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "new": {
+        "precision": 1.0,
+        "recall": 0.2,
+        "f1": 0.33333333333333337
+      }
+    },
+    {
+      "food": "Crispy Chicken",
+      "support": 6,
+      "old": {
+        "precision": 1.0,
+        "recall": 0.16666666666666666,
+        "f1": 0.2857142857142857
+      },
+      "new": {
+        "precision": 0.8333333333333334,
+        "recall": 0.8333333333333334,
+        "f1": 0.8333333333333334
+      }
+    },
+    {
+      "food": "Donut",
+      "support": 8,
+      "old": {
+        "precision": 1.0,
+        "recall": 0.875,
+        "f1": 0.9333333333333333
+      },
+      "new": {
+        "precision": 0.7777777777777778,
+        "recall": 0.875,
+        "f1": 0.823529411764706
+      }
+    },
+    {
+      "food": "Fries",
+      "support": 9,
+      "old": {
+        "precision": 0.8888888888888888,
+        "recall": 0.8888888888888888,
+        "f1": 0.8888888888888888
+      },
+      "new": {
+        "precision": 0.6923076923076923,
+        "recall": 1.0,
+        "f1": 0.8181818181818181
+      }
+    },
+    {
+      "food": "Hot Dog",
+      "support": 8,
+      "old": {
+        "precision": 0.875,
+        "recall": 0.875,
+        "f1": 0.875
+      },
+      "new": {
+        "precision": 0.6666666666666666,
+        "recall": 1.0,
+        "f1": 0.8
+      }
+    },
+    {
+      "food": "Sandwich",
+      "support": 7,
+      "old": {
+        "precision": 1.0,
+        "recall": 0.14285714285714285,
+        "f1": 0.25
+      },
+      "new": {
+        "precision": 0.8333333333333334,
+        "recall": 0.7142857142857143,
+        "f1": 0.7692307692307692
+      }
+    },
+    {
+      "food": "Taco",
+      "support": 7,
+      "old": {
+        "precision": 1.0,
+        "recall": 0.2857142857142857,
+        "f1": 0.4444444444444445
+      },
+      "new": {
+        "precision": 0.8,
+        "recall": 0.5714285714285714,
+        "f1": 0.6666666666666666
+      }
+    },
+    {
+      "food": "Taquito",
+      "support": 9,
+      "old": {
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "new": {
+        "precision": 0.6666666666666666,
+        "recall": 0.2222222222222222,
+        "f1": 0.3333333333333333
+      }
+    },
+    {
+      "food": "apple_pie",
+      "support": 5,
+      "old": {
+        "precision": 0.3333333333333333,
+        "recall": 0.2,
+        "f1": 0.25
+      },
+      "new": {
+        "precision": 0.6666666666666666,
+        "recall": 0.4,
+        "f1": 0.5
+      }
+    },
+    {
+      "food": "burger",
+      "support": 7,
+      "old": {
+        "precision": 0.6666666666666666,
+        "recall": 0.8571428571428571,
+        "f1": 0.75
+      },
+      "new": {
+        "precision": 0.75,
+        "recall": 0.8571428571428571,
+        "f1": 0.7999999999999999
+      }
+    },
+    {
+      "food": "butter_naan",
+      "support": 5,
+      "old": {
+        "precision": 0.6666666666666666,
+        "recall": 0.4,
+        "f1": 0.5
+      },
+      "new": {
+        "precision": 1.0,
+        "recall": 0.6,
+        "f1": 0.7499999999999999
+      }
+    },
+    {
+      "food": "chai",
+      "support": 6,
+      "old": {
+        "precision": 0.6,
+        "recall": 1.0,
+        "f1": 0.7499999999999999
+      },
+      "new": {
+        "precision": 0.6,
+        "recall": 1.0,
+        "f1": 0.7499999999999999
+      }
+    },
+    {
+      "food": "chapati",
+      "support": 5,
+      "old": {
+        "precision": 0.21428571428571427,
+        "recall": 0.6,
+        "f1": 0.3157894736842105
+      },
+      "new": {
+        "precision": 0.4444444444444444,
+        "recall": 0.8,
+        "f1": 0.5714285714285714
+      }
+    },
+    {
+      "food": "cheesecake",
+      "support": 7,
+      "old": {
+        "precision": 0.4,
+        "recall": 0.2857142857142857,
+        "f1": 0.3333333333333333
+      },
+      "new": {
+        "precision": 1.0,
+        "recall": 0.42857142857142855,
+        "f1": 0.6
+      }
+    },
+    {
+      "food": "chicken_curry",
+      "support": 5,
+      "old": {
+        "precision": 0.16666666666666666,
+        "recall": 0.2,
+        "f1": 0.1818181818181818
+      },
+      "new": {
+        "precision": 0.2,
+        "recall": 0.2,
+        "f1": 0.20000000000000004
+      }
+    },
+    {
+      "food": "chole_bhature",
+      "support": 7,
+      "old": {
+        "precision": null,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "new": {
+        "precision": 0.6666666666666666,
+        "recall": 0.5714285714285714,
+        "f1": 0.6153846153846153
+      }
+    },
+    {
+      "food": "dal_makhani",
+      "support": 7,
+      "old": {
+        "precision": 0.3333333333333333,
+        "recall": 0.8571428571428571,
+        "f1": 0.48
+      },
+      "new": {
+        "precision": 0.8333333333333334,
+        "recall": 0.7142857142857143,
+        "f1": 0.7692307692307692
+      }
+    },
+    {
+      "food": "dhokla",
+      "support": 6,
+      "old": {
+        "precision": 0.3333333333333333,
+        "recall": 0.6666666666666666,
+        "f1": 0.4444444444444444
+      },
+      "new": {
+        "precision": 0.75,
+        "recall": 0.5,
+        "f1": 0.6
+      }
+    },
+    {
+      "food": "fried_rice",
+      "support": 7,
+      "old": {
+        "precision": 0.42857142857142855,
+        "recall": 0.42857142857142855,
+        "f1": 0.42857142857142855
+      },
+      "new": {
+        "precision": 0.3333333333333333,
+        "recall": 0.14285714285714285,
+        "f1": 0.2
+      }
+    },
+    {
+      "food": "ice_cream",
+      "support": 8,
+      "old": {
+        "precision": 0.625,
+        "recall": 0.625,
+        "f1": 0.625
+      },
+      "new": {
+        "precision": 0.5555555555555556,
+        "recall": 0.625,
+        "f1": 0.5882352941176471
+      }
+    },
+    {
+      "food": "idli",
+      "support": 9,
+      "old": {
+        "precision": 0.8,
+        "recall": 0.4444444444444444,
+        "f1": 0.5714285714285714
+      },
+      "new": {
+        "precision": 1.0,
+        "recall": 0.6666666666666666,
+        "f1": 0.8
+      }
+    },
+    {
+      "food": "jalebi",
+      "support": 9,
+      "old": {
+        "precision": 0.75,
+        "recall": 1.0,
+        "f1": 0.8571428571428571
+      },
+      "new": {
+        "precision": 0.9,
+        "recall": 1.0,
+        "f1": 0.9473684210526316
+      }
+    },
+    {
+      "food": "kaathi_rolls",
+      "support": 6,
+      "old": {
+        "precision": 0.6,
+        "recall": 0.5,
+        "f1": 0.5454545454545454
+      },
+      "new": {
+        "precision": 0.4,
+        "recall": 0.3333333333333333,
+        "f1": 0.3636363636363636
+      }
+    },
+    {
+      "food": "kadai_paneer",
+      "support": 8,
+      "old": {
+        "precision": 0.42857142857142855,
+        "recall": 0.375,
+        "f1": 0.39999999999999997
+      },
+      "new": {
+        "precision": 0.5714285714285714,
+        "recall": 0.5,
+        "f1": 0.5333333333333333
+      }
+    },
+    {
+      "food": "kulfi",
+      "support": 2,
+      "old": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "new": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      }
+    },
+    {
+      "food": "masala_dosa",
+      "support": 7,
+      "old": {
+        "precision": 0.625,
+        "recall": 0.7142857142857143,
+        "f1": 0.6666666666666666
+      },
+      "new": {
+        "precision": 0.6363636363636364,
+        "recall": 1.0,
+        "f1": 0.7777777777777778
+      }
+    },
+    {
+      "food": "momos",
+      "support": 8,
+      "old": {
+        "precision": 0.5,
+        "recall": 0.5,
+        "f1": 0.5
+      },
+      "new": {
+        "precision": 0.5384615384615384,
+        "recall": 0.875,
+        "f1": 0.6666666666666667
+      }
+    },
+    {
+      "food": "omelette",
+      "support": 7,
+      "old": {
+        "precision": 0.3333333333333333,
+        "recall": 0.2857142857142857,
+        "f1": 0.30769230769230765
+      },
+      "new": {
+        "precision": 0.6,
+        "recall": 0.42857142857142855,
+        "f1": 0.5
+      }
+    },
+    {
+      "food": "paani_puri",
+      "support": 9,
+      "old": {
+        "precision": 0.625,
+        "recall": 0.5555555555555556,
+        "f1": 0.5882352941176471
+      },
+      "new": {
+        "precision": 1.0,
+        "recall": 0.6666666666666666,
+        "f1": 0.8
+      }
+    },
+    {
+      "food": "pakode",
+      "support": 9,
+      "old": {
+        "precision": 0.6666666666666666,
+        "recall": 0.6666666666666666,
+        "f1": 0.6666666666666666
+      },
+      "new": {
+        "precision": 0.6666666666666666,
+        "recall": 0.8888888888888888,
+        "f1": 0.761904761904762
+      }
+    },
+    {
+      "food": "pav_bhaji",
+      "support": 8,
+      "old": {
+        "precision": 0.6666666666666666,
+        "recall": 0.75,
+        "f1": 0.7058823529411765
+      },
+      "new": {
+        "precision": 1.0,
+        "recall": 0.75,
+        "f1": 0.8571428571428571
+      }
+    },
+    {
+      "food": "pizza",
+      "support": 8,
+      "old": {
+        "precision": 0.6363636363636364,
+        "recall": 0.875,
+        "f1": 0.7368421052631579
+      },
+      "new": {
+        "precision": 0.8888888888888888,
+        "recall": 1.0,
+        "f1": 0.9411764705882353
+      }
+    },
+    {
+      "food": "samosa",
+      "support": 7,
+      "old": {
+        "precision": 0.46153846153846156,
+        "recall": 0.8571428571428571,
+        "f1": 0.6
+      },
+      "new": {
+        "precision": 0.5,
+        "recall": 0.7142857142857143,
+        "f1": 0.588235294117647
+      }
+    },
+    {
+      "food": "sushi",
+      "support": 2,
+      "old": {
+        "precision": 0.16666666666666666,
+        "recall": 0.5,
+        "f1": 0.25
+      },
+      "new": {
+        "precision": 0.3333333333333333,
+        "recall": 1.0,
+        "f1": 0.5
+      }
+    }
+  ],
+  "frequent_confusions": [
+    {
+      "actual": "kadai_paneer",
+      "predicted": "pakode",
+      "old": 3,
+      "new": 3
+    },
+    {
+      "actual": "Taquito",
+      "predicted": "samosa",
+      "old": 1,
+      "new": 3
+    },
+    {
+      "actual": "Taquito",
+      "predicted": "dhokla",
+      "old": 3,
+      "new": 0
+    },
+    {
+      "actual": "butter_naan",
+      "predicted": "chapati",
+      "old": 1,
+      "new": 2
+    },
+    {
+      "actual": "chicken_curry",
+      "predicted": "dal_makhani",
+      "old": 2,
+      "new": 1
+    },
+    {
+      "actual": "chicken_curry",
+      "predicted": "kadai_paneer",
+      "old": 1,
+      "new": 2
+    },
+    {
+      "actual": "chole_bhature",
+      "predicted": "chapati",
+      "old": 2,
+      "new": 1
+    },
+    {
+      "actual": "idli",
+      "predicted": "kulfi",
+      "old": 1,
+      "new": 2
+    },
+    {
+      "actual": "kulfi",
+      "predicted": "ice_cream",
+      "old": 1,
+      "new": 2
+    },
+    {
+      "actual": "omelette",
+      "predicted": "dal_makhani",
+      "old": 3,
+      "new": 0
+    },
+    {
+      "actual": "Baked Potato",
+      "predicted": "apple_pie",
+      "old": 2,
+      "new": 0
+    },
+    {
+      "actual": "Baked Potato",
+      "predicted": "jalebi",
+      "old": 1,
+      "new": 1
+    },
+    {
+      "actual": "Baked Potato",
+      "predicted": "kulfi",
+      "old": 1,
+      "new": 1
+    },
+    {
+      "actual": "Baked Potato",
+      "predicted": "samosa",
+      "old": 1,
+      "new": 1
+    },
+    {
+      "actual": "Sandwich",
+      "predicted": "omelette",
+      "old": 1,
+      "new": 1
+    }
+  ],
+  "changed_predictions": [
+    {
+      "path": "data/real_world_test/Baked Potato/pexels-nobleseed-34495400.jpg",
+      "actual": "Baked Potato",
+      "old": "apple_pie",
+      "new": "Baked Potato"
+    },
+    {
+      "path": "data/real_world_test/Baked Potato/pexels-polina-tankilevitch-4110470.jpg",
+      "actual": "Baked Potato",
+      "old": "apple_pie",
+      "new": "Hot Dog"
+    },
+    {
+      "path": "data/real_world_test/Crispy Chicken/pexels-andaru-firmansyah-2152289371-37279764.jpg",
+      "actual": "Crispy Chicken",
+      "old": "pizza",
+      "new": "Fries"
+    },
+    {
+      "path": "data/real_world_test/Crispy Chicken/pexels-chicken-mackay-3652946-5474676.jpg",
+      "actual": "Crispy Chicken",
+      "old": "burger",
+      "new": "Crispy Chicken"
+    },
+    {
+      "path": "data/real_world_test/Crispy Chicken/pexels-foturecreative-33101857.jpg",
+      "actual": "Crispy Chicken",
+      "old": "chapati",
+      "new": "Crispy Chicken"
+    },
+    {
+      "path": "data/real_world_test/Crispy Chicken/pexels-mohammad-miladi-134457715-10206125.jpg",
+      "actual": "Crispy Chicken",
+      "old": "omelette",
+      "new": "Crispy Chicken"
+    },
+    {
+      "path": "data/real_world_test/Crispy Chicken/pexels-qamar-rehman-94539242-11502374.jpg",
+      "actual": "Crispy Chicken",
+      "old": "chai",
+      "new": "Crispy Chicken"
+    },
+    {
+      "path": "data/real_world_test/Donut/pexels-perfect-lens-8358569.jpg",
+      "actual": "Donut",
+      "old": "pizza",
+      "new": "Hot Dog"
+    },
+    {
+      "path": "data/real_world_test/Fries/pexels-jahratreza-39034206.jpg",
+      "actual": "Fries",
+      "old": "samosa",
+      "new": "Fries"
+    },
+    {
+      "path": "data/real_world_test/Hot Dog/pexels-alleksana-4113501.jpg",
+      "actual": "Hot Dog",
+      "old": "kaathi_rolls",
+      "new": "Hot Dog"
+    },
+    {
+      "path": "data/real_world_test/Sandwich/pexels-andrea-prochilo-3062027-34421469.jpg",
+      "actual": "Sandwich",
+      "old": "cheesecake",
+      "new": "omelette"
+    },
+    {
+      "path": "data/real_world_test/Sandwich/pexels-nano-erdozain-120534369-19202817.jpg",
+      "actual": "Sandwich",
+      "old": "dal_makhani",
+      "new": "Sandwich"
+    },
+    {
+      "path": "data/real_world_test/Sandwich/pexels-nano-erdozain-120534369-19202829.jpg",
+      "actual": "Sandwich",
+      "old": "fried_rice",
+      "new": "Sandwich"
+    },
+    {
+      "path": "data/real_world_test/Sandwich/pexels-thongtran95-16436245.jpg",
+      "actual": "Sandwich",
+      "old": "sushi",
+      "new": "Donut"
+    },
+    {
+      "path": "data/real_world_test/Sandwich/pexels-tochtliyeung1996-15362507.jpg",
+      "actual": "Sandwich",
+      "old": "omelette",
+      "new": "Sandwich"
+    },
+    {
+      "path": "data/real_world_test/Sandwich/pexels-tolgaaslanturk-11256670.jpg",
+      "actual": "Sandwich",
+      "old": "samosa",
+      "new": "Sandwich"
+    },
+    {
+      "path": "data/real_world_test/Taco/pexels-roman-odintsov-4958526.jpg",
+      "actual": "Taco",
+      "old": "dal_makhani",
+      "new": "Taco"
+    },
+    {
+      "path": "data/real_world_test/Taco/pexels-roman-odintsov-4958779.jpg",
+      "actual": "Taco",
+      "old": "fried_rice",
+      "new": "kaathi_rolls"
+    },
+    {
+      "path": "data/real_world_test/Taco/pexels-roman-odintsov-5837188.jpg",
+      "actual": "Taco",
+      "old": "ice_cream",
+      "new": "Taco"
+    },
+    {
+      "path": "data/real_world_test/Taco/pexels-roman-odintsov-5837196.jpg",
+      "actual": "Taco",
+      "old": "burger",
+      "new": "Hot Dog"
+    },
+    {
+      "path": "data/real_world_test/Taco/pexels-styves-exantus-7162424-7041784.jpg",
+      "actual": "Taco",
+      "old": "dhokla",
+      "new": "kaathi_rolls"
+    },
+    {
+      "path": "data/real_world_test/Taquito/pexels-anthony-rahayel-125801377-32592710.jpg",
+      "actual": "Taquito",
+      "old": "kulfi",
+      "new": "Taquito"
+    },
+    {
+      "path": "data/real_world_test/Taquito/pexels-cristian-rojas-8448323.jpg",
+      "actual": "Taquito",
+      "old": "masala_dosa",
+      "new": "Taco"
+    },
+    {
+      "path": "data/real_world_test/Taquito/pexels-fausto-hernandez-196511575-12326169.jpg",
+      "actual": "Taquito",
+      "old": "momos",
+      "new": "samosa"
+    },
+    {
+      "path": "data/real_world_test/Taquito/pexels-jonathan-reynaga-861774-17429044.jpg",
+      "actual": "Taquito",
+      "old": "dhokla",
+      "new": "Fries"
+    },
+    {
+      "path": "data/real_world_test/Taquito/pexels-jonathan-reynaga-861774-17429144.jpg",
+      "actual": "Taquito",
+      "old": "dhokla",
+      "new": "Taquito"
+    },
+    {
+      "path": "data/real_world_test/Taquito/pexels-jonathan-reynaga-861774-17429153.jpg",
+      "actual": "Taquito",
+      "old": "dal_makhani",
+      "new": "sushi"
+    },
+    {
+      "path": "data/real_world_test/Taquito/pexels-rachel-claire-5531155.jpg",
+      "actual": "Taquito",
+      "old": "dhokla",
+      "new": "momos"
+    },
+    {
+      "path": "data/real_world_test/Taquito/pexels-ruben-dao-cuentas-239930863-34303345.jpg",
+      "actual": "Taquito",
+      "old": "omelette",
+      "new": "samosa"
+    },
+    {
+      "path": "data/real_world_test/apple_pie/pexels-christina-voinova-42707474-7368070.jpg",
+      "actual": "apple_pie",
+      "old": "cheesecake",
+      "new": "masala_dosa"
+    },
+    {
+      "path": "data/real_world_test/apple_pie/pexels-clement-bruneau-2159570516-36340982.jpg",
+      "actual": "apple_pie",
+      "old": "momos",
+      "new": "apple_pie"
+    },
+    {
+      "path": "data/real_world_test/apple_pie/pexels-hilalbulbul-12782728.jpg",
+      "actual": "apple_pie",
+      "old": "chapati",
+      "new": "Sandwich"
+    },
+    {
+      "path": "data/real_world_test/apple_pie/pexels-hilalbulbul-7552556.jpg",
+      "actual": "apple_pie",
+      "old": "chapati",
+      "new": "Fries"
+    },
+    {
+      "path": "data/real_world_test/butter_naan/pexels-gagankaur-16851842.jpg",
+      "actual": "butter_naan",
+      "old": "fried_rice",
+      "new": "butter_naan"
+    },
+    {
+      "path": "data/real_world_test/butter_naan/pexels-miltonphotography-35066811.jpg",
+      "actual": "butter_naan",
+      "old": "dhokla",
+      "new": "chapati"
+    },
+    {
+      "path": "data/real_world_test/chapati/pexels-usman-yousaf-708951-5589943.jpg",
+      "actual": "chapati",
+      "old": "kaathi_rolls",
+      "new": "chapati"
+    },
+    {
+      "path": "data/real_world_test/cheesecake/pexels-marijana-blazaric-571842-13350861.jpg",
+      "actual": "cheesecake",
+      "old": "pav_bhaji",
+      "new": "ice_cream"
+    },
+    {
+      "path": "data/real_world_test/cheesecake/pexels-mlkbnl-25746353.jpg",
+      "actual": "cheesecake",
+      "old": "sushi",
+      "new": "burger"
+    },
+    {
+      "path": "data/real_world_test/cheesecake/pexels-mlkbnl-25746355.jpg",
+      "actual": "cheesecake",
+      "old": "kadai_paneer",
+      "new": "cheesecake"
+    },
+    {
+      "path": "data/real_world_test/cheesecake/pexels-mlkbnl-25746365.jpg",
+      "actual": "cheesecake",
+      "old": "pizza",
+      "new": "cheesecake"
+    },
+    {
+      "path": "data/real_world_test/cheesecake/pexels-mlkbnl-29831239.jpg",
+      "actual": "cheesecake",
+      "old": "cheesecake",
+      "new": "burger"
+    },
+    {
+      "path": "data/real_world_test/cheesecake/pexels-vivanpunk-34637999.jpg",
+      "actual": "cheesecake",
+      "old": "dal_makhani",
+      "new": "apple_pie"
+    },
+    {
+      "path": "data/real_world_test/chicken_curry/pexels-anna-pou-9345647.jpg",
+      "actual": "chicken_curry",
+      "old": "chapati",
+      "new": "chole_bhature"
+    },
+    {
+      "path": "data/real_world_test/chicken_curry/pexels-pinaki-panda-3019803-33643313.jpg",
+      "actual": "chicken_curry",
+      "old": "dal_makhani",
+      "new": "kadai_paneer"
+    },
+    {
+      "path": "data/real_world_test/chole_bhature/pexels-adhwaith-chandran-214377112-15995519.jpg",
+      "actual": "chole_bhature",
+      "old": "samosa",
+      "new": "chole_bhature"
+    },
+    {
+      "path": "data/real_world_test/chole_bhature/pexels-drmkhawarnazir-9287035.jpg",
+      "actual": "chole_bhature",
+      "old": "dal_makhani",
+      "new": "chole_bhature"
+    },
+    {
+      "path": "data/real_world_test/chole_bhature/pexels-inaam-ashiq-2155239180-35128164.jpg",
+      "actual": "chole_bhature",
+      "old": "Fries",
+      "new": "chicken_curry"
+    },
+    {
+      "path": "data/real_world_test/chole_bhature/pexels-jack-baghel-2199968-20446423.jpg",
+      "actual": "chole_bhature",
+      "old": "pav_bhaji",
+      "new": "chapati"
+    },
+    {
+      "path": "data/real_world_test/chole_bhature/pexels-llana-79788650-15717898.jpg",
+      "actual": "chole_bhature",
+      "old": "chapati",
+      "new": "masala_dosa"
+    },
+    {
+      "path": "data/real_world_test/chole_bhature/pexels-sabyasachi-das-45419624-29066704.jpg",
+      "actual": "chole_bhature",
+      "old": "chapati",
+      "new": "chole_bhature"
+    },
+    {
+      "path": "data/real_world_test/chole_bhature/pexels-yash-acharya-214379065-11818239.jpg",
+      "actual": "chole_bhature",
+      "old": "pav_bhaji",
+      "new": "chole_bhature"
+    },
+    {
+      "path": "data/real_world_test/dal_makhani/pexels-kunal-lakhotia-781256899-28674708.jpg",
+      "actual": "dal_makhani",
+      "old": "chicken_curry",
+      "new": "fried_rice"
+    },
+    {
+      "path": "data/real_world_test/dal_makhani/pexels-kunal-lakhotia-781256899-28674710.jpg",
+      "actual": "dal_makhani",
+      "old": "dal_makhani",
+      "new": "chicken_curry"
+    },
+    {
+      "path": "data/real_world_test/dhokla/pexels-aayushrawat-8414675.jpg",
+      "actual": "dhokla",
+      "old": "paani_puri",
+      "new": "omelette"
+    },
+    {
+      "path": "data/real_world_test/dhokla/pexels-ali-dashti-506667798-26341215.jpg",
+      "actual": "dhokla",
+      "old": "paani_puri",
+      "new": "Donut"
+    },
+    {
+      "path": "data/real_world_test/dhokla/pexels-shootsaga-38734222.jpg",
+      "actual": "dhokla",
+      "old": "dhokla",
+      "new": "Fries"
+    },
+    {
+      "path": "data/real_world_test/fried_rice/pexels-4louette-11129150.jpg",
+      "actual": "fried_rice",
+      "old": "kadai_paneer",
+      "new": "kaathi_rolls"
+    },
+    {
+      "path": "data/real_world_test/fried_rice/pexels-anntarazevich-6937425.jpg",
+      "actual": "fried_rice",
+      "old": "fried_rice",
+      "new": "samosa"
+    },
+    {
+      "path": "data/real_world_test/fried_rice/pexels-anntarazevich-6937439.jpg",
+      "actual": "fried_rice",
+      "old": "fried_rice",
+      "new": "dhokla"
+    },
+    {
+      "path": "data/real_world_test/fried_rice/pexels-anntarazevich-6937447.jpg",
+      "actual": "fried_rice",
+      "old": "chapati",
+      "new": "ice_cream"
+    },
+    {
+      "path": "data/real_world_test/fried_rice/pexels-anntarazevich-6937451.jpg",
+      "actual": "fried_rice",
+      "old": "jalebi",
+      "new": "chai"
+    },
+    {
+      "path": "data/real_world_test/fried_rice/pexels-anntarazevich-6937457.jpg",
+      "actual": "fried_rice",
+      "old": "chapati",
+      "new": "sushi"
+    },
+    {
+      "path": "data/real_world_test/ice_cream/pexels-bank-12843687.jpg",
+      "actual": "ice_cream",
+      "old": "fried_rice",
+      "new": "momos"
+    },
+    {
+      "path": "data/real_world_test/ice_cream/pexels-ds-stories-9227980.jpg",
+      "actual": "ice_cream",
+      "old": "momos",
+      "new": "ice_cream"
+    },
+    {
+      "path": "data/real_world_test/ice_cream/pexels-glebkrs-15155623.jpg",
+      "actual": "ice_cream",
+      "old": "ice_cream",
+      "new": "chai"
+    },
+    {
+      "path": "data/real_world_test/ice_cream/pexels-rdne-6412948.jpg",
+      "actual": "ice_cream",
+      "old": "pizza",
+      "new": "chapati"
+    },
+    {
+      "path": "data/real_world_test/idli/pexels-jack-baghel-2199968-20422128.jpg",
+      "actual": "idli",
+      "old": "sushi",
+      "new": "idli"
+    },
+    {
+      "path": "data/real_world_test/idli/pexels-lunarly-83082820-17869141.jpg",
+      "actual": "idli",
+      "old": "dhokla",
+      "new": "idli"
+    },
+    {
+      "path": "data/real_world_test/idli/pexels-sarthak-2782336-4331488.jpg",
+      "actual": "idli",
+      "old": "chai",
+      "new": "kulfi"
+    },
+    {
+      "path": "data/real_world_test/kaathi_rolls/pexels-albert-kayenda-2161871276-39994554.jpg",
+      "actual": "kaathi_rolls",
+      "old": "kaathi_rolls",
+      "new": "momos"
+    },
+    {
+      "path": "data/real_world_test/kaathi_rolls/pexels-jitin-arora-2155275110-33709307.jpg",
+      "actual": "kaathi_rolls",
+      "old": "burger",
+      "new": "sushi"
+    },
+    {
+      "path": "data/real_world_test/kaathi_rolls/pexels-saveurssecretes-12392905.jpg",
+      "actual": "kaathi_rolls",
+      "old": "masala_dosa",
+      "new": "Taquito"
+    },
+    {
+      "path": "data/real_world_test/kaathi_rolls/pexels-saveurssecretes-7936011.jpg",
+      "actual": "kaathi_rolls",
+      "old": "samosa",
+      "new": "chai"
+    },
+    {
+      "path": "data/real_world_test/kadai_paneer/pexels-grayomm-31783383.jpg",
+      "actual": "kadai_paneer",
+      "old": "chicken_curry",
+      "new": "kadai_paneer"
+    },
+    {
+      "path": "data/real_world_test/kadai_paneer/pexels-kunal-lakhotia-781256899-29631459.jpg",
+      "actual": "kadai_paneer",
+      "old": "pakode",
+      "new": "Crispy Chicken"
+    },
+    {
+      "path": "data/real_world_test/kadai_paneer/pexels-shootsaga-33430556.jpg",
+      "actual": "kadai_paneer",
+      "old": "sushi",
+      "new": "pakode"
+    },
+    {
+      "path": "data/real_world_test/kulfi/pexels-jahratreza-39831473.jpg",
+      "actual": "kulfi",
+      "old": "chai",
+      "new": "ice_cream"
+    },
+    {
+      "path": "data/real_world_test/masala_dosa/pexels-jack-baghel-2199968-20422126.jpg",
+      "actual": "masala_dosa",
+      "old": "dal_makhani",
+      "new": "masala_dosa"
+    },
+    {
+      "path": "data/real_world_test/masala_dosa/pexels-kavya-pothabattula-388296612-28107046.jpg",
+      "actual": "masala_dosa",
+      "old": "omelette",
+      "new": "masala_dosa"
+    },
+    {
+      "path": "data/real_world_test/momos/pexels-anya-dunes-2153945617-33670191.jpg",
+      "actual": "momos",
+      "old": "chapati",
+      "new": "momos"
+    },
+    {
+      "path": "data/real_world_test/momos/pexels-momo-king-3616480-5409010.jpg",
+      "actual": "momos",
+      "old": "masala_dosa",
+      "new": "momos"
+    },
+    {
+      "path": "data/real_world_test/momos/pexels-prateek-lall-3279406-38520712.jpg",
+      "actual": "momos",
+      "old": "paani_puri",
+      "new": "chicken_curry"
+    },
+    {
+      "path": "data/real_world_test/momos/pexels-shyamsrivastava-33384415.jpg",
+      "actual": "momos",
+      "old": "idli",
+      "new": "momos"
+    },
+    {
+      "path": "data/real_world_test/omelette/pexels-ali-dashti-506667798-28241698.jpg",
+      "actual": "omelette",
+      "old": "dhokla",
+      "new": "masala_dosa"
+    },
+    {
+      "path": "data/real_world_test/omelette/pexels-amine-1285347-12512039.jpg",
+      "actual": "omelette",
+      "old": "dal_makhani",
+      "new": "fried_rice"
+    },
+    {
+      "path": "data/real_world_test/omelette/pexels-camerasimagination-11929161.jpg",
+      "actual": "omelette",
+      "old": "dal_makhani",
+      "new": "kadai_paneer"
+    },
+    {
+      "path": "data/real_world_test/omelette/pexels-garley-gibson-447183984-15481458.jpg",
+      "actual": "omelette",
+      "old": "jalebi",
+      "new": "masala_dosa"
+    },
+    {
+      "path": "data/real_world_test/omelette/pexels-helin-gezer-903013644-25748211.jpg",
+      "actual": "omelette",
+      "old": "dal_makhani",
+      "new": "omelette"
+    },
+    {
+      "path": "data/real_world_test/paani_puri/pexels-fahim-shizan-2152194768-34356404.jpg",
+      "actual": "paani_puri",
+      "old": "dal_makhani",
+      "new": "momos"
+    },
+    {
+      "path": "data/real_world_test/paani_puri/pexels-jahratreza-40000023.jpg",
+      "actual": "paani_puri",
+      "old": "samosa",
+      "new": "paani_puri"
+    },
+    {
+      "path": "data/real_world_test/pakode/pexels-chanwalrus-958544.jpg",
+      "actual": "pakode",
+      "old": "chicken_curry",
+      "new": "pakode"
+    },
+    {
+      "path": "data/real_world_test/pakode/pexels-miltonphotography-35066805.jpg",
+      "actual": "pakode",
+      "old": "pakode",
+      "new": "momos"
+    },
+    {
+      "path": "data/real_world_test/pakode/pexels-sabbythefreeelf-36619179.jpg",
+      "actual": "pakode",
+      "old": "chicken_curry",
+      "new": "pakode"
+    },
+    {
+      "path": "data/real_world_test/pakode/pexels-tamba09-37107128.jpg",
+      "actual": "pakode",
+      "old": "kadai_paneer",
+      "new": "pakode"
+    },
+    {
+      "path": "data/real_world_test/pav_bhaji/pexels-digitalbuggu-166654.jpg",
+      "actual": "pav_bhaji",
+      "old": "dhokla",
+      "new": "momos"
+    },
+    {
+      "path": "data/real_world_test/pav_bhaji/pexels-sateesh-polkam-706210252-18496583.jpg",
+      "actual": "pav_bhaji",
+      "old": "momos",
+      "new": "pizza"
+    },
+    {
+      "path": "data/real_world_test/pizza/pexels-matreding-9685264.jpg",
+      "actual": "pizza",
+      "old": "butter_naan",
+      "new": "pizza"
+    },
+    {
+      "path": "data/real_world_test/samosa/pexels-roman-saienko-1867764487-38043951.jpg",
+      "actual": "samosa",
+      "old": "samosa",
+      "new": "chole_bhature"
+    },
+    {
+      "path": "data/real_world_test/samosa/pexels-supibee-5031949.jpg",
+      "actual": "samosa",
+      "old": "cheesecake",
+      "new": "pakode"
+    },
+    {
+      "path": "data/real_world_test/sushi/pexels-nadin-sh-78971847-39528139.jpg",
+      "actual": "sushi",
+      "old": "ice_cream",
+      "new": "sushi"
+    }
+  ],
+  "confusion_matrices": {
+    "labels": [
+      "Baked Potato",
+      "Crispy Chicken",
+      "Donut",
+      "Fries",
+      "Hot Dog",
+      "Sandwich",
+      "Taco",
+      "Taquito",
+      "apple_pie",
+      "burger",
+      "butter_naan",
+      "chai",
+      "chapati",
+      "cheesecake",
+      "chicken_curry",
+      "chole_bhature",
+      "dal_makhani",
+      "dhokla",
+      "fried_rice",
+      "ice_cream",
+      "idli",
+      "jalebi",
+      "kaathi_rolls",
+      "kadai_paneer",
+      "kulfi",
+      "masala_dosa",
+      "momos",
+      "omelette",
+      "paani_puri",
+      "pakode",
+      "pav_bhaji",
+      "pizza",
+      "samosa",
+      "sushi"
+    ],
+    "old": [
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        7,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        8,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        7,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        3,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        2,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        6,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        6,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        3,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        6,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        4,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        3,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        5,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        4,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        9,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        3,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        3,
+        0,
+        0,
+        0,
+        0,
+        0,
+        3,
+        0,
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        5,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        4,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        3,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        5,
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        6,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        6,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        7,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        6,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ]
+    ],
+    "new": [
+      [
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        5,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        7,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        9,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        8,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        0,
+        0,
+        5,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        4,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        3,
+        1
+      ],
+      [
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        6,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        3,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        6,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        4,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        2,
+        0,
+        0,
+        0,
+        3,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        4,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        5,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        3,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        5,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        6,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        9,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        4,
+        0,
+        0,
+        0,
+        0,
+        0,
+        3,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        7,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        7,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        2,
+        0,
+        3,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        6,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        8,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        6,
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        8,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        5,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2
+      ]
+    ]
+  },
+  "limitations": [
+    "233 of 263 images kept; 30 excluded (see exclusions.csv).",
+    "34 of 34 classes have fewer than 10 images; their per-class metrics are unreliable.",
+    "Predictions are reused from the two original reports (same checkpoints and preprocessing); no model was re-run.",
+    "Duplicate checks cannot find crops, re-edits or different photos of the same plate; several photos come from the same photographer and shoot, so images are not fully independent.",
+    "Confidence intervals are wide for this sample; a difference inside them is not evidence that either model is better.",
+    "Provenance: 263 image(s) have no documented source or licence (data/real_world_test/provenance.csv)."
+  ],
+  "manifest_status": "reviewed",
+  "review_file": "data/real_world_review/manual_review.csv",
+  "source_manifest": {
+    "images": 263,
+    "sha256": "b4ed5ce0a4807567321c3b69375864dcad2e4cc5ac121b3fc666f87d18c04801"
+  },
+  "exclusions": [
+    {
+      "path": "data/real_world_test/Donut/pexels-tijana-drndarski-449691-3338681.jpg",
+      "label": "Donut",
+      "reason": "Overlaps model data: processed/train data/processed/train/Donut/000386.jpg (distance 0)",
+      "decided_by": "reviewer"
+    },
+    {
+      "path": "data/real_world_test/Hot Dog/pexels-kamila-bairam-80608214-12123657.jpg",
+      "label": "Hot Dog",
+      "reason": "Overlaps model data: processed/validation data/processed/validation/Hot Dog/000006.jpg (distance 0); processed/validation data/processed/validation/Hot Dog/000160.jpg (distance 0)",
+      "decided_by": "reviewer"
+    },
+    {
+      "path": "data/real_world_test/Hot Dog/pexels-polina-tankilevitch-4518656.jpg",
+      "label": "Hot Dog",
+      "reason": "Overlaps model data: processed/train data/processed/train/Hot Dog/000501.jpg (distance 2)",
+      "decided_by": "reviewer"
+    },
+    {
+      "path": "data/real_world_test/Sandwich/pexels-karola-g2-6467.jpg",
+      "label": "Sandwich",
+      "reason": "Overlaps model data: processed/train data/processed/train/Sandwich/000568.jpg (distance 0)",
+      "decided_by": "reviewer"
+    },
+    {
+      "path": "data/real_world_test/apple_pie/pexels-hilalbulbul-12782728 (1).jpg",
+      "label": "apple_pie",
+      "reason": "Exact copy of data/real_world_test/apple_pie/pexels-hilalbulbul-12782728.jpg.",
+      "decided_by": "rule"
+    },
+    {
+      "path": "data/real_world_test/butter_naan/pexels-yarensphotoworks-30556657.jpg",
+      "label": "butter_naan",
+      "reason": "Flatbread could be chapati or roti.",
+      "decided_by": "reviewer"
+    },
+    {
+      "path": "data/real_world_test/chicken_curry/pexels-drmkhawarnazir-38003495.jpg",
+      "label": "chicken_curry",
+      "reason": "Yellow cubes in curry; chicken is not clearly visible.",
+      "decided_by": "reviewer"
+    },
+    {
+      "path": "data/real_world_test/chicken_curry/pexels-jkreat0r-32986463.jpg",
+      "label": "chicken_curry",
+      "reason": "Curry contents are not identifiable.",
+      "decided_by": "reviewer"
+    },
+    {
+      "path": "data/real_world_test/dhokla/pexels-marcelochagas-3324431.jpg",
+      "label": "dhokla",
+      "reason": "Food is not clearly identifiable as dhokla.",
+      "decided_by": "reviewer"
+    },
+    {
+      "path": "data/real_world_test/idli/pexels-mahesh-kumar-ganesan-2148232589-35514447 (1).jpg",
+      "label": "idli",
+      "reason": "Food could be egg curry rather than idli.",
+      "decided_by": "reviewer"
+    },
+    {
+      "path": "data/real_world_test/idli/pexels-ryshy-s-2149956588-35539315.jpg",
+      "label": "idli",
+      "reason": "Same file is in several class folders (idli, masala_dosa); reviewer excluded every copy.",
+      "decided_by": "reviewer"
+    },
+    {
+      "path": "data/real_world_test/kaathi_rolls/pexels-magda-ehlers-pexels-12758949.jpg",
+      "label": "kaathi_rolls",
+      "reason": "Image looks like spring rolls rather than kathi rolls.",
+      "decided_by": "reviewer"
+    },
+    {
+      "path": "data/real_world_test/kulfi/istockphoto-2154324654-1024x1024.jpg",
+      "label": "kulfi",
+      "reason": "Watermarked stock preview; licence uncertain.",
+      "decided_by": "reviewer"
+    },
+    {
+      "path": "data/real_world_test/kulfi/istockphoto-657073780-1024x1024.jpg",
+      "label": "kulfi",
+      "reason": "Same stock photograph as training image; not independent.",
+      "decided_by": "reviewer"
+    },
+    {
+      "path": "data/real_world_test/kulfi/pexels-sahaab-38678811.jpg",
+      "label": "kulfi",
+      "reason": "121 MP street photo; food is a small part of the frame.",
+      "decided_by": "reviewer"
+    },
+    {
+      "path": "data/real_world_test/masala_dosa/pexels-ryshy-s-2149956588-35539315.jpg",
+      "label": "masala_dosa",
+      "reason": "Same file is in several class folders (idli, masala_dosa); reviewer excluded every copy.",
+      "decided_by": "reviewer"
+    },
+    {
+      "path": "data/real_world_test/momos/pexels-bishop-tamrakar-2246201-3926123.jpg",
+      "label": "momos",
+      "reason": "Overlaps model data: processed/train data/processed/train/momos/000219.jpg (distance 1)",
+      "decided_by": "reviewer"
+    },
+    {
+      "path": "data/real_world_test/sushi/pexels-valeriya-28291554 (1).jpg",
+      "label": "sushi",
+      "reason": "Exact copy of data/real_world_test/sushi/pexels-valeriya-28291554.jpg.",
+      "decided_by": "rule"
+    },
+    {
+      "path": "data/real_world_test/sushi/pexels-valeriya-28291554 (10).jpg",
+      "label": "sushi",
+      "reason": "Exact copy of data/real_world_test/sushi/pexels-valeriya-28291554.jpg.",
+      "decided_by": "rule"
+    },
+    {
+      "path": "data/real_world_test/sushi/pexels-valeriya-28291554 (11).jpg",
+      "label": "sushi",
+      "reason": "Exact copy of data/real_world_test/sushi/pexels-valeriya-28291554.jpg.",
+      "decided_by": "rule"
+    },
+    {
+      "path": "data/real_world_test/sushi/pexels-valeriya-28291554 (12).jpg",
+      "label": "sushi",
+      "reason": "Exact copy of data/real_world_test/sushi/pexels-valeriya-28291554.jpg.",
+      "decided_by": "rule"
+    },
+    {
+      "path": "data/real_world_test/sushi/pexels-valeriya-28291554 (13).jpg",
+      "label": "sushi",
+      "reason": "Exact copy of data/real_world_test/sushi/pexels-valeriya-28291554.jpg.",
+      "decided_by": "rule"
+    },
+    {
+      "path": "data/real_world_test/sushi/pexels-valeriya-28291554 (2).jpg",
+      "label": "sushi",
+      "reason": "Exact copy of data/real_world_test/sushi/pexels-valeriya-28291554.jpg.",
+      "decided_by": "rule"
+    },
+    {
+      "path": "data/real_world_test/sushi/pexels-valeriya-28291554 (3).jpg",
+      "label": "sushi",
+      "reason": "Exact copy of data/real_world_test/sushi/pexels-valeriya-28291554.jpg.",
+      "decided_by": "rule"
+    },
+    {
+      "path": "data/real_world_test/sushi/pexels-valeriya-28291554 (4).jpg",
+      "label": "sushi",
+      "reason": "Exact copy of data/real_world_test/sushi/pexels-valeriya-28291554.jpg.",
+      "decided_by": "rule"
+    },
+    {
+      "path": "data/real_world_test/sushi/pexels-valeriya-28291554 (5).jpg",
+      "label": "sushi",
+      "reason": "Exact copy of data/real_world_test/sushi/pexels-valeriya-28291554.jpg.",
+      "decided_by": "rule"
+    },
+    {
+      "path": "data/real_world_test/sushi/pexels-valeriya-28291554 (6).jpg",
+      "label": "sushi",
+      "reason": "Exact copy of data/real_world_test/sushi/pexels-valeriya-28291554.jpg.",
+      "decided_by": "rule"
+    },
+    {
+      "path": "data/real_world_test/sushi/pexels-valeriya-28291554 (7).jpg",
+      "label": "sushi",
+      "reason": "Exact copy of data/real_world_test/sushi/pexels-valeriya-28291554.jpg.",
+      "decided_by": "rule"
+    },
+    {
+      "path": "data/real_world_test/sushi/pexels-valeriya-28291554 (8).jpg",
+      "label": "sushi",
+      "reason": "Exact copy of data/real_world_test/sushi/pexels-valeriya-28291554.jpg.",
+      "decided_by": "rule"
+    },
+    {
+      "path": "data/real_world_test/sushi/pexels-valeriya-28291554 (9).jpg",
+      "label": "sushi",
+      "reason": "Exact copy of data/real_world_test/sushi/pexels-valeriya-28291554.jpg.",
+      "decided_by": "rule"
+    }
+  ],
+  "pending_review": [],
+  "kept": [
+    {
+      "path": "data/real_world_test/Baked Potato/pexels-lorencastillo-9219092.jpg",
+      "label": "Baked Potato",
+      "sha256": "cd7abbb4193dd64f2612ff0b3dd8be57e8d4850cef9046b57068321796596a06"
+    },
+    {
+      "path": "data/real_world_test/Baked Potato/pexels-nicola-barts-7936637.jpg",
+      "label": "Baked Potato",
+      "sha256": "24783ed5caee8a57abb35b2244b872eaeb804d5ad07bfbe7e80f0826992b7eea"
+    },
+    {
+      "path": "data/real_world_test/Baked Potato/pexels-nobleseed-34495400.jpg",
+      "label": "Baked Potato",
+      "sha256": "6454a7258c30857b78bae20493a43bc0a12ce34a4d43e0ba850fd702ecdade1b"
+    },
+    {
+      "path": "data/real_world_test/Baked Potato/pexels-polina-tankilevitch-4110468.jpg",
+      "label": "Baked Potato",
+      "sha256": "54103b76c68b95c8a7ba1da27698fae0e7d363f396a074e952f69efeccf2ccc3"
+    },
+    {
+      "path": "data/real_world_test/Baked Potato/pexels-polina-tankilevitch-4110470.jpg",
+      "label": "Baked Potato",
+      "sha256": "e6e3078440cedcfc09c21400092d5f46624d0c976f1897d962f3ccdfde7daef2"
+    },
+    {
+      "path": "data/real_world_test/Crispy Chicken/pexels-alankrit-saini-14865083-33254639.jpg",
+      "label": "Crispy Chicken",
+      "sha256": "0effc4bd5e28a1d958f2e5f26845deffd60552a0391e79c144397103fa73bc64"
+    },
+    {
+      "path": "data/real_world_test/Crispy Chicken/pexels-andaru-firmansyah-2152289371-37279764.jpg",
+      "label": "Crispy Chicken",
+      "sha256": "14cf0f18a593bdbced1ffee7f6bb27892c7b7f8719e13a97d7ddf67221e21676"
+    },
+    {
+      "path": "data/real_world_test/Crispy Chicken/pexels-chicken-mackay-3652946-5474676.jpg",
+      "label": "Crispy Chicken",
+      "sha256": "1146c23b16e5c9417f35c91600aba172ceaa5671e92502c57774b4cedf2cb2e8"
+    },
+    {
+      "path": "data/real_world_test/Crispy Chicken/pexels-foturecreative-33101857.jpg",
+      "label": "Crispy Chicken",
+      "sha256": "27bb1b5997a6e9f89b5ce67fedc275ae233057283cfe6ff18f91a09734ba8c06"
+    },
+    {
+      "path": "data/real_world_test/Crispy Chicken/pexels-mohammad-miladi-134457715-10206125.jpg",
+      "label": "Crispy Chicken",
+      "sha256": "50b9ccc4e537029bf8cf22523853b1294cb12c6a4aecbf4bce3fa5ffea26b9a2"
+    },
+    {
+      "path": "data/real_world_test/Crispy Chicken/pexels-qamar-rehman-94539242-11502374.jpg",
+      "label": "Crispy Chicken",
+      "sha256": "de85ae6bb55dfd7a2c881a1e295004b47f6357f50d10d609ec77280ef3b55410"
+    },
+    {
+      "path": "data/real_world_test/Donut/pexels-blackphant-590771.jpg",
+      "label": "Donut",
+      "sha256": "6db87769431daa20648e41fa5ac24a2ced240a43242c41c012854a1df5c8534a"
+    },
+    {
+      "path": "data/real_world_test/Donut/pexels-jose-carranza-coico-3477309-9582083.jpg",
+      "label": "Donut",
+      "sha256": "6e04cceb3c23d09fcc81a31dcfd4b8af2da5bb037154f9012613025ef98caddb"
+    },
+    {
+      "path": "data/real_world_test/Donut/pexels-perfect-lens-8358569.jpg",
+      "label": "Donut",
+      "sha256": "6f1de299cc84fdbe029e8165b595db8dfa65f6c3a02a030849100be959b82627"
+    },
+    {
+      "path": "data/real_world_test/Donut/pexels-polina-kovaleva-8404971.jpg",
+      "label": "Donut",
+      "sha256": "617d5f6f883b8825aabc6ee0e6669ca03ed3c70efbf963a7b5a70330c504ac6c"
+    },
+    {
+      "path": "data/real_world_test/Donut/pexels-ray-suarez-624980841-34565248.jpg",
+      "label": "Donut",
+      "sha256": "2cb014314bb9d339d3b895ad99f363a26abc6ab213f837ff0899d523f5d339ab"
+    },
+    {
+      "path": "data/real_world_test/Donut/pexels-tima-miroshnichenko-7033640.jpg",
+      "label": "Donut",
+      "sha256": "6f6d36f348690562e80933e614bfe598188daedb778bb6aa571d321f06b77dbd"
+    },
+    {
+      "path": "data/real_world_test/Donut/pexels-tima-miroshnichenko-7034120.jpg",
+      "label": "Donut",
+      "sha256": "95135d7ef9714711bc17816f42f176f2a844ed036b22ea10af72eff1ac654acf"
+    },
+    {
+      "path": "data/real_world_test/Donut/pexels-tima-miroshnichenko-7034520.jpg",
+      "label": "Donut",
+      "sha256": "ac4927529de202f92a246d0fcb81de88b57678f897605447a45081fac9f87138"
+    },
+    {
+      "path": "data/real_world_test/Fries/pexels-530123908-29150162.jpg",
+      "label": "Fries",
+      "sha256": "f66d4313b2b33cc681027a6a2ce242821ad52c8e5f3cd3f3987fd17c796bc031"
+    },
+    {
+      "path": "data/real_world_test/Fries/pexels-alejandro-aznar-155337093-12557559.jpg",
+      "label": "Fries",
+      "sha256": "ad3821e66e9f93a96ea270ae4546012ae83782f6529b9927dc665e1bdba67755"
+    },
+    {
+      "path": "data/real_world_test/Fries/pexels-ali-dashti-506667798-17132991.jpg",
+      "label": "Fries",
+      "sha256": "22bd1b0a75fe8f7d7585c7028e589c8494e941284f69527395434f61aebd686c"
+    },
+    {
+      "path": "data/real_world_test/Fries/pexels-ali-dashti-506667798-27758755.jpg",
+      "label": "Fries",
+      "sha256": "69605eaa6f1faaeace6552ba27b462353f0aa365d80367b0822c1f98a9efac79"
+    },
+    {
+      "path": "data/real_world_test/Fries/pexels-fernando-capetillo-94107723-32611524.jpg",
+      "label": "Fries",
+      "sha256": "8debe4f2fcaa59bc031dafc70cba2f2522706abff8c20a1b9dcfbfb3ad591ff2"
+    },
+    {
+      "path": "data/real_world_test/Fries/pexels-jahratreza-39034206.jpg",
+      "label": "Fries",
+      "sha256": "f834481376d13b13cda365fdb01c187f08d7e547180c50dbdf2778eb07676360"
+    },
+    {
+      "path": "data/real_world_test/Fries/pexels-jonathanborba-15754939.jpg",
+      "label": "Fries",
+      "sha256": "57785aeb516bb68aefa72b1f329dfb851b2ba1280b5c74500147571468b727e5"
+    },
+    {
+      "path": "data/real_world_test/Fries/pexels-rdne-5779487.jpg",
+      "label": "Fries",
+      "sha256": "43b82868630eb1a41b252332bc3aca8223c35d6a934551e3117b07e870c1b212"
+    },
+    {
+      "path": "data/real_world_test/Fries/pexels-roman-odintsov-5836999.jpg",
+      "label": "Fries",
+      "sha256": "e2661d58df384e00d07a58be566bce78b77b21a553cc7c110cb6f5057518304d"
+    },
+    {
+      "path": "data/real_world_test/Hot Dog/pexels-alejandro-aznar-155337093-29476590.jpg",
+      "label": "Hot Dog",
+      "sha256": "0b262679b90e5d189878360abf5a7f0bda93e5a0ae41c2d66ff7ecf7b3439124"
+    },
+    {
+      "path": "data/real_world_test/Hot Dog/pexels-alejandro-aznar-155337093-29476591.jpg",
+      "label": "Hot Dog",
+      "sha256": "dadedfba061b62c1aedc36bec8abc9771f969a9f919a3bc6895bc501de953b8c"
+    },
+    {
+      "path": "data/real_world_test/Hot Dog/pexels-alleksana-4113470.jpg",
+      "label": "Hot Dog",
+      "sha256": "6f5b96d27a9279884265118698ad2c3707407f67d17767abbc3c1e39d51d3c44"
+    },
+    {
+      "path": "data/real_world_test/Hot Dog/pexels-alleksana-4113501.jpg",
+      "label": "Hot Dog",
+      "sha256": "113d93dcd39388dd5f599c18f90b9a2a765a3ceb27942cb6a454eced9306036b"
+    },
+    {
+      "path": "data/real_world_test/Hot Dog/pexels-kamila-bairam-80608214-12123654.jpg",
+      "label": "Hot Dog",
+      "sha256": "ce8299390227dca9278694370eeadc902b59dca3c59d2d709444ea35e94cfda4"
+    },
+    {
+      "path": "data/real_world_test/Hot Dog/pexels-mike-c-2151163165-39948132.jpg",
+      "label": "Hot Dog",
+      "sha256": "357a93817857930a4ac6f4dcaaf6d5b2e7588f6fd7433d52bd3b35cbc23c0ff7"
+    },
+    {
+      "path": "data/real_world_test/Hot Dog/pexels-oficialwallace-36501083.jpg",
+      "label": "Hot Dog",
+      "sha256": "9f7185d8b170a94842bb8be74251273355312c7bc9691a8240bd8a9ef51bac33"
+    },
+    {
+      "path": "data/real_world_test/Hot Dog/pexels-valeriya-27668694.jpg",
+      "label": "Hot Dog",
+      "sha256": "07e794c07d313f103b8dfd9c80aa580e17c0933b839db73984bb31fa8181bf91"
+    },
+    {
+      "path": "data/real_world_test/Sandwich/pexels-akilvigneshjr-9240536.jpg",
+      "label": "Sandwich",
+      "sha256": "0d7cad94531b5f2f12a4ad2bb1f6b3c3534924ebe6cd021867f5884f101c8b94"
+    },
+    {
+      "path": "data/real_world_test/Sandwich/pexels-andrea-prochilo-3062027-34421469.jpg",
+      "label": "Sandwich",
+      "sha256": "31835253dcbc6a85258f821558a5f5b324a15f6cd620cfb3829138662870ddaa"
+    },
+    {
+      "path": "data/real_world_test/Sandwich/pexels-nano-erdozain-120534369-19202817.jpg",
+      "label": "Sandwich",
+      "sha256": "05fb5304fb3168dd5f7f02555fae4a55291ae9bf125b7331639d16be8def7da6"
+    },
+    {
+      "path": "data/real_world_test/Sandwich/pexels-nano-erdozain-120534369-19202829.jpg",
+      "label": "Sandwich",
+      "sha256": "4010059bc6d216f8188cb06c61e1d4a55ffd3f0150b2ee7d588c8d572b036cd4"
+    },
+    {
+      "path": "data/real_world_test/Sandwich/pexels-thongtran95-16436245.jpg",
+      "label": "Sandwich",
+      "sha256": "22f80b76ba47a693dff32dfeeec7fa0823e8b148c769f69d3fd1d6036f1d92c3"
+    },
+    {
+      "path": "data/real_world_test/Sandwich/pexels-tochtliyeung1996-15362507.jpg",
+      "label": "Sandwich",
+      "sha256": "a4529f61d444616d858aacf905c27ba9867cbdfcc9149b08f302aa50e1a1b1c9"
+    },
+    {
+      "path": "data/real_world_test/Sandwich/pexels-tolgaaslanturk-11256670.jpg",
+      "label": "Sandwich",
+      "sha256": "c86cda343dfa1aba3a4df819cafdc0b2ed9afcfbc7d88148bcb6716395f67733"
+    },
+    {
+      "path": "data/real_world_test/Taco/pexels-julias-torten-und-tortchen-434418-18574183.jpg",
+      "label": "Taco",
+      "sha256": "4dda1d6e46e7a207b57851a616ee376afb74b073926ea6cb015bb6698611d8d5"
+    },
+    {
+      "path": "data/real_world_test/Taco/pexels-julias-torten-und-tortchen-434418-18574186.jpg",
+      "label": "Taco",
+      "sha256": "2e1c36810caa377b70c5743db7d5f6be6adf8ba55cbcf1100b9df50f04679d25"
+    },
+    {
+      "path": "data/real_world_test/Taco/pexels-roman-odintsov-4958526.jpg",
+      "label": "Taco",
+      "sha256": "4430abee31c432d66c2fd2f8799680ead6f2373e79da8d48199b02de80dacc63"
+    },
+    {
+      "path": "data/real_world_test/Taco/pexels-roman-odintsov-4958779.jpg",
+      "label": "Taco",
+      "sha256": "63be03097b79ef7e092ec753211e7ad00552e2d4ae64c57ff8ecf9ce0a0535ad"
+    },
+    {
+      "path": "data/real_world_test/Taco/pexels-roman-odintsov-5837188.jpg",
+      "label": "Taco",
+      "sha256": "6189d4d9a402726dbc8a3ca6d8e9ae6bd0370701595107fe301cffeacae33988"
+    },
+    {
+      "path": "data/real_world_test/Taco/pexels-roman-odintsov-5837196.jpg",
+      "label": "Taco",
+      "sha256": "36ca0e9485999ef400916afbcd118f4a638cf5fef405e53982776e51b56a3e91"
+    },
+    {
+      "path": "data/real_world_test/Taco/pexels-styves-exantus-7162424-7041784.jpg",
+      "label": "Taco",
+      "sha256": "145b1c64c109eb18c93fcf3c2683944e31b0b09bd7e7ae449bfe7a6374c932f0"
+    },
+    {
+      "path": "data/real_world_test/Taquito/pexels-anthony-rahayel-125801377-32592710.jpg",
+      "label": "Taquito",
+      "sha256": "d2c02ce661b2d744550702bc74d0c8694bfc8b63966d7c825dc329b517a5226f"
+    },
+    {
+      "path": "data/real_world_test/Taquito/pexels-cristian-rojas-8448323.jpg",
+      "label": "Taquito",
+      "sha256": "314a4c0b30b51a80d4e98c6a72054f68edf388d54157b991b7b661d2adf44aa7"
+    },
+    {
+      "path": "data/real_world_test/Taquito/pexels-fausto-hernandez-196511575-12326169.jpg",
+      "label": "Taquito",
+      "sha256": "e9135b18da492c167308101e886991ca2e84974844a1af94ce749f7b92f137f9"
+    },
+    {
+      "path": "data/real_world_test/Taquito/pexels-jonathan-reynaga-861774-17429044.jpg",
+      "label": "Taquito",
+      "sha256": "901b43091ef9dc65ee7e9845c145b7d2a8f2290483e0c12134b90d11d9e6b39e"
+    },
+    {
+      "path": "data/real_world_test/Taquito/pexels-jonathan-reynaga-861774-17429144.jpg",
+      "label": "Taquito",
+      "sha256": "e6922b42eb4a70b56fa004a190f93a7d6bdb9f3cf040094e16090cb677ba6482"
+    },
+    {
+      "path": "data/real_world_test/Taquito/pexels-jonathan-reynaga-861774-17429153.jpg",
+      "label": "Taquito",
+      "sha256": "9515d65d309a88f1b1f1b4be730eb8167c290ca8378f413c7305a5025111a560"
+    },
+    {
+      "path": "data/real_world_test/Taquito/pexels-nano-erdozain-120534369-27905921.jpg",
+      "label": "Taquito",
+      "sha256": "e340fd94cf100e27f8b35213bf460fc857666e896d34b7138366d490cba13ef8"
+    },
+    {
+      "path": "data/real_world_test/Taquito/pexels-rachel-claire-5531155.jpg",
+      "label": "Taquito",
+      "sha256": "5cd44f862ae822ba3eb34ee7661e8bef01478cf20fea2c136f52a5e88229e668"
+    },
+    {
+      "path": "data/real_world_test/Taquito/pexels-ruben-dao-cuentas-239930863-34303345.jpg",
+      "label": "Taquito",
+      "sha256": "2ee6e40ea3c1ba47f6a1d4aa1d9a1cc66ec9b42ee8c0cb75cb9a79af391c4cd2"
+    },
+    {
+      "path": "data/real_world_test/apple_pie/pexels-christina-voinova-42707474-7368070.jpg",
+      "label": "apple_pie",
+      "sha256": "fe4dac96547bd226b15f63a24d47f50c72cfe6127c2578e17d00a960db1ea285"
+    },
+    {
+      "path": "data/real_world_test/apple_pie/pexels-christopher-welsch-leveroni-2150186467-31020415.jpg",
+      "label": "apple_pie",
+      "sha256": "625df290adafc3bb2ed62d38e558e4ef99de513275d3e9acf0b9b134e6e85be2"
+    },
+    {
+      "path": "data/real_world_test/apple_pie/pexels-clement-bruneau-2159570516-36340982.jpg",
+      "label": "apple_pie",
+      "sha256": "d3669b7afa29a34a3e2dd4849b49d33264d873df08de5908506a87380e21f3d9"
+    },
+    {
+      "path": "data/real_world_test/apple_pie/pexels-hilalbulbul-12782728.jpg",
+      "label": "apple_pie",
+      "sha256": "44f2114ac15782c8dda672854426f7443f9d86a50e33c817e6601c813316b3e6"
+    },
+    {
+      "path": "data/real_world_test/apple_pie/pexels-hilalbulbul-7552556.jpg",
+      "label": "apple_pie",
+      "sha256": "6cb20b87f10f3275ffb1e986cec8e428d1d7ae0c37fc10068a0cd90bc0967300"
+    },
+    {
+      "path": "data/real_world_test/burger/pexels-adrian-dorobantu-989175-2299981.jpg",
+      "label": "burger",
+      "sha256": "7ba9e0bc6d0b49ee4b1e8a192b15cc981c2a777872f20c49832188333d70aaf0"
+    },
+    {
+      "path": "data/real_world_test/burger/pexels-caricatte-8162589.jpg",
+      "label": "burger",
+      "sha256": "e6eae7cb5bd71780982a2b35e42f90fe1c40ef040e9ab12dd3623e9d0aa42437"
+    },
+    {
+      "path": "data/real_world_test/burger/pexels-femartinezx-4749403.jpg",
+      "label": "burger",
+      "sha256": "f4cd4505bc125e864ed059b002cc172951a50e40f78a5f79d5e5d77d8c7a78a9"
+    },
+    {
+      "path": "data/real_world_test/burger/pexels-hacihuseyinerol-36007382.jpg",
+      "label": "burger",
+      "sha256": "8ca2fadfc2effec559a94d9b12e0130eae6e2426374077f0f6ebc782205ec9d1"
+    },
+    {
+      "path": "data/real_world_test/burger/pexels-mehmetography-2153058108-33502810.jpg",
+      "label": "burger",
+      "sha256": "9f8a9df886d6792e12379ad26c41d39191b810f1cd727f82fd160c29c496db3b"
+    },
+    {
+      "path": "data/real_world_test/burger/pexels-mohamed9380-36691286.jpg",
+      "label": "burger",
+      "sha256": "ec33a898b6147ef91fdad47fbbbd4bc141c256d5b9c3e6cf026ba8345e5bbc1c"
+    },
+    {
+      "path": "data/real_world_test/burger/pexels-ramon-rangel-661975902-34407507.jpg",
+      "label": "burger",
+      "sha256": "0c493491751cbb2bf768ba4ebbe23fb2679f2aa53274992b3bb2ee343b900e62"
+    },
+    {
+      "path": "data/real_world_test/butter_naan/pexels-everest-tandoori-1591826630-28125427.jpg",
+      "label": "butter_naan",
+      "sha256": "2d976de1e5a7d2155726cab0a6cf3b1495387f75a25d436e3c99be3398db06d1"
+    },
+    {
+      "path": "data/real_world_test/butter_naan/pexels-gagankaur-16851842.jpg",
+      "label": "butter_naan",
+      "sha256": "848971085a3e0b088bca8bdb33d9621a1e7a39344258dd047e8d92b7c0fec129"
+    },
+    {
+      "path": "data/real_world_test/butter_naan/pexels-jdgarrettdotcom-15119269.jpg",
+      "label": "butter_naan",
+      "sha256": "80e4b30bf7fd2e98c70ae8a9162ef360414e158c13dc5e3881772f8c6fc7adf6"
+    },
+    {
+      "path": "data/real_world_test/butter_naan/pexels-miltonphotography-35066811.jpg",
+      "label": "butter_naan",
+      "sha256": "835df8dbccc5c157e5340d1784bea2999d651daa962284a8bbdfdcc0a8d60f27"
+    },
+    {
+      "path": "data/real_world_test/butter_naan/pexels-theshuttervision-15131306.jpg",
+      "label": "butter_naan",
+      "sha256": "874a96cd508c05a67537b5ce906a78ccd5abce695d7cc7371445a4b3aa2c9a86"
+    },
+    {
+      "path": "data/real_world_test/chai/pexels-dibyajyoti-das-2157574899-37720390.jpg",
+      "label": "chai",
+      "sha256": "1953fba17f03a025bd8053ddc8c80cf69641b054fd1ad970712d5e5928def364"
+    },
+    {
+      "path": "data/real_world_test/chai/pexels-eat-kubba-15863701-11833310.jpg",
+      "label": "chai",
+      "sha256": "97b9a876dab9e18d4e1c2ae440c4d1d7230f0b938f9e260ac9599cef71cf0466"
+    },
+    {
+      "path": "data/real_world_test/chai/pexels-james-1833679570-34575100.jpg",
+      "label": "chai",
+      "sha256": "892b31cfb0286eed6de2899a0b1768d21761cb0ce0cccf11c6db458b8adab6af"
+    },
+    {
+      "path": "data/real_world_test/chai/pexels-jinshu-pulpatta-2151876856-34324342.jpg",
+      "label": "chai",
+      "sha256": "b4a879d43cc18df8a468932e567a170914995eaffcb07dbbe5948a1470ec663b"
+    },
+    {
+      "path": "data/real_world_test/chai/pexels-shyamli-kashyap-13140263-38185669.jpg",
+      "label": "chai",
+      "sha256": "d40d0d28adf6983b35d1f1fd68525f4e486a37a8727ee559a37a5f96f058149a"
+    },
+    {
+      "path": "data/real_world_test/chai/pexels-sreeraj-r-114875813-18030044.jpg",
+      "label": "chai",
+      "sha256": "0e9742e92ba48df11f4df35db36bd7e4191631e1acd5878fdbad281f4ed52556"
+    },
+    {
+      "path": "data/real_world_test/chapati/pexels-drmkhawarnazir-39519755.jpg",
+      "label": "chapati",
+      "sha256": "9e04d858f3072a72e05c4c5e5656be16ad1be1f1047f8098134ff079eed18b8e"
+    },
+    {
+      "path": "data/real_world_test/chapati/pexels-kunal-lakhotia-781256899-37421007.jpg",
+      "label": "chapati",
+      "sha256": "ba709453d2210e079b1b1c53a1ef7bc6540e793d310330c6637d6e632c1b6657"
+    },
+    {
+      "path": "data/real_world_test/chapati/pexels-sincegameon-20045788.jpg",
+      "label": "chapati",
+      "sha256": "d8c9c88d4b5af2424c2a2f52b1c943c24e3f7bfe9bee11be33f7c33b336ffd5e"
+    },
+    {
+      "path": "data/real_world_test/chapati/pexels-towfiqu-barbhuiya-3440682-9797029.jpg",
+      "label": "chapati",
+      "sha256": "0dc320500905ee6423a34d2ccba8707794dc17956207754c85a3f3b798104d03"
+    },
+    {
+      "path": "data/real_world_test/chapati/pexels-usman-yousaf-708951-5589943.jpg",
+      "label": "chapati",
+      "sha256": "a29094ced9a29188b6170e16465e3a61bfc882e6f7bae5ca262bae2c79f0e9d3"
+    },
+    {
+      "path": "data/real_world_test/cheesecake/pexels-marijana-blazaric-571842-13350861.jpg",
+      "label": "cheesecake",
+      "sha256": "acf6d0f646f142d14e9e15a482c46dc2f552bc22f7f0e148d1b40848b94491b2"
+    },
+    {
+      "path": "data/real_world_test/cheesecake/pexels-mlkbnl-25746353.jpg",
+      "label": "cheesecake",
+      "sha256": "f96618d3b7373146952b72b9d66648316819c0b60d2ba9cb0e6351fb36d9971a"
+    },
+    {
+      "path": "data/real_world_test/cheesecake/pexels-mlkbnl-25746355.jpg",
+      "label": "cheesecake",
+      "sha256": "1b36dd659bf621e9ecf5dc45dca2514a5487cd999a578f200ce10cdcccc15221"
+    },
+    {
+      "path": "data/real_world_test/cheesecake/pexels-mlkbnl-25746365.jpg",
+      "label": "cheesecake",
+      "sha256": "156cbbb0ed2a358fc91e75a6ec47775e773b245772e4853b2ec66a8aeafb9909"
+    },
+    {
+      "path": "data/real_world_test/cheesecake/pexels-mlkbnl-29831239.jpg",
+      "label": "cheesecake",
+      "sha256": "ff5bb836279c2fe8b1cbdf0abd380bccc3baa85249cf793a2d7b7406e38fa62a"
+    },
+    {
+      "path": "data/real_world_test/cheesecake/pexels-solodsha-9008661.jpg",
+      "label": "cheesecake",
+      "sha256": "03b728a8ce8e2e22dc28533aab3948bbd1517c6ba52dcf2c604a3a6e518b5edc"
+    },
+    {
+      "path": "data/real_world_test/cheesecake/pexels-vivanpunk-34637999.jpg",
+      "label": "cheesecake",
+      "sha256": "6e66cf60fed1d36ccf1a2006067b97cc4f88ecd0098390ef9e56939f5b41a1ce"
+    },
+    {
+      "path": "data/real_world_test/chicken_curry/pexels-amar-17593648.jpg",
+      "label": "chicken_curry",
+      "sha256": "ab5749f4633782d774c886244c7401d0f2dbb165f870c12229d694c9bae144de"
+    },
+    {
+      "path": "data/real_world_test/chicken_curry/pexels-anna-pou-9345647.jpg",
+      "label": "chicken_curry",
+      "sha256": "987396ff1799b3abba640a4812421e0ffbdd9e4f85a63d072fea0723ea1fb3a2"
+    },
+    {
+      "path": "data/real_world_test/chicken_curry/pexels-iamabdullahsheik-9792458.jpg",
+      "label": "chicken_curry",
+      "sha256": "d0424034ac197c0222f9f0b0679e497efb7a6f8f9a9f7d717c01599da92926ea"
+    },
+    {
+      "path": "data/real_world_test/chicken_curry/pexels-kunal-lakhotia-781256899-29684985.jpg",
+      "label": "chicken_curry",
+      "sha256": "7e95b4b8ea943b133a28ec787d55b26520faae652fc6895a9dfa2c021dedf8f4"
+    },
+    {
+      "path": "data/real_world_test/chicken_curry/pexels-pinaki-panda-3019803-33643313.jpg",
+      "label": "chicken_curry",
+      "sha256": "71a18e8e21851af464384e1da31cc238137e611a6ce69ad8b4d18bc102b814e2"
+    },
+    {
+      "path": "data/real_world_test/chole_bhature/pexels-adhwaith-chandran-214377112-15995519.jpg",
+      "label": "chole_bhature",
+      "sha256": "71fc1f52bab44a194f0284cb1d6de0e5e800508e8ddc1dfba825d7c0d4fffca2"
+    },
+    {
+      "path": "data/real_world_test/chole_bhature/pexels-drmkhawarnazir-9287035.jpg",
+      "label": "chole_bhature",
+      "sha256": "3fa9edf6168b791f762264a9be66b9fdfab6ca794d05b5e109346b1fcfcb73da"
+    },
+    {
+      "path": "data/real_world_test/chole_bhature/pexels-inaam-ashiq-2155239180-35128164.jpg",
+      "label": "chole_bhature",
+      "sha256": "88ccd3c2f3d71cd4bbbe08bf6f66ccc68efcbb215c94eb9032dbdb0537647fef"
+    },
+    {
+      "path": "data/real_world_test/chole_bhature/pexels-jack-baghel-2199968-20446423.jpg",
+      "label": "chole_bhature",
+      "sha256": "74c9d9393d76858407e18d4f7c0954d6fb1e2a7e7b67349ce470160985ff6a28"
+    },
+    {
+      "path": "data/real_world_test/chole_bhature/pexels-llana-79788650-15717898.jpg",
+      "label": "chole_bhature",
+      "sha256": "48f580bfa35c525b4d316d75fab372e12696ccc3e909698d447e4cb8b2c5a64f"
+    },
+    {
+      "path": "data/real_world_test/chole_bhature/pexels-sabyasachi-das-45419624-29066704.jpg",
+      "label": "chole_bhature",
+      "sha256": "cecd5a8193ec05cae7ba6b9728ef17829fa2511f12fc485bea39a124258da6f3"
+    },
+    {
+      "path": "data/real_world_test/chole_bhature/pexels-yash-acharya-214379065-11818239.jpg",
+      "label": "chole_bhature",
+      "sha256": "9a569dea08e572b28b4c4b5f4565ff6e19d540f49f0142a008eece347ba1d1ec"
+    },
+    {
+      "path": "data/real_world_test/dal_makhani/pexels-jitin-arora-2155275110-33709317.jpg",
+      "label": "dal_makhani",
+      "sha256": "8bec207eb259d20c979587e8680c89727d7d33596046c2df1295b4ab6f794aa6"
+    },
+    {
+      "path": "data/real_world_test/dal_makhani/pexels-kunal-lakhotia-781256899-28674555.jpg",
+      "label": "dal_makhani",
+      "sha256": "70ff91b17197742cc3996707eb57d41a830683adb515792caf95b5c74a7fe340"
+    },
+    {
+      "path": "data/real_world_test/dal_makhani/pexels-kunal-lakhotia-781256899-28674708.jpg",
+      "label": "dal_makhani",
+      "sha256": "d925aa6e757bcacf8490f485e979ae69cf29dbf9f2782b0fc2d71a5794d4cc19"
+    },
+    {
+      "path": "data/real_world_test/dal_makhani/pexels-kunal-lakhotia-781256899-28674710.jpg",
+      "label": "dal_makhani",
+      "sha256": "8897758eb2a30c0434ab29fb002d80b3d677b9f6620bd2abdbee29db84828e19"
+    },
+    {
+      "path": "data/real_world_test/dal_makhani/pexels-kunal-lakhotia-781256899-29685054.jpg",
+      "label": "dal_makhani",
+      "sha256": "f1db9a07d36aa4b6e997c001a5a37d622f8fb7a1e14db43c863678d69cdd7f77"
+    },
+    {
+      "path": "data/real_world_test/dal_makhani/pexels-prabal-9609839.jpg",
+      "label": "dal_makhani",
+      "sha256": "be6a9d333edb50086e917e7304b644907f1e88b06679d2b5b4f9a5c1313077e5"
+    },
+    {
+      "path": "data/real_world_test/dal_makhani/pexels-xiansaiful-35158690.jpg",
+      "label": "dal_makhani",
+      "sha256": "485ca7ca253c4abf2e9686dab56c4ce3bbff977dce3564f5a6d681e4c1ab06e8"
+    },
+    {
+      "path": "data/real_world_test/dhokla/pexels-aayushrawat-8414675.jpg",
+      "label": "dhokla",
+      "sha256": "d6c1f7f2514480ab38a90724502565c0ba5a5b38e8778465bb56fa6a9fce204b"
+    },
+    {
+      "path": "data/real_world_test/dhokla/pexels-ali-dashti-506667798-26341215.jpg",
+      "label": "dhokla",
+      "sha256": "69b01bd7cd32c60f81c2fe31ddfe750e9a2c0e4a55ead11271202b77b24d854c"
+    },
+    {
+      "path": "data/real_world_test/dhokla/pexels-miltonphotography-35041878.jpg",
+      "label": "dhokla",
+      "sha256": "0e1aaef8a0b41f57c42f97eef57f3b61c930a740da55ecace013143d02002f6d"
+    },
+    {
+      "path": "data/real_world_test/dhokla/pexels-miltonphotography-35041879.jpg",
+      "label": "dhokla",
+      "sha256": "14f2ff14e13252483d1527c55665851201dadf46eef60e9054ad8edfa8380793"
+    },
+    {
+      "path": "data/real_world_test/dhokla/pexels-nourishmentdecoded-9704174.jpg",
+      "label": "dhokla",
+      "sha256": "03d4d5070d5ba95eca636fcf005a7ac35333063ffb27af15796ba789bdd9a41c"
+    },
+    {
+      "path": "data/real_world_test/dhokla/pexels-shootsaga-38734222.jpg",
+      "label": "dhokla",
+      "sha256": "586c7680bca23cb5d7fa71d36b584f33f8adca16a6e9b01dc813331ed7bc9a33"
+    },
+    {
+      "path": "data/real_world_test/fried_rice/pexels-4louette-11129150.jpg",
+      "label": "fried_rice",
+      "sha256": "6c6a01c3ae625c28fe8eb2673dc47581b2e74df795d986d66437460c6ebd9efa"
+    },
+    {
+      "path": "data/real_world_test/fried_rice/pexels-anntarazevich-6937425.jpg",
+      "label": "fried_rice",
+      "sha256": "2338ddab2e9a66fabb2882265f5f025921c35a4d94a39bfe86e8b0ebb3f02919"
+    },
+    {
+      "path": "data/real_world_test/fried_rice/pexels-anntarazevich-6937439.jpg",
+      "label": "fried_rice",
+      "sha256": "a6a75ec04668b167617309d85a9797f616234359e8dc72d5282e3474845ed8a1"
+    },
+    {
+      "path": "data/real_world_test/fried_rice/pexels-anntarazevich-6937447.jpg",
+      "label": "fried_rice",
+      "sha256": "ed09942f2ef246b6ec253acc0ceca542d0b2484254ebb8e91fa5f712b14a8d7b"
+    },
+    {
+      "path": "data/real_world_test/fried_rice/pexels-anntarazevich-6937451.jpg",
+      "label": "fried_rice",
+      "sha256": "d3a30501a21525c25ec2d1b8c086e09fc2062f36f4d741a7aebc8b2ffec28910"
+    },
+    {
+      "path": "data/real_world_test/fried_rice/pexels-anntarazevich-6937457.jpg",
+      "label": "fried_rice",
+      "sha256": "f253d568346926f85749510eb6822d87d206f316c127f416ccc27509425c523d"
+    },
+    {
+      "path": "data/real_world_test/fried_rice/pexels-chefrbs-35588196.jpg",
+      "label": "fried_rice",
+      "sha256": "68654e622dd536b9189b1060225ef601c33d59d2f0018feb9d000cc5e5018a8b"
+    },
+    {
+      "path": "data/real_world_test/ice_cream/pexels-bank-12843687.jpg",
+      "label": "ice_cream",
+      "sha256": "0f60fb243982791169b8a966ce8edcc9489eb38ae46c340514c18b7a735bbec3"
+    },
+    {
+      "path": "data/real_world_test/ice_cream/pexels-ds-stories-9227980.jpg",
+      "label": "ice_cream",
+      "sha256": "d6e1991f1f92b5d97cb78a248d9187455f68e1bea1222f6c700982a023a8185e"
+    },
+    {
+      "path": "data/real_world_test/ice_cream/pexels-glebkrs-15155623.jpg",
+      "label": "ice_cream",
+      "sha256": "1d99ab0e2f65222981a81f6fb00e069ee187fd31f664d7db3cf55a9ceace5496"
+    },
+    {
+      "path": "data/real_world_test/ice_cream/pexels-jahratreza-38987559.jpg",
+      "label": "ice_cream",
+      "sha256": "3df66e2666ed523ba51ea8411bcf9cbfa00ae4d14e67323d1035cc742a5e75e4"
+    },
+    {
+      "path": "data/real_world_test/ice_cream/pexels-kunal-lakhotia-781256899-28735384.jpg",
+      "label": "ice_cream",
+      "sha256": "0e808e57e611b10859add630a30a48664ccaf45365fb5fe5e4103ce14dfa0712"
+    },
+    {
+      "path": "data/real_world_test/ice_cream/pexels-nickmayer-7761650.jpg",
+      "label": "ice_cream",
+      "sha256": "04f908dbd77038595810906717290fc5edc070942b7dcbc0b5f75bd129ce68dc"
+    },
+    {
+      "path": "data/real_world_test/ice_cream/pexels-rdne-6412948.jpg",
+      "label": "ice_cream",
+      "sha256": "f79bc6882a29510bda581b29c1b81f8f97f29e1bae37ca09cc26e2710425c0ca"
+    },
+    {
+      "path": "data/real_world_test/ice_cream/pexels-soc-nang-d-ng-2150345854-31137289.jpg",
+      "label": "ice_cream",
+      "sha256": "876cce129545719d60629d7379db1f0b04393fe5ab1f6f48f84872663f2781b0"
+    },
+    {
+      "path": "data/real_world_test/idli/pexels-artistneha04-36854501.jpg",
+      "label": "idli",
+      "sha256": "aa3b73f54e5341059a334cf981d4e0ec66f68b866387dce576025b8fb6edc61f"
+    },
+    {
+      "path": "data/real_world_test/idli/pexels-jack-baghel-2199968-20422128.jpg",
+      "label": "idli",
+      "sha256": "034650cf76689647f81376181acb0b4076ae53d52e01ad7535e817fab70fbfe7"
+    },
+    {
+      "path": "data/real_world_test/idli/pexels-lunarly-83082820-17869141.jpg",
+      "label": "idli",
+      "sha256": "385683e095b3501b3ae6a36a357bc727d8ef2770a24aee8783dcb8e717fce1a2"
+    },
+    {
+      "path": "data/real_world_test/idli/pexels-mouriful-35580913.jpg",
+      "label": "idli",
+      "sha256": "c59a3c295f4701b43ebd557e9ef2cfe2ac63db2d1f84d2a9c3571db3cde356b1"
+    },
+    {
+      "path": "data/real_world_test/idli/pexels-nifty-highness-884835426-31199041.jpg",
+      "label": "idli",
+      "sha256": "5ecbbe36314c0964a01f54d8348744dfb6664055fa9c5e231caac60de2c913bb"
+    },
+    {
+      "path": "data/real_world_test/idli/pexels-sarthak-2782336-4331488.jpg",
+      "label": "idli",
+      "sha256": "d6baf07f0829ed60fc0d6c8293728f94f5c058401b65976e247c545c03c95d82"
+    },
+    {
+      "path": "data/real_world_test/idli/pexels-sarthak-2782336-4331491 (1).jpg",
+      "label": "idli",
+      "sha256": "bb5b6922e38417b76307f96ef517506118c0effaab55eacbd0dba132b061de10"
+    },
+    {
+      "path": "data/real_world_test/idli/pexels-saveurssecretes-14831540.jpg",
+      "label": "idli",
+      "sha256": "cb236b3215fc934472dc3a3b213c5bf9e40e571abd6dcc4968ec39a205c1b0a3"
+    },
+    {
+      "path": "data/real_world_test/idli/pexels-saveurssecretes-8312083.jpg",
+      "label": "idli",
+      "sha256": "505ebea2b1982bb4d9ca97b65635a6e7d3040a32bec65b0328afb9b221b4b688"
+    },
+    {
+      "path": "data/real_world_test/jalebi/pexels-jahratreza-39193446.jpg",
+      "label": "jalebi",
+      "sha256": "0fce5440ecfc3762b1c152044651d937774dfddd1381ac9fb445b0bc84602e21"
+    },
+    {
+      "path": "data/real_world_test/jalebi/pexels-jahratreza-39193456.jpg",
+      "label": "jalebi",
+      "sha256": "434bff833cbbd8d14f9f1f226c46f9b76eef916f2dabb279bf3d401e02ba8c6e"
+    },
+    {
+      "path": "data/real_world_test/jalebi/pexels-jahratreza-39851900.jpg",
+      "label": "jalebi",
+      "sha256": "34fccc7e1ea70ebbbb1d85ee525eacdc6acf7acc57b2d01b6d2f0968867f4bd9"
+    },
+    {
+      "path": "data/real_world_test/jalebi/pexels-jahratreza-39852583.jpg",
+      "label": "jalebi",
+      "sha256": "f94faac63170e62cc70adacf7f90938eeab9497d6e1e0d1890a68c0f83b87901"
+    },
+    {
+      "path": "data/real_world_test/jalebi/pexels-jahratreza-39852585.jpg",
+      "label": "jalebi",
+      "sha256": "c733baeffc1b7cd50973f9afa35275dd98e4784ac1a19d41f3b63616cc9505c6"
+    },
+    {
+      "path": "data/real_world_test/jalebi/pexels-jahratreza-39852709.jpg",
+      "label": "jalebi",
+      "sha256": "b837fbd51c4f318e5bb077ea10f2307a7a84dd9a1b6310f53f763567b23b9c87"
+    },
+    {
+      "path": "data/real_world_test/jalebi/pexels-jahratreza-39852733.jpg",
+      "label": "jalebi",
+      "sha256": "0bdbd5af8f342a2a73f1145765f6623641ef4eac789d192c632beb104617549e"
+    },
+    {
+      "path": "data/real_world_test/jalebi/pexels-mumtahina-tanni-1080117-5993269.jpg",
+      "label": "jalebi",
+      "sha256": "53dcbed51c33f3c1a40c3ad7eed8054b92aa9a5a08090c0c4f0cb7ecd4ec4140"
+    },
+    {
+      "path": "data/real_world_test/jalebi/pexels-zayed-hossain-52728970-36021117.jpg",
+      "label": "jalebi",
+      "sha256": "4d7acac0e4670353203477852e84177970afb6d8d71d8c569bc7431db0b46c48"
+    },
+    {
+      "path": "data/real_world_test/kaathi_rolls/pexels-albert-kayenda-2161871276-39994554.jpg",
+      "label": "kaathi_rolls",
+      "sha256": "343cab3253c15ba301f5292432f1a09bd637f028ac31db4416910ea0966160d8"
+    },
+    {
+      "path": "data/real_world_test/kaathi_rolls/pexels-dhiraj-jain-207743066-12737661.jpg",
+      "label": "kaathi_rolls",
+      "sha256": "bc72bd9f86a8c26ae203ac431bacc8e1eea8028368158da2d57735b56ef94cfb"
+    },
+    {
+      "path": "data/real_world_test/kaathi_rolls/pexels-jitin-arora-2155275110-33709307.jpg",
+      "label": "kaathi_rolls",
+      "sha256": "fa7652ddef14ff412985949e8d2a7fb6aa418575c499f031752c075bab77c2ac"
+    },
+    {
+      "path": "data/real_world_test/kaathi_rolls/pexels-saveurssecretes-12392905.jpg",
+      "label": "kaathi_rolls",
+      "sha256": "5c65913d310a43a1137d3639c7ffe50e726700e4994bd1ec7e5497ef1f73551d"
+    },
+    {
+      "path": "data/real_world_test/kaathi_rolls/pexels-saveurssecretes-7936011.jpg",
+      "label": "kaathi_rolls",
+      "sha256": "f0911ee100612bf547229e1748b0b02412fad4f2127e48fed04bc2a631293145"
+    },
+    {
+      "path": "data/real_world_test/kaathi_rolls/pexels-shootsaga-33430554.jpg",
+      "label": "kaathi_rolls",
+      "sha256": "ba46d5d30587aad75adf36e41d88aebb233f7861b838a95407bb97fa2eb9ac08"
+    },
+    {
+      "path": "data/real_world_test/kadai_paneer/pexels-djvvadi-7160695.jpg",
+      "label": "kadai_paneer",
+      "sha256": "44c5744cb48157fb756cc347a541bf575cefdd9351f28d3086a6b41ca1f61fb6"
+    },
+    {
+      "path": "data/real_world_test/kadai_paneer/pexels-djvvadi-7166541.jpg",
+      "label": "kadai_paneer",
+      "sha256": "7e49ecc989bc54fc16a320b1ffdcb0da8a28979875862426344eb7448780d095"
+    },
+    {
+      "path": "data/real_world_test/kadai_paneer/pexels-grayomm-31783383.jpg",
+      "label": "kadai_paneer",
+      "sha256": "9a451447a500926044e93b0e630959ef6cd69278a446e3e33fceb05b2e197f2b"
+    },
+    {
+      "path": "data/real_world_test/kadai_paneer/pexels-hemantlatawa-2580464.jpg",
+      "label": "kadai_paneer",
+      "sha256": "52fa50997b056c43738dc7ce81bc76a0d58708a6fc6d7177dfe7c6f12753be40"
+    },
+    {
+      "path": "data/real_world_test/kadai_paneer/pexels-kunal-lakhotia-781256899-29631459.jpg",
+      "label": "kadai_paneer",
+      "sha256": "a2e44a871ddf44f7ae10528063c5e374d9cd9f11e2cba3c71cd6cd718808a191"
+    },
+    {
+      "path": "data/real_world_test/kadai_paneer/pexels-kunal-lakhotia-781256899-29631468.jpg",
+      "label": "kadai_paneer",
+      "sha256": "e5636090ea285af5ae4fd9459a0938bf8dc79fa6d05cc79e7340b1489197aab4"
+    },
+    {
+      "path": "data/real_world_test/kadai_paneer/pexels-prabal-9609837.jpg",
+      "label": "kadai_paneer",
+      "sha256": "732120162601a265bde0aa7717e74bf63d687a61bed162390a11c00f75ac075e"
+    },
+    {
+      "path": "data/real_world_test/kadai_paneer/pexels-shootsaga-33430556.jpg",
+      "label": "kadai_paneer",
+      "sha256": "20212eca82e8525fb00d97e4a0c2af7177c8939606a28e4898f2acfd9e2d4b6d"
+    },
+    {
+      "path": "data/real_world_test/kulfi/pexels-jahratreza-39831473.jpg",
+      "label": "kulfi",
+      "sha256": "f523fe0e3c80e52b62e5dce623c3e56c331d1efaf768747ac2291426b2f8fcc4"
+    },
+    {
+      "path": "data/real_world_test/kulfi/pexels-leonardo-aquino-246345118-27680854.jpg",
+      "label": "kulfi",
+      "sha256": "2cd7f83b0571b73f7cad8e11d9c356697cad099d95029eace979bef0a1741f15"
+    },
+    {
+      "path": "data/real_world_test/masala_dosa/pexels-jack-baghel-2199968-20422121.jpg",
+      "label": "masala_dosa",
+      "sha256": "07c367fa42226f4598a4bd7c2f643589a53435f124d7a79cdac289b7787363a5"
+    },
+    {
+      "path": "data/real_world_test/masala_dosa/pexels-jack-baghel-2199968-20422126.jpg",
+      "label": "masala_dosa",
+      "sha256": "844e3ab9b896b8b01b254857424ebfea385eca15e5c42b1660d1515eccb0c0f8"
+    },
+    {
+      "path": "data/real_world_test/masala_dosa/pexels-jack-baghel-2199968-20422138.jpg",
+      "label": "masala_dosa",
+      "sha256": "9f1ba0ce02c529fe9eff9742470ae1980d102fa20bbd36e2dd57738d48799a89"
+    },
+    {
+      "path": "data/real_world_test/masala_dosa/pexels-kavya-pothabattula-388296612-28107046.jpg",
+      "label": "masala_dosa",
+      "sha256": "c61bb53d4d1e4ecfc44ad7c3dd806f25fec748bb7936c977bfc8f323b033eca2"
+    },
+    {
+      "path": "data/real_world_test/masala_dosa/pexels-muhammed-shasal-a-v-469318555-38201890.jpg",
+      "label": "masala_dosa",
+      "sha256": "69c193a38ac725adaeca0efe03fb79e6040e177c94667a6e5ad8d7f4acacfb6b"
+    },
+    {
+      "path": "data/real_world_test/masala_dosa/pexels-nikhilxbhatia-32229637.jpg",
+      "label": "masala_dosa",
+      "sha256": "db45ecb5056028d49d13b37ac5f8e67c12ec83dec331f2a8fb6fc32abb6f8f7d"
+    },
+    {
+      "path": "data/real_world_test/masala_dosa/pexels-saveurssecretes-12392915.jpg",
+      "label": "masala_dosa",
+      "sha256": "07992fa1baf2fd92fbed0abf8d525f9c618f19d031e781bea0c1401b2ee49bea"
+    },
+    {
+      "path": "data/real_world_test/momos/pexels-anya-dunes-2153945617-33670191.jpg",
+      "label": "momos",
+      "sha256": "f1246d95acd121d72311e6e5b73167a37fc10e8dc27de484b35e086ab3d35612"
+    },
+    {
+      "path": "data/real_world_test/momos/pexels-aperture-36173262.jpg",
+      "label": "momos",
+      "sha256": "665c84725893aa9c0eab36682c93cb80f8387a11acd704bd5367c9af4a5fb032"
+    },
+    {
+      "path": "data/real_world_test/momos/pexels-jitin-arora-2155275110-33709310.jpg",
+      "label": "momos",
+      "sha256": "49b0cd3d1975dfa620a3de72522a326f90f44a5ae21801ca6cd8b18cb2e1a695"
+    },
+    {
+      "path": "data/real_world_test/momos/pexels-momo-king-3616480-5409009.jpg",
+      "label": "momos",
+      "sha256": "e7c69facc0cb8e079ad20a2d8f1e55297fd6059500fbfd196c480c469a1ea5db"
+    },
+    {
+      "path": "data/real_world_test/momos/pexels-momo-king-3616480-5409010.jpg",
+      "label": "momos",
+      "sha256": "0488bd600396df0940081120aba13ea41c44213ea1ab543aded0795bb1586031"
+    },
+    {
+      "path": "data/real_world_test/momos/pexels-prateek-lall-3279406-38520712.jpg",
+      "label": "momos",
+      "sha256": "288e70087805e34de331c5972b5c5927892501a5bfc122c57f03e978e8ddf241"
+    },
+    {
+      "path": "data/real_world_test/momos/pexels-shyamsrivastava-33384415.jpg",
+      "label": "momos",
+      "sha256": "9a7e59f57e79cd4369a73e21343c6b1c38cd4ed04bfe85cdf6bc2e0618a7d678"
+    },
+    {
+      "path": "data/real_world_test/momos/pexels-tanhatamannasyed-39231327.jpg",
+      "label": "momos",
+      "sha256": "5e1bf82645d13aa15f83039ba1629b05445100607da00c6fca11796fe391f933"
+    },
+    {
+      "path": "data/real_world_test/omelette/pexels-ali-dashti-506667798-28241698.jpg",
+      "label": "omelette",
+      "sha256": "00a04cfc91aad57b2067ad8c11928cd295e67fcb405e9a996aa9308811734c9c"
+    },
+    {
+      "path": "data/real_world_test/omelette/pexels-amine-1285347-12512039.jpg",
+      "label": "omelette",
+      "sha256": "29b55b69a8e7e13ddb09a3544699274ce53c85fc9cb0668b686bf77e1a894b95"
+    },
+    {
+      "path": "data/real_world_test/omelette/pexels-camerasimagination-11929161.jpg",
+      "label": "omelette",
+      "sha256": "70b6c54cceaf8844b37895ac5fdcfbde95de6e78406c7e4f5f2570d715d9be96"
+    },
+    {
+      "path": "data/real_world_test/omelette/pexels-garley-gibson-447183984-15481458.jpg",
+      "label": "omelette",
+      "sha256": "0e3f831e559fa6dce75ec740e6f738f3a5628e298540d879cf2b2f4c6cce7029"
+    },
+    {
+      "path": "data/real_world_test/omelette/pexels-helin-gezer-903013644-25748211.jpg",
+      "label": "omelette",
+      "sha256": "ef26f0c2914f0d5e17bb138d02d8bb5f097c6a232f4d7bd132815687a1356258"
+    },
+    {
+      "path": "data/real_world_test/omelette/pexels-miltonphotography-35071827.jpg",
+      "label": "omelette",
+      "sha256": "193685bf57edc088e6bcdde6432e1ef20627fd552a66a1fce16f35bf208ea860"
+    },
+    {
+      "path": "data/real_world_test/omelette/pexels-vitalyagorbachev-12091671.jpg",
+      "label": "omelette",
+      "sha256": "17f02f349b301bbc937419f53a3637431f25b96f4d7e3a32caa90982722d3aeb"
+    },
+    {
+      "path": "data/real_world_test/paani_puri/pexels-bank-12427783.jpg",
+      "label": "paani_puri",
+      "sha256": "2732e9440a062070c8bc8f8ec77224967fc1f88e64a7cd781c5332642a408a97"
+    },
+    {
+      "path": "data/real_world_test/paani_puri/pexels-fahim-shizan-2152194768-34356404.jpg",
+      "label": "paani_puri",
+      "sha256": "c1dc9dad42cf64e3d3d974f77613f52d9238967dbec74edb34804859ed59cca8"
+    },
+    {
+      "path": "data/real_world_test/paani_puri/pexels-jahratreza-40000023.jpg",
+      "label": "paani_puri",
+      "sha256": "e93ed682bb2e1a664bc99e324ca9a038984c55097eb14e76d273d4da93011e38"
+    },
+    {
+      "path": "data/real_world_test/paani_puri/pexels-jahratreza-40000255.jpg",
+      "label": "paani_puri",
+      "sha256": "22ef9ddde786d1566fc18a755af1dfa392f6d6e4420f827d0cfc9546496429b3"
+    },
+    {
+      "path": "data/real_world_test/paani_puri/pexels-jahratreza-40000376.jpg",
+      "label": "paani_puri",
+      "sha256": "9e74e3aa07031a9ba818338127b90ec79fb2c9f36b2adfbd40d9b9f21b6a023f"
+    },
+    {
+      "path": "data/real_world_test/paani_puri/pexels-shahbaz-ansari-283673909-13063309.jpg",
+      "label": "paani_puri",
+      "sha256": "94469efb6767ec7ef6c1e0884bf49e7cf90e9b43e41a990daf3c1977d1fafba6"
+    },
+    {
+      "path": "data/real_world_test/paani_puri/pexels-shahbaz-ansari-283673909-13063313.jpg",
+      "label": "paani_puri",
+      "sha256": "5f86d1e52c1fc6c04cfd310df1e8e52459ff1579fd2bf7cabaa8a2feaf9a82e5"
+    },
+    {
+      "path": "data/real_world_test/paani_puri/pexels-shahbaz-ansari-283673909-13063314.jpg",
+      "label": "paani_puri",
+      "sha256": "07e119e0255b5b6319e21caa6d193b9eba3ce52c7c50bb9d870ea8eb15adf464"
+    },
+    {
+      "path": "data/real_world_test/paani_puri/pexels-shahbaz-ansari-283673909-13063315.jpg",
+      "label": "paani_puri",
+      "sha256": "51e08fa5861f5a066fce132f43dcd4b331ccaea73a4a8656c8ac83440295dad0"
+    },
+    {
+      "path": "data/real_world_test/pakode/pexels-aperture-29547418.jpg",
+      "label": "pakode",
+      "sha256": "b5be6fbe63445c6e5301d652e56e115a73319890b114a96dbaddce33b103cb21"
+    },
+    {
+      "path": "data/real_world_test/pakode/pexels-chanwalrus-958544.jpg",
+      "label": "pakode",
+      "sha256": "f6f7fb73c6ba9a6ea4ee41f1d7c09faa2df37d3be7c343b262631db21eeeccc0"
+    },
+    {
+      "path": "data/real_world_test/pakode/pexels-chefrbs-30570738.jpg",
+      "label": "pakode",
+      "sha256": "c3a800a4fc6961b5ab3cb1311821aa80ca14c336cf21bc396c11d0c7559a1d24"
+    },
+    {
+      "path": "data/real_world_test/pakode/pexels-miltonphotography-35066805.jpg",
+      "label": "pakode",
+      "sha256": "dbd64935d0e9d6f96acd69d9de8c2c3e197aecd55b395e1aad3cc62ceb6b69cb"
+    },
+    {
+      "path": "data/real_world_test/pakode/pexels-miltonphotography-35066809.jpg",
+      "label": "pakode",
+      "sha256": "40bc85742d7c65b67731c5f79b960ca7ee9029de244da69cc2cf1d54e82dfb03"
+    },
+    {
+      "path": "data/real_world_test/pakode/pexels-sabbythefreeelf-36619179.jpg",
+      "label": "pakode",
+      "sha256": "c222ae0e212501003f996bb017a8d2e135cd46e3ee6841757139621c322e8849"
+    },
+    {
+      "path": "data/real_world_test/pakode/pexels-saveurssecretes-13220364.jpg",
+      "label": "pakode",
+      "sha256": "f119898b3237e112bbdd0fe0fd0ab7ec833a22b5476a7bcb83f7a402f011ad4b"
+    },
+    {
+      "path": "data/real_world_test/pakode/pexels-sh-reyan-571457388-16899782.jpg",
+      "label": "pakode",
+      "sha256": "ce9832d409df0df8ab30745580bdf7b203e2979469a145c66220690039cbd2c3"
+    },
+    {
+      "path": "data/real_world_test/pakode/pexels-tamba09-37107128.jpg",
+      "label": "pakode",
+      "sha256": "2b51b5cf755a4bfec00c3610d385685c67d7a13f10c8e7b1411dfbb83ad59184"
+    },
+    {
+      "path": "data/real_world_test/pav_bhaji/pexels-aditya-mara-425995080-17223838.jpg",
+      "label": "pav_bhaji",
+      "sha256": "201c702042b12cdbe25a09a083a06c967dee7c9859782faf1d58ea7f2221f213"
+    },
+    {
+      "path": "data/real_world_test/pav_bhaji/pexels-aditya-mara-425995080-17433352.jpg",
+      "label": "pav_bhaji",
+      "sha256": "b51234a4d5ca41d9920c0d6b8b604ec860f6849e5b2505339fa22c181dc7865e"
+    },
+    {
+      "path": "data/real_world_test/pav_bhaji/pexels-digitalbuggu-166654.jpg",
+      "label": "pav_bhaji",
+      "sha256": "5259d28fdc662748f73682d8c51ee7b4a179a4d86ed6813720e33152a59f983c"
+    },
+    {
+      "path": "data/real_world_test/pav_bhaji/pexels-sateesh-polkam-706210252-18496583.jpg",
+      "label": "pav_bhaji",
+      "sha256": "60ad6668bf4efcb5788919117f98a974f76e3426005874c4a9f7231b259ed4fe"
+    },
+    {
+      "path": "data/real_world_test/pav_bhaji/pexels-saveurssecretes-5410400.jpg",
+      "label": "pav_bhaji",
+      "sha256": "19434710453353d4a3a54261c51d309b0ee23bf1f870acf9f98c601cf0a91359"
+    },
+    {
+      "path": "data/real_world_test/pav_bhaji/pexels-saveurssecretes-7625089.jpg",
+      "label": "pav_bhaji",
+      "sha256": "c651a8fa646e47d24e38b4e85892ec1ec2cb50b874f3b14bf478607b49ef2047"
+    },
+    {
+      "path": "data/real_world_test/pav_bhaji/pexels-viridianaor-34507155.jpg",
+      "label": "pav_bhaji",
+      "sha256": "2a776091db897765531513c2baaa44b03af808b0420950ae9796d28005cf7f34"
+    },
+    {
+      "path": "data/real_world_test/pav_bhaji/pexels-viridianaor-34507158.jpg",
+      "label": "pav_bhaji",
+      "sha256": "002b51c01ee0fd64924151f7523ba9f9a22969fd88293d7affea54412186da6f"
+    },
+    {
+      "path": "data/real_world_test/pizza/pexels-aibek-skakov-418917601-36178132.jpg",
+      "label": "pizza",
+      "sha256": "45ef6262d0d6ca9b222dfa605f6c9699b21e970c4b7fe7edcba7071213602e76"
+    },
+    {
+      "path": "data/real_world_test/pizza/pexels-dariogarcia-6068717.jpg",
+      "label": "pizza",
+      "sha256": "261ea99c4bc652f68bd0c3bda560462fccfa7bdb708ec03e270e3d9598cc7839"
+    },
+    {
+      "path": "data/real_world_test/pizza/pexels-diamond-multimedia-films-125324165-9993754.jpg",
+      "label": "pizza",
+      "sha256": "37a521f18dd012d28e094149a694b8a822d42c1f513b63b61ed7c33f47aa80c1"
+    },
+    {
+      "path": "data/real_world_test/pizza/pexels-furkanalakoc-31587831.jpg",
+      "label": "pizza",
+      "sha256": "3a04e6242f1b6fd14142978f6383439a652104b661dc168635802591d655cd13"
+    },
+    {
+      "path": "data/real_world_test/pizza/pexels-matreding-9685264.jpg",
+      "label": "pizza",
+      "sha256": "2b8f1f39e457b78f3e186086ddd0d923e056f5c04ab709e7f175bd7b91cb9a17"
+    },
+    {
+      "path": "data/real_world_test/pizza/pexels-roman-odintsov-5903382.jpg",
+      "label": "pizza",
+      "sha256": "95afd013ee69b526d243f902c0eb9ece4cfbcbbc73e17d5054bfb4ba4a10283a"
+    },
+    {
+      "path": "data/real_world_test/pizza/pexels-roman-odintsov-5903389.jpg",
+      "label": "pizza",
+      "sha256": "92656db578de65d959afc5aea8b40602bbab23c730e8b389ba962ef839c7403f"
+    },
+    {
+      "path": "data/real_world_test/pizza/pexels-sonali-mehta-1514525371-31596394.jpg",
+      "label": "pizza",
+      "sha256": "6e8546694a14121f5374dfe12a998a038c4fb9df245280fe6af238200626974e"
+    },
+    {
+      "path": "data/real_world_test/samosa/pexels-babu-kadri-353578025-37153389.jpg",
+      "label": "samosa",
+      "sha256": "781b0444c5da844f01c70cc1caacb3d7c28f31013cf7fc5251b7f44f0cd07a0b"
+    },
+    {
+      "path": "data/real_world_test/samosa/pexels-hashtag-melvin-1163687-29037265.jpg",
+      "label": "samosa",
+      "sha256": "113679097f2649e99411b4e8cd5937def2a22e0005e3f4276e498bf1d1bd94d5"
+    },
+    {
+      "path": "data/real_world_test/samosa/pexels-hashtag-melvin-1163687-29037266.jpg",
+      "label": "samosa",
+      "sha256": "9edc131b81808787b04fdfd60105d9623722b9a0f99910a30a329a35d50444ba"
+    },
+    {
+      "path": "data/real_world_test/samosa/pexels-mwabonje-19659579.jpg",
+      "label": "samosa",
+      "sha256": "52b97af7854a99572588866700a2650ed5d06ea7a139154fac63f1fd6dac0e54"
+    },
+    {
+      "path": "data/real_world_test/samosa/pexels-roman-saienko-1867764487-38043951.jpg",
+      "label": "samosa",
+      "sha256": "2d20345f8ce3f504f54656aa940129181bdd600e259c23dc6c8b757bf25be23f"
+    },
+    {
+      "path": "data/real_world_test/samosa/pexels-supibee-5031949.jpg",
+      "label": "samosa",
+      "sha256": "a5c82ad40f3e2c28e012164bfe0b8d8537d7b3f32e6aec2e0d957f65e1dac3df"
+    },
+    {
+      "path": "data/real_world_test/samosa/pexels-themeditators-23286188.jpg",
+      "label": "samosa",
+      "sha256": "d3ff1b60c5e987a8f44fe80bb75cb0ee34245b844ac457b0c291459ae548ca69"
+    },
+    {
+      "path": "data/real_world_test/sushi/pexels-nadin-sh-78971847-39528139.jpg",
+      "label": "sushi",
+      "sha256": "6db2db154a74cdecc1ceae191f84ada70e802658bf5781d1ed673ab338a81bfe"
+    },
+    {
+      "path": "data/real_world_test/sushi/pexels-valeriya-28291554.jpg",
+      "label": "sushi",
+      "sha256": "0b4730bcc364ecded407d8c530a20691ee3b60632bdaea94354671c1ba07cda0"
+    }
+  ]
+}

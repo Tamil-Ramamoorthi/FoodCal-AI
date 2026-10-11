@@ -1,0 +1,1142 @@
+{
+  "report_type": "reliability_diagnostics",
+  "generated_at": "2026-10-10T14:53:21+00:00",
+  "checkpoint": "models/efficientnet_b0/food_efficientnet_b0_best.pth",
+  "class_mapping": {
+    "checkpoint_classes": 34,
+    "splits": {
+      "train": {
+        "class_to_idx_matches_checkpoint": true,
+        "images": 16699
+      },
+      "validation": {
+        "class_to_idx_matches_checkpoint": true,
+        "images": 3572
+      },
+      "test": {
+        "class_to_idx_matches_checkpoint": true,
+        "images": 3602
+      }
+    }
+  },
+  "train_images_per_class": {
+    "Baked Potato": 1050,
+    "Crispy Chicken": 1050,
+    "Donut": 1050,
+    "Fries": 1050,
+    "Hot Dog": 1083,
+    "Sandwich": 1050,
+    "Taco": 1050,
+    "Taquito": 1050,
+    "apple_pie": 700,
+    "burger": 231,
+    "butter_naan": 214,
+    "chai": 240,
+    "chapati": 228,
+    "cheesecake": 700,
+    "chicken_curry": 700,
+    "chole_bhature": 263,
+    "dal_makhani": 206,
+    "dhokla": 171,
+    "fried_rice": 244,
+    "ice_cream": 700,
+    "idli": 211,
+    "jalebi": 201,
+    "kaathi_rolls": 195,
+    "kadai_paneer": 233,
+    "kulfi": 149,
+    "masala_dosa": 191,
+    "momos": 226,
+    "omelette": 700,
+    "paani_puri": 100,
+    "pakode": 188,
+    "pav_bhaji": 213,
+    "pizza": 192,
+    "samosa": 170,
+    "sushi": 700
+  },
+  "test_leakage_effect": {
+    "near_duplicate_max_distance": 3,
+    "images_with_copy_in_train": 247,
+    "accuracy_with_copy_in_train": 0.9473684210526315,
+    "images_without_copy_in_train": 3355,
+    "accuracy_without_copy_in_train": 0.8169895678092399
+  },
+  "splits": {
+    "validation": {
+      "images": 3572,
+      "accuracy": 0.8311870100783875,
+      "macro_f1": 0.8317185828396856,
+      "weighted_f1": 0.8328353293689781,
+      "per_class": {
+        "Baked Potato": {
+          "support": 225,
+          "precision": 0.8867924528301887,
+          "recall": 0.8355555555555556,
+          "f1": 0.8604118993135013
+        },
+        "Crispy Chicken": {
+          "support": 225,
+          "precision": 0.9052631578947369,
+          "recall": 0.7644444444444445,
+          "f1": 0.8289156626506023
+        },
+        "Donut": {
+          "support": 225,
+          "precision": 0.9330357142857143,
+          "recall": 0.9288888888888889,
+          "f1": 0.930957683741648
+        },
+        "Fries": {
+          "support": 225,
+          "precision": 0.9023255813953488,
+          "recall": 0.8622222222222222,
+          "f1": 0.8818181818181817
+        },
+        "Hot Dog": {
+          "support": 232,
+          "precision": 0.8813559322033898,
+          "recall": 0.896551724137931,
+          "f1": 0.888888888888889
+        },
+        "Sandwich": {
+          "support": 225,
+          "precision": 0.9047619047619048,
+          "recall": 0.76,
+          "f1": 0.8260869565217391
+        },
+        "Taco": {
+          "support": 225,
+          "precision": 0.6245847176079734,
+          "recall": 0.8355555555555556,
+          "f1": 0.7148288973384029
+        },
+        "Taquito": {
+          "support": 225,
+          "precision": 0.8834355828220859,
+          "recall": 0.64,
+          "f1": 0.7422680412371134
+        },
+        "apple_pie": {
+          "support": 150,
+          "precision": 0.7397260273972602,
+          "recall": 0.72,
+          "f1": 0.7297297297297296
+        },
+        "burger": {
+          "support": 49,
+          "precision": 0.734375,
+          "recall": 0.9591836734693877,
+          "f1": 0.831858407079646
+        },
+        "butter_naan": {
+          "support": 46,
+          "precision": 0.868421052631579,
+          "recall": 0.717391304347826,
+          "f1": 0.7857142857142858
+        },
+        "chai": {
+          "support": 51,
+          "precision": 0.8064516129032258,
+          "recall": 0.9803921568627451,
+          "f1": 0.8849557522123893
+        },
+        "chapati": {
+          "support": 49,
+          "precision": 0.5466666666666666,
+          "recall": 0.8367346938775511,
+          "f1": 0.6612903225806451
+        },
+        "cheesecake": {
+          "support": 150,
+          "precision": 0.8695652173913043,
+          "recall": 0.8,
+          "f1": 0.8333333333333333
+        },
+        "chicken_curry": {
+          "support": 150,
+          "precision": 0.8523489932885906,
+          "recall": 0.8466666666666667,
+          "f1": 0.8494983277591973
+        },
+        "chole_bhature": {
+          "support": 56,
+          "precision": 0.9090909090909091,
+          "recall": 0.8928571428571429,
+          "f1": 0.9009009009009009
+        },
+        "dal_makhani": {
+          "support": 44,
+          "precision": 0.7272727272727273,
+          "recall": 0.9090909090909091,
+          "f1": 0.8080808080808082
+        },
+        "dhokla": {
+          "support": 36,
+          "precision": 0.8947368421052632,
+          "recall": 0.9444444444444444,
+          "f1": 0.918918918918919
+        },
+        "fried_rice": {
+          "support": 52,
+          "precision": 0.8225806451612904,
+          "recall": 0.9807692307692307,
+          "f1": 0.8947368421052632
+        },
+        "ice_cream": {
+          "support": 150,
+          "precision": 0.8435374149659864,
+          "recall": 0.8266666666666667,
+          "f1": 0.835016835016835
+        },
+        "idli": {
+          "support": 45,
+          "precision": 0.9545454545454546,
+          "recall": 0.9333333333333333,
+          "f1": 0.9438202247191012
+        },
+        "jalebi": {
+          "support": 43,
+          "precision": 0.9761904761904762,
+          "recall": 0.9534883720930233,
+          "f1": 0.9647058823529412
+        },
+        "kaathi_rolls": {
+          "support": 41,
+          "precision": 0.7115384615384616,
+          "recall": 0.9024390243902439,
+          "f1": 0.7956989247311829
+        },
+        "kadai_paneer": {
+          "support": 50,
+          "precision": 0.7818181818181819,
+          "recall": 0.86,
+          "f1": 0.819047619047619
+        },
+        "kulfi": {
+          "support": 32,
+          "precision": 0.65,
+          "recall": 0.8125,
+          "f1": 0.7222222222222223
+        },
+        "masala_dosa": {
+          "support": 40,
+          "precision": 0.85,
+          "recall": 0.85,
+          "f1": 0.85
+        },
+        "momos": {
+          "support": 48,
+          "precision": 0.8936170212765957,
+          "recall": 0.875,
+          "f1": 0.8842105263157894
+        },
+        "omelette": {
+          "support": 150,
+          "precision": 0.8104575163398693,
+          "recall": 0.8266666666666667,
+          "f1": 0.8184818481848185
+        },
+        "paani_puri": {
+          "support": 21,
+          "precision": 0.59375,
+          "recall": 0.9047619047619048,
+          "f1": 0.7169811320754718
+        },
+        "pakode": {
+          "support": 40,
+          "precision": 0.6271186440677966,
+          "recall": 0.925,
+          "f1": 0.7474747474747475
+        },
+        "pav_bhaji": {
+          "support": 45,
+          "precision": 0.8913043478260869,
+          "recall": 0.9111111111111111,
+          "f1": 0.9010989010989011
+        },
+        "pizza": {
+          "support": 41,
+          "precision": 0.8181818181818182,
+          "recall": 0.8780487804878049,
+          "f1": 0.8470588235294119
+        },
+        "samosa": {
+          "support": 36,
+          "precision": 0.8181818181818182,
+          "recall": 0.75,
+          "f1": 0.7826086956521738
+        },
+        "sushi": {
+          "support": 150,
+          "precision": 0.9603174603174603,
+          "recall": 0.8066666666666666,
+          "f1": 0.8768115942028986
+        }
+      },
+      "top_confusions": [
+        {
+          "actual": "Taquito",
+          "predicted": "Taco",
+          "count": 41
+        },
+        {
+          "actual": "Sandwich",
+          "predicted": "Taco",
+          "count": 16
+        },
+        {
+          "actual": "Crispy Chicken",
+          "predicted": "pakode",
+          "count": 15
+        },
+        {
+          "actual": "Baked Potato",
+          "predicted": "Taco",
+          "count": 15
+        },
+        {
+          "actual": "cheesecake",
+          "predicted": "apple_pie",
+          "count": 14
+        },
+        {
+          "actual": "Taco",
+          "predicted": "Hot Dog",
+          "count": 12
+        },
+        {
+          "actual": "butter_naan",
+          "predicted": "chapati",
+          "count": 11
+        },
+        {
+          "actual": "apple_pie",
+          "predicted": "omelette",
+          "count": 10
+        },
+        {
+          "actual": "Fries",
+          "predicted": "Taco",
+          "count": 10
+        },
+        {
+          "actual": "Crispy Chicken",
+          "predicted": "Baked Potato",
+          "count": 10
+        },
+        {
+          "actual": "apple_pie",
+          "predicted": "cheesecake",
+          "count": 9
+        },
+        {
+          "actual": "Sandwich",
+          "predicted": "burger",
+          "count": 9
+        },
+        {
+          "actual": "ice_cream",
+          "predicted": "apple_pie",
+          "count": 8
+        },
+        {
+          "actual": "Hot Dog",
+          "predicted": "Taco",
+          "count": 7
+        },
+        {
+          "actual": "Crispy Chicken",
+          "predicted": "Taco",
+          "count": 7
+        }
+      ],
+      "confidence_bins": [
+        {
+          "range": [
+            0.1,
+            0.2
+          ],
+          "count": 37,
+          "mean_confidence": 0.17982438206672668,
+          "accuracy": 0.2702702702702703
+        },
+        {
+          "range": [
+            0.2,
+            0.3
+          ],
+          "count": 135,
+          "mean_confidence": 0.25586456060409546,
+          "accuracy": 0.35555555555555557
+        },
+        {
+          "range": [
+            0.3,
+            0.4
+          ],
+          "count": 234,
+          "mean_confidence": 0.3523652255535126,
+          "accuracy": 0.47435897435897434
+        },
+        {
+          "range": [
+            0.4,
+            0.5
+          ],
+          "count": 296,
+          "mean_confidence": 0.4508637487888336,
+          "accuracy": 0.5844594594594594
+        },
+        {
+          "range": [
+            0.5,
+            0.6
+          ],
+          "count": 282,
+          "mean_confidence": 0.5489925742149353,
+          "accuracy": 0.7021276595744681
+        },
+        {
+          "range": [
+            0.6,
+            0.7
+          ],
+          "count": 255,
+          "mean_confidence": 0.6528100371360779,
+          "accuracy": 0.7803921568627451
+        },
+        {
+          "range": [
+            0.7,
+            0.8
+          ],
+          "count": 372,
+          "mean_confidence": 0.7508649826049805,
+          "accuracy": 0.8575268817204301
+        },
+        {
+          "range": [
+            0.8,
+            0.9
+          ],
+          "count": 480,
+          "mean_confidence": 0.8534229397773743,
+          "accuracy": 0.9395833333333333
+        },
+        {
+          "range": [
+            0.9,
+            1.0
+          ],
+          "count": 1481,
+          "mean_confidence": 0.965095579624176,
+          "accuracy": 0.9858203916272789
+        }
+      ],
+      "expected_calibration_error": 0.07624351800589385,
+      "threshold_table": [
+        {
+          "threshold": 0.3,
+          "share_below": 0.048152295632698766,
+          "accuracy_at_or_above": 0.8561764705882353,
+          "accuracy_below": 0.3372093023255814,
+          "share_of_errors_below": 0.1890547263681592
+        },
+        {
+          "threshold": 0.35,
+          "share_below": 0.07838745800671892,
+          "accuracy_at_or_above": 0.8702916160388822,
+          "accuracy_below": 0.37142857142857144,
+          "share_of_errors_below": 0.29187396351575456
+        },
+        {
+          "threshold": 0.4,
+          "share_below": 0.11366181410974244,
+          "accuracy_at_or_above": 0.8843967150979154,
+          "accuracy_below": 0.41625615763546797,
+          "share_of_errors_below": 0.39303482587064675
+        },
+        {
+          "threshold": 0.45,
+          "share_below": 0.15565509518477044,
+          "accuracy_at_or_above": 0.9025198938992043,
+          "accuracy_below": 0.4442446043165468,
+          "share_of_errors_below": 0.5124378109452736
+        },
+        {
+          "threshold": 0.5,
+          "share_below": 0.196528555431131,
+          "accuracy_at_or_above": 0.9153310104529617,
+          "accuracy_below": 0.48717948717948717,
+          "share_of_errors_below": 0.5970149253731343
+        },
+        {
+          "threshold": 0.55,
+          "share_below": 0.2374020156774916,
+          "accuracy_at_or_above": 0.9273127753303965,
+          "accuracy_below": 0.5224056603773585,
+          "share_of_errors_below": 0.6716417910447762
+        },
+        {
+          "threshold": 0.6,
+          "share_below": 0.27547592385218367,
+          "accuracy_at_or_above": 0.9385625965996909,
+          "accuracy_below": 0.5487804878048781,
+          "share_of_errors_below": 0.736318407960199
+        },
+        {
+          "threshold": 0.65,
+          "share_below": 0.3090705487122061,
+          "accuracy_at_or_above": 0.9477309562398704,
+          "accuracy_below": 0.5706521739130435,
+          "share_of_errors_below": 0.7860696517412935
+        },
+        {
+          "threshold": 0.7,
+          "share_below": 0.34686450167973126,
+          "accuracy_at_or_above": 0.9558508358336906,
+          "accuracy_below": 0.5964487489911219,
+          "share_of_errors_below": 0.8291873963515755
+        },
+        {
+          "threshold": 0.75,
+          "share_below": 0.3980963045912654,
+          "accuracy_at_or_above": 0.9683720930232558,
+          "accuracy_below": 0.6237693389592124,
+          "share_of_errors_below": 0.8872305140961857
+        },
+        {
+          "threshold": 0.8,
+          "share_below": 0.4510078387458007,
+          "accuracy_at_or_above": 0.974502804691484,
+          "accuracy_below": 0.6567349472377405,
+          "share_of_errors_below": 0.9170812603648425
+        },
+        {
+          "threshold": 0.85,
+          "share_below": 0.5103583426651735,
+          "accuracy_at_or_above": 0.9805603201829617,
+          "accuracy_below": 0.6878771256171147,
+          "share_of_errors_below": 0.9436152570480929
+        },
+        {
+          "threshold": 0.9,
+          "share_below": 0.5853863381858903,
+          "accuracy_at_or_above": 0.9858203916272789,
+          "accuracy_below": 0.7216642754662841,
+          "share_of_errors_below": 0.9651741293532339
+        },
+        {
+          "threshold": 0.95,
+          "share_below": 0.7057670772676372,
+          "accuracy_at_or_above": 0.9914367269267365,
+          "accuracy_below": 0.764379214597382,
+          "share_of_errors_below": 0.9850746268656716
+        }
+      ]
+    },
+    "test": {
+      "images": 3602,
+      "accuracy": 0.825930038867296,
+      "macro_f1": 0.8267463552974369,
+      "weighted_f1": 0.8276984266821001,
+      "per_class": {
+        "Baked Potato": {
+          "support": 225,
+          "precision": 0.914572864321608,
+          "recall": 0.8088888888888889,
+          "f1": 0.8584905660377358
+        },
+        "Crispy Chicken": {
+          "support": 225,
+          "precision": 0.855072463768116,
+          "recall": 0.7866666666666666,
+          "f1": 0.8194444444444444
+        },
+        "Donut": {
+          "support": 225,
+          "precision": 0.9098712446351931,
+          "recall": 0.9422222222222222,
+          "f1": 0.9257641921397378
+        },
+        "Fries": {
+          "support": 225,
+          "precision": 0.8968609865470852,
+          "recall": 0.8888888888888888,
+          "f1": 0.8928571428571429
+        },
+        "Hot Dog": {
+          "support": 233,
+          "precision": 0.8299595141700404,
+          "recall": 0.8798283261802575,
+          "f1": 0.8541666666666666
+        },
+        "Sandwich": {
+          "support": 225,
+          "precision": 0.9197860962566845,
+          "recall": 0.7644444444444445,
+          "f1": 0.8349514563106796
+        },
+        "Taco": {
+          "support": 225,
+          "precision": 0.6233333333333333,
+          "recall": 0.8311111111111111,
+          "f1": 0.7123809523809523
+        },
+        "Taquito": {
+          "support": 225,
+          "precision": 0.875,
+          "recall": 0.6844444444444444,
+          "f1": 0.768079800498753
+        },
+        "apple_pie": {
+          "support": 150,
+          "precision": 0.7878787878787878,
+          "recall": 0.6933333333333334,
+          "f1": 0.7375886524822695
+        },
+        "burger": {
+          "support": 51,
+          "precision": 0.8620689655172413,
+          "recall": 0.9803921568627451,
+          "f1": 0.9174311926605505
+        },
+        "butter_naan": {
+          "support": 47,
+          "precision": 0.9459459459459459,
+          "recall": 0.7446808510638298,
+          "f1": 0.8333333333333334
+        },
+        "chai": {
+          "support": 53,
+          "precision": 0.9090909090909091,
+          "recall": 0.9433962264150944,
+          "f1": 0.9259259259259259
+        },
+        "chapati": {
+          "support": 50,
+          "precision": 0.6216216216216216,
+          "recall": 0.92,
+          "f1": 0.7419354838709677
+        },
+        "cheesecake": {
+          "support": 150,
+          "precision": 0.8467153284671532,
+          "recall": 0.7733333333333333,
+          "f1": 0.808362369337979
+        },
+        "chicken_curry": {
+          "support": 150,
+          "precision": 0.8297872340425532,
+          "recall": 0.78,
+          "f1": 0.8041237113402062
+        },
+        "chole_bhature": {
+          "support": 57,
+          "precision": 0.9411764705882353,
+          "recall": 0.8421052631578947,
+          "f1": 0.8888888888888888
+        },
+        "dal_makhani": {
+          "support": 45,
+          "precision": 0.7049180327868853,
+          "recall": 0.9555555555555556,
+          "f1": 0.8113207547169811
+        },
+        "dhokla": {
+          "support": 38,
+          "precision": 0.8372093023255814,
+          "recall": 0.9473684210526315,
+          "f1": 0.8888888888888888
+        },
+        "fried_rice": {
+          "support": 54,
+          "precision": 0.7903225806451613,
+          "recall": 0.9074074074074074,
+          "f1": 0.8448275862068966
+        },
+        "ice_cream": {
+          "support": 150,
+          "precision": 0.8445945945945946,
+          "recall": 0.8333333333333334,
+          "f1": 0.8389261744966443
+        },
+        "idli": {
+          "support": 46,
+          "precision": 0.9782608695652174,
+          "recall": 0.9782608695652174,
+          "f1": 0.9782608695652174
+        },
+        "jalebi": {
+          "support": 44,
+          "precision": 0.9523809523809523,
+          "recall": 0.9090909090909091,
+          "f1": 0.9302325581395349
+        },
+        "kaathi_rolls": {
+          "support": 43,
+          "precision": 0.5735294117647058,
+          "recall": 0.9069767441860465,
+          "f1": 0.7027027027027025
+        },
+        "kadai_paneer": {
+          "support": 51,
+          "precision": 0.7288135593220338,
+          "recall": 0.8431372549019608,
+          "f1": 0.7818181818181819
+        },
+        "kulfi": {
+          "support": 33,
+          "precision": 0.5490196078431373,
+          "recall": 0.8484848484848485,
+          "f1": 0.6666666666666667
+        },
+        "masala_dosa": {
+          "support": 42,
+          "precision": 0.8636363636363636,
+          "recall": 0.9047619047619048,
+          "f1": 0.8837209302325582
+        },
+        "momos": {
+          "support": 49,
+          "precision": 0.8846153846153846,
+          "recall": 0.9387755102040817,
+          "f1": 0.9108910891089108
+        },
+        "omelette": {
+          "support": 150,
+          "precision": 0.8231292517006803,
+          "recall": 0.8066666666666666,
+          "f1": 0.8148148148148149
+        },
+        "paani_puri": {
+          "support": 23,
+          "precision": 0.5945945945945946,
+          "recall": 0.9565217391304348,
+          "f1": 0.7333333333333334
+        },
+        "pakode": {
+          "support": 41,
+          "precision": 0.6585365853658537,
+          "recall": 0.6585365853658537,
+          "f1": 0.6585365853658537
+        },
+        "pav_bhaji": {
+          "support": 47,
+          "precision": 0.9111111111111111,
+          "recall": 0.8723404255319149,
+          "f1": 0.891304347826087
+        },
+        "pizza": {
+          "support": 42,
+          "precision": 0.76,
+          "recall": 0.9047619047619048,
+          "f1": 0.8260869565217391
+        },
+        "samosa": {
+          "support": 38,
+          "precision": 0.8484848484848485,
+          "recall": 0.7368421052631579,
+          "f1": 0.7887323943661972
+        },
+        "sushi": {
+          "support": 150,
+          "precision": 0.9568965517241379,
+          "recall": 0.74,
+          "f1": 0.8345864661654135
+        }
+      },
+      "top_confusions": [
+        {
+          "actual": "Taquito",
+          "predicted": "Taco",
+          "count": 31
+        },
+        {
+          "actual": "Baked Potato",
+          "predicted": "Taco",
+          "count": 18
+        },
+        {
+          "actual": "cheesecake",
+          "predicted": "apple_pie",
+          "count": 16
+        },
+        {
+          "actual": "Hot Dog",
+          "predicted": "Taco",
+          "count": 14
+        },
+        {
+          "actual": "Crispy Chicken",
+          "predicted": "Taco",
+          "count": 14
+        },
+        {
+          "actual": "Sandwich",
+          "predicted": "Hot Dog",
+          "count": 10
+        },
+        {
+          "actual": "sushi",
+          "predicted": "cheesecake",
+          "count": 9
+        },
+        {
+          "actual": "chicken_curry",
+          "predicted": "dal_makhani",
+          "count": 9
+        },
+        {
+          "actual": "Taquito",
+          "predicted": "kaathi_rolls",
+          "count": 9
+        },
+        {
+          "actual": "chicken_curry",
+          "predicted": "kadai_paneer",
+          "count": 8
+        },
+        {
+          "actual": "apple_pie",
+          "predicted": "omelette",
+          "count": 8
+        },
+        {
+          "actual": "Taquito",
+          "predicted": "Hot Dog",
+          "count": 8
+        },
+        {
+          "actual": "Taco",
+          "predicted": "kaathi_rolls",
+          "count": 8
+        },
+        {
+          "actual": "Taco",
+          "predicted": "Hot Dog",
+          "count": 8
+        },
+        {
+          "actual": "Crispy Chicken",
+          "predicted": "pakode",
+          "count": 8
+        }
+      ],
+      "confidence_bins": [
+        {
+          "range": [
+            0.1,
+            0.2
+          ],
+          "count": 31,
+          "mean_confidence": 0.17043070495128632,
+          "accuracy": 0.1935483870967742
+        },
+        {
+          "range": [
+            0.2,
+            0.3
+          ],
+          "count": 150,
+          "mean_confidence": 0.2546761631965637,
+          "accuracy": 0.32666666666666666
+        },
+        {
+          "range": [
+            0.3,
+            0.4
+          ],
+          "count": 268,
+          "mean_confidence": 0.35303622484207153,
+          "accuracy": 0.5074626865671642
+        },
+        {
+          "range": [
+            0.4,
+            0.5
+          ],
+          "count": 282,
+          "mean_confidence": 0.450759619474411,
+          "accuracy": 0.549645390070922
+        },
+        {
+          "range": [
+            0.5,
+            0.6
+          ],
+          "count": 287,
+          "mean_confidence": 0.5496325492858887,
+          "accuracy": 0.7073170731707317
+        },
+        {
+          "range": [
+            0.6,
+            0.7
+          ],
+          "count": 289,
+          "mean_confidence": 0.6530784368515015,
+          "accuracy": 0.7647058823529411
+        },
+        {
+          "range": [
+            0.7,
+            0.8
+          ],
+          "count": 328,
+          "mean_confidence": 0.7506142854690552,
+          "accuracy": 0.8780487804878049
+        },
+        {
+          "range": [
+            0.8,
+            0.9
+          ],
+          "count": 520,
+          "mean_confidence": 0.8560128211975098,
+          "accuracy": 0.9326923076923077
+        },
+        {
+          "range": [
+            0.9,
+            1.0
+          ],
+          "count": 1447,
+          "mean_confidence": 0.9662917852401733,
+          "accuracy": 0.9896337249481686
+        }
+      ],
+      "expected_calibration_error": 0.07599964656394959,
+      "threshold_table": [
+        {
+          "threshold": 0.3,
+          "share_below": 0.05024986118822876,
+          "accuracy_at_or_above": 0.8535515931014324,
+          "accuracy_below": 0.30386740331491713,
+          "share_of_errors_below": 0.20095693779904306
+        },
+        {
+          "threshold": 0.35,
+          "share_below": 0.0846751804553026,
+          "accuracy_at_or_above": 0.8665453442523506,
+          "accuracy_below": 0.38688524590163936,
+          "share_of_errors_below": 0.2982456140350877
+        },
+        {
+          "threshold": 0.4,
+          "share_below": 0.1246529705719045,
+          "accuracy_at_or_above": 0.8829686013320647,
+          "accuracy_below": 0.42538975501113585,
+          "share_of_errors_below": 0.41148325358851673
+        },
+        {
+          "threshold": 0.45,
+          "share_below": 0.16240977234869516,
+          "accuracy_at_or_above": 0.8992376532979781,
+          "accuracy_below": 0.4478632478632479,
+          "share_of_errors_below": 0.5151515151515151
+        },
+        {
+          "threshold": 0.5,
+          "share_below": 0.20294280955024985,
+          "accuracy_at_or_above": 0.9157088122605364,
+          "accuracy_below": 0.47332421340629277,
+          "share_of_errors_below": 0.6140350877192983
+        },
+        {
+          "threshold": 0.55,
+          "share_below": 0.24153248195446975,
+          "accuracy_at_or_above": 0.9297218155197657,
+          "accuracy_below": 0.5,
+          "share_of_errors_below": 0.69377990430622
+        },
+        {
+          "threshold": 0.6,
+          "share_below": 0.28262076624097726,
+          "accuracy_at_or_above": 0.9388544891640866,
+          "accuracy_below": 0.5392927308447937,
+          "share_of_errors_below": 0.748006379585327
+        },
+        {
+          "threshold": 0.65,
+          "share_below": 0.3192670738478623,
+          "accuracy_at_or_above": 0.9502446982055465,
+          "accuracy_below": 0.5608695652173913,
+          "share_of_errors_below": 0.8054226475279107
+        },
+        {
+          "threshold": 0.7,
+          "share_below": 0.3628539700166574,
+          "accuracy_at_or_above": 0.9607843137254902,
+          "accuracy_below": 0.5891354246365723,
+          "share_of_errors_below": 0.8564593301435407
+        },
+        {
+          "threshold": 0.75,
+          "share_below": 0.40699611327040536,
+          "accuracy_at_or_above": 0.9686329588014981,
+          "accuracy_below": 0.6180081855388813,
+          "share_of_errors_below": 0.8931419457735247
+        },
+        {
+          "threshold": 0.8,
+          "share_below": 0.45391449194891725,
+          "accuracy_at_or_above": 0.974580579562786,
+          "accuracy_below": 0.6470948012232416,
+          "share_of_errors_below": 0.9202551834130781
+        },
+        {
+          "threshold": 0.85,
+          "share_below": 0.5138811771238201,
+          "accuracy_at_or_above": 0.9828669331810395,
+          "accuracy_below": 0.6774716369529984,
+          "share_of_errors_below": 0.9521531100478469
+        },
+        {
+          "threshold": 0.9,
+          "share_below": 0.5982787340366463,
+          "accuracy_at_or_above": 0.9896337249481686,
+          "accuracy_below": 0.7160092807424594,
+          "share_of_errors_below": 0.9760765550239234
+        },
+        {
+          "threshold": 0.95,
+          "share_below": 0.7104386451971128,
+          "accuracy_at_or_above": 0.9952061361457335,
+          "accuracy_below": 0.7569363032434545,
+          "share_of_errors_below": 0.9920255183413078
+        }
+      ]
+    }
+  },
+  "low_confidence_threshold": {
+    "rule": "Largest threshold t (step 0.05) for which validation predictions with confidence < t have accuracy < 50%, i.e. the top-1 answer is more likely wrong than right. Chosen on validation only.",
+    "threshold": 0.5,
+    "validation": {
+      "threshold": 0.5,
+      "share_below": 0.196528555431131,
+      "accuracy_at_or_above": 0.9153310104529617,
+      "accuracy_below": 0.48717948717948717,
+      "share_of_errors_below": 0.5970149253731343
+    },
+    "test_check": {
+      "threshold": 0.5,
+      "share_below": 0.20294280955024985,
+      "accuracy_at_or_above": 0.9157088122605364,
+      "accuracy_below": 0.47332421340629277,
+      "share_of_errors_below": 0.6140350877192983
+    }
+  },
+  "perturbation_probe": {
+    "images": 3602,
+    "results": {
+      "original": {
+        "accuracy": 0.825930038867296,
+        "mean_confidence": 0.7499303817749023,
+        "mean_confidence_when_wrong": 0.47305265069007874,
+        "wrong_with_confidence_at_least_70pct": 0.02498611882287618
+      },
+      "zoom_in_60pct_centre": {
+        "accuracy": 0.7648528595224875,
+        "mean_confidence": 0.6849853992462158,
+        "mean_confidence_when_wrong": 0.4350622594356537,
+        "wrong_with_confidence_at_least_70pct": 0.022487506940588563
+      },
+      "zoom_out_on_background": {
+        "accuracy": 0.5180455302609661,
+        "mean_confidence": 0.5106568932533264,
+        "mean_confidence_when_wrong": 0.36340445280075073,
+        "wrong_with_confidence_at_least_70pct": 0.03220433092726263
+      },
+      "darker_50pct": {
+        "accuracy": 0.7865074958356468,
+        "mean_confidence": 0.7116950154304504,
+        "mean_confidence_when_wrong": 0.4450550377368927,
+        "wrong_with_confidence_at_least_70pct": 0.026651860077734593
+      },
+      "warm_colour_cast": {
+        "accuracy": 0.8067740144364242,
+        "mean_confidence": 0.7351799607276917,
+        "mean_confidence_when_wrong": 0.47493109107017517,
+        "wrong_with_confidence_at_least_70pct": 0.03192670738478623
+      },
+      "blur_radius_2": {
+        "accuracy": 0.5260966129927818,
+        "mean_confidence": 0.5717629790306091,
+        "mean_confidence_when_wrong": 0.4263024926185608,
+        "wrong_with_confidence_at_least_70pct": 0.04775124930594114
+      },
+      "rotated_90": {
+        "accuracy": 0.7204330927262632,
+        "mean_confidence": 0.6813026666641235,
+        "mean_confidence_when_wrong": 0.470785528421402,
+        "wrong_with_confidence_at_least_70pct": 0.03914491948917268
+      },
+      "jpeg_quality_30": {
+        "accuracy": 0.7232093281510272,
+        "mean_confidence": 0.6854940056800842,
+        "mean_confidence_when_wrong": 0.46360915899276733,
+        "wrong_with_confidence_at_least_70pct": 0.03387007218212104
+      }
+    }
+  },
+  "jpeg_step_probe": {
+    "images": 1000,
+    "top1_agreement": 0.971,
+    "mean_abs_confidence_difference": 0.037667542695999146
+  },
+  "stored_thumbnails": [
+    {
+      "file": "9033dfaabba5",
+      "top3": [
+        {
+          "food": "kadai_paneer",
+          "confidence": 0.40041249990463257
+        },
+        {
+          "food": "Taco",
+          "confidence": 0.128265380859375
+        },
+        {
+          "food": "Crispy Chicken",
+          "confidence": 0.12748295068740845
+        }
+      ]
+    },
+    {
+      "file": "a1f8104a0f1b",
+      "top3": [
+        {
+          "food": "chicken_curry",
+          "confidence": 0.6665385961532593
+        },
+        {
+          "food": "paani_puri",
+          "confidence": 0.06852321326732635
+        },
+        {
+          "food": "kadai_paneer",
+          "confidence": 0.0343722403049469
+        }
+      ]
+    },
+    {
+      "file": "bb5b6922e384",
+      "top3": [
+        {
+          "food": "kulfi",
+          "confidence": 0.8488490581512451
+        },
+        {
+          "food": "ice_cream",
+          "confidence": 0.06022276729345322
+        },
+        {
+          "food": "cheesecake",
+          "confidence": 0.03557177260518074
+        }
+      ]
+    }
+  ]
+}

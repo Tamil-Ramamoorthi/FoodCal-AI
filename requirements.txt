@@ -1,0 +1,15 @@
+﻿# FoodCal AI - Core dependencies
+numpy
+pandas
+Pillow
+scikit-learn
+matplotlib
+datasets
+tqdm
+
+# Install TensorFlow separately after verifying the environment.
+# Install FastAPI, Uvicorn and database dependencies during backend setup.
+fastapi
+uvicorn[standard]
+python-multipart
+Pillow

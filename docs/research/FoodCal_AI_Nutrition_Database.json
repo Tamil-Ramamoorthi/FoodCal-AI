@@ -1,0 +1,933 @@
+{
+  "schema_version": 1,
+  "project": "FoodCal AI",
+  "basis": "per 100 g edible prepared food",
+  "generated": "2026-10-11",
+  "nutrients": {
+    "energy_unit": "kcal",
+    "protein_unit": "g",
+    "carbohydrates_unit": "g",
+    "fat_unit": "g"
+  },
+  "access_note": "fdc.nal.usda.gov could not be reached from the environment used to compile this dataset (the site is a JavaScript application that returns no content to a fetch, its public API demo key was rate-limited, and the sandbox network blocked the host). Every FDC ID and nutrient value below was therefore read from a public FoodData Central mirror (getfoodfacts.com (public FoodData Central mirror)). No record was inspected on the USDA site itself. source_url points at the canonical USDA record so values can be independently checked; mirror_url is the page actually read.",
+  "foods": [
+    {
+      "food_class": "Baked Potato",
+      "food_name": "Baked potato (plain, flesh and skin)",
+      "preparation_method": "Baked, no added fat, no toppings",
+      "reference_description": "Potato, baked, NFS",
+      "nutrition_per_100g": {
+        "calories_kcal": 93.0,
+        "protein_g": 1.95,
+        "carbohydrates_g": 21.4,
+        "fat_g": 0.1
+      },
+      "match_type": "DIRECT_MATCH",
+      "data_quality": "HIGH",
+      "source": {
+        "name": "USDA FoodData Central - FNDDS",
+        "dataset": "FNDDS",
+        "record_id": "FDC ID 2709383",
+        "url": "https://fdc.nal.usda.gov/food-details/2709383/nutrients",
+        "mirror_url": "https://getfoodfacts.com/food/potato-baked-nfs-2709383",
+        "dataset_version": "USDA FoodData Central, April 30 2026 release (as reported by the mirror)",
+        "licence": "USDA FoodData Central data are in the public domain in the United States (US Government work); USDA asks that the database be cited. Confirm before redistribution.",
+        "carbohydrate_definition": "Carbohydrate, by difference (USDA convention; includes fibre)"
+      },
+      "verification_status": "SOURCE_RECORD_READ_VIA_FDC_MIRROR_NOT_INSPECTED_ON_USDA_SITE",
+      "limitations": "Reference is a plain baked potato with no added fat. Butter, sour cream, cheese or bacon toppings commonly shown in food photographs are NOT included and would raise energy and fat substantially.",
+      "notes": "NFS = 'not further specified' (USDA generic survey code). Near-zero fat confirms no added fat in the reference."
+    },
+    {
+      "food_class": "Crispy Chicken",
+      "food_name": "Crispy fried chicken, breaded boneless pieces",
+      "preparation_method": "Breaded and deep-fried, boneless, plain (no sauce)",
+      "reference_description": "Fast foods, chicken, breaded and fried, boneless pieces, plain",
+      "nutrition_per_100g": {
+        "calories_kcal": 307.0,
+        "protein_g": 15.9,
+        "carbohydrates_g": 14.9,
+        "fat_g": 20.4
+      },
+      "match_type": "DIRECT_MATCH",
+      "data_quality": "HIGH",
+      "source": {
+        "name": "USDA FoodData Central - SR Legacy",
+        "dataset": "SR Legacy",
+        "record_id": "FDC ID 170718",
+        "url": "https://fdc.nal.usda.gov/food-details/170718/nutrients",
+        "mirror_url": "https://getfoodfacts.com/food/fast-foods-chicken-breaded-and-fried-boneless-pieces-plain-170718",
+        "dataset_version": "USDA FoodData Central, April 30 2026 release (as reported by the mirror)",
+        "licence": "USDA FoodData Central data are in the public domain in the United States (US Government work); USDA asks that the database be cited. Confirm before redistribution.",
+        "carbohydrate_definition": "Carbohydrate, by difference (USDA convention; includes fibre)"
+      },
+      "verification_status": "SOURCE_RECORD_READ_VIA_FDC_MIRROR_NOT_INSPECTED_ON_USDA_SITE",
+      "limitations": "Boneless breaded pieces (tender/nugget style). Bone-in, skin-on fried chicken and sauce-coated or sandwich forms differ. Source does not state skin-on/skinless.",
+      "notes": "Record is explicitly breaded and fried and plain, matching the 'crispy chicken' class well."
+    },
+    {
+      "food_class": "Donut",
+      "food_name": "Doughnut (type not further specified)",
+      "preparation_method": "Fried sweet dough, type unspecified",
+      "reference_description": "Doughnut, NFS",
+      "nutrition_per_100g": {
+        "calories_kcal": 426.0,
+        "protein_g": 5.52,
+        "carbohydrates_g": 49.5,
+        "fat_g": 22.9
+      },
+      "match_type": "DIRECT_MATCH",
+      "data_quality": "MEDIUM",
+      "source": {
+        "name": "USDA FoodData Central - FNDDS",
+        "dataset": "FNDDS",
+        "record_id": "FDC ID 2708062",
+        "url": "https://fdc.nal.usda.gov/food-details/2708062/nutrients",
+        "mirror_url": "https://getfoodfacts.com/food/doughnut-nfs-2708062",
+        "dataset_version": "USDA FoodData Central, April 30 2026 release (as reported by the mirror)",
+        "licence": "USDA FoodData Central data are in the public domain in the United States (US Government work); USDA asks that the database be cited. Confirm before redistribution.",
+        "carbohydrate_definition": "Carbohydrate, by difference (USDA convention; includes fibre)"
+      },
+      "verification_status": "SOURCE_RECORD_READ_VIA_FDC_MIRROR_NOT_INSPECTED_ON_USDA_SITE",
+      "limitations": "NFS generic: icing, glaze and filling are not specified. Related USDA records range from 363 kcal (custard-filled) to 434 kcal (cake type, plain) per 100 g, so a specific doughnut may differ from this generic value by roughly +/-15%.",
+      "notes": "Chosen as the generic entry because the classifier returns only 'Donut' without type."
+    },
+    {
+      "food_class": "Fries",
+      "food_name": "French fries (type not further specified)",
+      "preparation_method": "Deep-fried potato strips",
+      "reference_description": "Potato, french fries, NFS",
+      "nutrition_per_100g": {
+        "calories_kcal": 225.0,
+        "protein_g": 2.5,
+        "carbohydrates_g": 23.2,
+        "fat_g": 14.1
+      },
+      "match_type": "DIRECT_MATCH",
+      "data_quality": "HIGH",
+      "source": {
+        "name": "USDA FoodData Central - FNDDS",
+        "dataset": "FNDDS",
+        "record_id": "FDC ID 2709456",
+        "url": "https://fdc.nal.usda.gov/food-details/2709456/nutrients",
+        "mirror_url": "https://getfoodfacts.com/food/potato-french-fries-nfs-2709456",
+        "dataset_version": "USDA FoodData Central, April 30 2026 release (as reported by the mirror)",
+        "licence": "USDA FoodData Central data are in the public domain in the United States (US Government work); USDA asks that the database be cited. Confirm before redistribution.",
+        "carbohydrate_definition": "Carbohydrate, by difference (USDA convention; includes fibre)"
+      },
+      "verification_status": "SOURCE_RECORD_READ_VIA_FDC_MIRROR_NOT_INSPECTED_ON_USDA_SITE",
+      "limitations": "Generic NFS record. Fat reflects deep-frying oil absorption. Restaurant and fast-food USDA records are higher (289 and 312 kcal/100 g); a school-service record is lower (166 kcal/100 g). Toppings (cheese, chili) are excluded.",
+      "notes": "Oven-baked home fries would be lower in fat than this reference."
+    },
+    {
+      "food_class": "Hot Dog",
+      "food_name": "Hot dog sandwich on a white bun",
+      "preparation_method": "Cooked frankfurter in a white bun, no condiments",
+      "reference_description": "Hot dog sandwich, NFS, on white bun",
+      "nutrition_per_100g": {
+        "calories_kcal": 296.0,
+        "protein_g": 10.8,
+        "carbohydrates_g": 23.7,
+        "fat_g": 17.4
+      },
+      "match_type": "DIRECT_MATCH",
+      "data_quality": "HIGH",
+      "source": {
+        "name": "USDA FoodData Central - FNDDS",
+        "dataset": "FNDDS",
+        "record_id": "FDC ID 2707056",
+        "url": "https://fdc.nal.usda.gov/food-details/2707056/nutrients",
+        "mirror_url": "https://getfoodfacts.com/food/hot-dog-sandwich-nfs-on-white-bun-2707056",
+        "dataset_version": "USDA FoodData Central, April 30 2026 release (as reported by the mirror)",
+        "licence": "USDA FoodData Central data are in the public domain in the United States (US Government work); USDA asks that the database be cited. Confirm before redistribution.",
+        "carbohydrate_definition": "Carbohydrate, by difference (USDA convention; includes fibre)"
+      },
+      "verification_status": "SOURCE_RECORD_READ_VIA_FDC_MIRROR_NOT_INSPECTED_ON_USDA_SITE",
+      "limitations": "Includes BOTH sausage and bun. Ketchup, mustard, relish, onions and chili are NOT included; the USDA chili hot dog records are 219-223 kcal/100 g. Turkey and reduced-fat variants are lower (237-248 kcal/100 g).",
+      "notes": "Mirror page header rounded protein to 10.9 g; the detailed nutrient table value 10.8 g was used."
+    },
+    {
+      "food_class": "Sandwich",
+      "food_name": "Sandwich (filling and bread not further specified)",
+      "preparation_method": "Generic prepared sandwich",
+      "reference_description": "Sandwich, NFS",
+      "nutrition_per_100g": {
+        "calories_kcal": 287.0,
+        "protein_g": 12.8,
+        "carbohydrates_g": 33.8,
+        "fat_g": 12.0
+      },
+      "match_type": "DIRECT_MATCH",
+      "data_quality": "MEDIUM",
+      "source": {
+        "name": "USDA FoodData Central - FNDDS",
+        "dataset": "FNDDS",
+        "record_id": "FDC ID 2706880",
+        "url": "https://fdc.nal.usda.gov/food-details/2706880/nutrients",
+        "mirror_url": "https://getfoodfacts.com/food/sandwich-nfs-2706880",
+        "dataset_version": "USDA FoodData Central, April 30 2026 release (as reported by the mirror)",
+        "licence": "USDA FoodData Central data are in the public domain in the United States (US Government work); USDA asks that the database be cited. Confirm before redistribution.",
+        "carbohydrate_definition": "Carbohydrate, by difference (USDA convention; includes fibre)"
+      },
+      "verification_status": "SOURCE_RECORD_READ_VIA_FDC_MIRROR_NOT_INSPECTED_ON_USDA_SITE",
+      "limitations": "'Sandwich' is an inherently heterogeneous class. This generic NFS record should not be treated as representative of any one recipe: USDA sandwich records range from 232 kcal/100 g (wrap, NFS) to 382 kcal/100 g (peanut butter).",
+      "notes": "Deliberately a generic record, since no single sandwich recipe is universal."
+    },
+    {
+      "food_class": "Taco",
+      "food_name": "Beef taco, hard shell",
+      "preparation_method": "Fried hard corn shell, ground beef, cheese and lettuce",
+      "reference_description": "Fast foods, taco with beef, cheese and lettuce, hard shell",
+      "nutrition_per_100g": {
+        "calories_kcal": 226.0,
+        "protein_g": 8.86,
+        "carbohydrates_g": 19.9,
+        "fat_g": 12.7
+      },
+      "match_type": "DIRECT_MATCH",
+      "data_quality": "MEDIUM",
+      "source": {
+        "name": "USDA FoodData Central - SR Legacy",
+        "dataset": "SR Legacy",
+        "record_id": "FDC ID 170689",
+        "url": "https://fdc.nal.usda.gov/food-details/170689/nutrients",
+        "mirror_url": "https://getfoodfacts.com/food/fast-foods-taco-with-beef-cheese-and-lettuce-hard-shell-170689",
+        "dataset_version": "USDA FoodData Central, April 30 2026 release (as reported by the mirror)",
+        "licence": "USDA FoodData Central data are in the public domain in the United States (US Government work); USDA asks that the database be cited. Confirm before redistribution.",
+        "carbohydrate_definition": "Carbohydrate, by difference (USDA convention; includes fibre)"
+      },
+      "verification_status": "SOURCE_RECORD_READ_VIA_FDC_MIRROR_NOT_INSPECTED_ON_USDA_SITE",
+      "limitations": "Shell type and filling are fixed to hard-shell beef. Soft-shell beef versions are 206-219 kcal/100 g; chicken, fish and vegetarian fillings were not evaluated. Sour cream, guacamole and salsa are not included.",
+      "notes": "The narrow 206-229 kcal/100 g spread across USDA taco records makes this a reasonably stable reference for the class."
+    },
+    {
+      "food_class": "Taquito",
+      "food_name": "Chicken taquito",
+      "preparation_method": "Rolled filled corn tortilla, chicken filling",
+      "reference_description": "Taquito, chicken",
+      "nutrition_per_100g": {
+        "calories_kcal": 269.0,
+        "protein_g": 12.5,
+        "carbohydrates_g": 31.6,
+        "fat_g": 10.4
+      },
+      "match_type": "DIRECT_MATCH",
+      "data_quality": "MEDIUM",
+      "source": {
+        "name": "USDA FoodData Central - FNDDS",
+        "dataset": "FNDDS",
+        "record_id": "FDC ID 2708601",
+        "url": "https://fdc.nal.usda.gov/food-details/2708601/nutrients",
+        "mirror_url": "https://getfoodfacts.com/food/taquito-chicken-2708601",
+        "dataset_version": "USDA FoodData Central, April 30 2026 release (as reported by the mirror)",
+        "licence": "USDA FoodData Central data are in the public domain in the United States (US Government work); USDA asks that the database be cited. Confirm before redistribution.",
+        "carbohydrate_definition": "Carbohydrate, by difference (USDA convention; includes fibre)"
+      },
+      "verification_status": "SOURCE_RECORD_READ_VIA_FDC_MIRROR_NOT_INSPECTED_ON_USDA_SITE",
+      "limitations": "Filling fixed to chicken. USDA sibling records: beef or pork 287, egg 281, cheese only 309 kcal/100 g. The record name does not state whether the taquito was deep-fried or oven-baked, so frying oil uptake is not verifiable from the source.",
+      "notes": "Chicken chosen as the most common commercial taquito filling."
+    },
+    {
+      "food_class": "apple_pie",
+      "food_name": "Apple pie",
+      "preparation_method": "Baked double-crust fruit pie, prepared",
+      "reference_description": "Pie, apple",
+      "nutrition_per_100g": {
+        "calories_kcal": 296.0,
+        "protein_g": 2.7,
+        "carbohydrates_g": 37.5,
+        "fat_g": 15.3
+      },
+      "match_type": "DIRECT_MATCH",
+      "data_quality": "HIGH",
+      "source": {
+        "name": "USDA FoodData Central - FNDDS",
+        "dataset": "FNDDS",
+        "record_id": "FDC ID 2707995",
+        "url": "https://fdc.nal.usda.gov/food-details/2707995/nutrients",
+        "mirror_url": "https://getfoodfacts.com/food/pie-apple-2707995",
+        "dataset_version": "USDA FoodData Central, April 30 2026 release (as reported by the mirror)",
+        "licence": "USDA FoodData Central data are in the public domain in the United States (US Government work); USDA asks that the database be cited. Confirm before redistribution.",
+        "carbohydrate_definition": "Carbohydrate, by difference (USDA convention; includes fibre)"
+      },
+      "verification_status": "SOURCE_RECORD_READ_VIA_FDC_MIRROR_NOT_INSPECTED_ON_USDA_SITE",
+      "limitations": "Prepared pie including pastry, as required. Record does not distinguish home-baked from commercially prepared, and does not include a la mode ice cream or cream.",
+      "notes": "Explicitly a prepared pie record, not raw apples."
+    },
+    {
+      "food_class": "burger",
+      "food_name": "Hamburger on a white bun (single medium patty)",
+      "preparation_method": "Grilled beef patty in a white bun, plain",
+      "reference_description": "Hamburger, on white bun, 1 medium patty",
+      "nutrition_per_100g": {
+        "calories_kcal": 288.0,
+        "protein_g": 17.5,
+        "carbohydrates_g": 20.7,
+        "fat_g": 14.4
+      },
+      "match_type": "DIRECT_MATCH",
+      "data_quality": "HIGH",
+      "source": {
+        "name": "USDA FoodData Central - FNDDS",
+        "dataset": "FNDDS",
+        "record_id": "FDC ID 2706932",
+        "url": "https://fdc.nal.usda.gov/food-details/2706932/nutrients",
+        "mirror_url": "https://getfoodfacts.com/food/hamburger-on-white-bun-1-medium-patty-2706932",
+        "dataset_version": "USDA FoodData Central, April 30 2026 release (as reported by the mirror)",
+        "licence": "USDA FoodData Central data are in the public domain in the United States (US Government work); USDA asks that the database be cited. Confirm before redistribution.",
+        "carbohydrate_definition": "Carbohydrate, by difference (USDA convention; includes fibre)"
+      },
+      "verification_status": "SOURCE_RECORD_READ_VIA_FDC_MIRROR_NOT_INSPECTED_ON_USDA_SITE",
+      "limitations": "Includes BOTH patty and bun. Cheese, bacon, mayonnaise and other sauces are NOT included - a cheeseburger would be higher in fat and energy. Patty size variants (small/large/double) differ only slightly per 100 g (280-290 kcal/100 g).",
+      "notes": "Per-100 g energy is stable across USDA hamburger size variants, which supports using this as the class reference."
+    },
+    {
+      "food_class": "butter_naan",
+      "food_name": "Naan (plain; butter-brushed naan not available)",
+      "preparation_method": "Leavened tandoor-baked flatbread, plain",
+      "reference_description": "Bread, naan",
+      "nutrition_per_100g": {
+        "calories_kcal": 311.0,
+        "protein_g": 11.1,
+        "carbohydrates_g": 50.2,
+        "fat_g": 7.28
+      },
+      "match_type": "APPROXIMATE_MATCH",
+      "data_quality": "MEDIUM",
+      "source": {
+        "name": "USDA FoodData Central - FNDDS",
+        "dataset": "FNDDS",
+        "record_id": "FDC ID 2707613",
+        "url": "https://fdc.nal.usda.gov/food-details/2707613/nutrients",
+        "mirror_url": "https://getfoodfacts.com/food/bread-naan-2707613",
+        "dataset_version": "USDA FoodData Central, April 30 2026 release (as reported by the mirror)",
+        "licence": "USDA FoodData Central data are in the public domain in the United States (US Government work); USDA asks that the database be cited. Confirm before redistribution.",
+        "carbohydrate_definition": "Carbohydrate, by difference (USDA convention; includes fibre)"
+      },
+      "verification_status": "SOURCE_RECORD_READ_VIA_FDC_MIRROR_NOT_INSPECTED_ON_USDA_SITE",
+      "limitations": "KEY LIMITATION: this is PLAIN naan, not butter naan. No USDA record for butter- or ghee-brushed naan was found. Butter naan carries additional surface butter/ghee, so true values will be HIGHER in fat and energy than shown. The size of that gap is not quantified by any source consulted, so no adjustment has been applied.",
+      "notes": "Searches for 'butter naan' in FoodData Central returned only unrelated branded items (butter chicken naan bites), none of which is a butter naan bread."
+    },
+    {
+      "food_class": "chai",
+      "food_name": "Hot tea with milk (sweetened)",
+      "preparation_method": "Brewed tea with milk and sugar, served hot",
+      "reference_description": "Tea, hot, with milk",
+      "nutrition_per_100g": {
+        "calories_kcal": 51.0,
+        "protein_g": 1.58,
+        "carbohydrates_g": 8.95,
+        "fat_g": 1.05
+      },
+      "match_type": "APPROXIMATE_MATCH",
+      "data_quality": "MEDIUM",
+      "source": {
+        "name": "USDA FoodData Central - FNDDS",
+        "dataset": "FNDDS",
+        "record_id": "FDC ID 2710506",
+        "url": "https://fdc.nal.usda.gov/food-details/2710506/nutrients",
+        "mirror_url": "https://getfoodfacts.com/food/tea-hot-with-milk-2710506",
+        "dataset_version": "USDA FoodData Central, April 30 2026 release (as reported by the mirror)",
+        "licence": "USDA FoodData Central data are in the public domain in the United States (US Government work); USDA asks that the database be cited. Confirm before redistribution.",
+        "carbohydrate_definition": "Carbohydrate, by difference (USDA convention; includes fibre)"
+      },
+      "verification_status": "SOURCE_RECORD_READ_VIA_FDC_MIRROR_NOT_INSPECTED_ON_USDA_SITE",
+      "limitations": "Not specifically Indian masala chai. The record reports 8.72 g total sugars out of 8.95 g carbohydrate, which indicates the reference IS sweetened, but the milk-to-water ratio and spice content are unspecified. Indian chai is typically brewed with a higher proportion of whole milk and would generally be higher in fat and energy.",
+      "notes": "Sugar content was checked specifically to confirm the reference is a sweetened milk tea."
+    },
+    {
+      "food_class": "chapati",
+      "food_name": "Chapati / roti, whole wheat",
+      "preparation_method": "Whole-wheat flatbread, commercially prepared (frozen), cooked",
+      "reference_description": "Bread, chapati or roti, whole wheat, commercially prepared, frozen",
+      "nutrition_per_100g": {
+        "calories_kcal": 299.0,
+        "protein_g": 7.85,
+        "carbohydrates_g": 46.1,
+        "fat_g": 9.2
+      },
+      "match_type": "DIRECT_MATCH",
+      "data_quality": "MEDIUM",
+      "source": {
+        "name": "USDA FoodData Central - SR Legacy",
+        "dataset": "SR Legacy",
+        "record_id": "FDC ID 174075",
+        "url": "https://fdc.nal.usda.gov/food-details/174075/nutrients",
+        "mirror_url": "https://getfoodfacts.com/food/bread-chapati-or-roti-whole-wheat-commercially-prepared-frozen-174075",
+        "dataset_version": "USDA FoodData Central, April 30 2026 release (as reported by the mirror)",
+        "licence": "USDA FoodData Central data are in the public domain in the United States (US Government work); USDA asks that the database be cited. Confirm before redistribution.",
+        "carbohydrate_definition": "Carbohydrate, by difference (USDA convention; includes fibre)"
+      },
+      "verification_status": "SOURCE_RECORD_READ_VIA_FDC_MIRROR_NOT_INSPECTED_ON_USDA_SITE",
+      "limitations": "Commercially prepared frozen product rather than a home-made chapati. At 9.2 g fat per 100 g this reference is noticeably richer than a typical home roti made without added oil or ghee, so it may overstate fat and energy for home-cooked chapati. The USDA plain (non-whole-wheat) chapati record is 297 kcal/100 g.",
+      "notes": "Whole-wheat version chosen because Indian chapati is made from whole-wheat atta."
+    },
+    {
+      "food_class": "cheesecake",
+      "food_name": "Cheesecake, plain",
+      "preparation_method": "Baked cheesecake, commercially prepared, no topping",
+      "reference_description": "Cake, cheesecake, commercially prepared",
+      "nutrition_per_100g": {
+        "calories_kcal": 321.0,
+        "protein_g": 5.5,
+        "carbohydrates_g": 25.5,
+        "fat_g": 22.5
+      },
+      "match_type": "DIRECT_MATCH",
+      "data_quality": "HIGH",
+      "source": {
+        "name": "USDA FoodData Central - SR Legacy",
+        "dataset": "SR Legacy",
+        "record_id": "FDC ID 172711",
+        "url": "https://fdc.nal.usda.gov/food-details/172711/nutrients",
+        "mirror_url": "https://getfoodfacts.com/nutrition/cheesecake",
+        "dataset_version": "USDA FoodData Central, April 30 2026 release (as reported by the mirror)",
+        "licence": "USDA FoodData Central data are in the public domain in the United States (US Government work); USDA asks that the database be cited. Confirm before redistribution.",
+        "carbohydrate_definition": "Carbohydrate, by difference (USDA convention; includes fibre)"
+      },
+      "verification_status": "SOURCE_RECORD_READ_VIA_FDC_MIRROR_NOT_INSPECTED_ON_USDA_SITE",
+      "limitations": "Plain commercially prepared cheesecake. Fruit toppings, chocolate, caramel and whipped-cream garnishes are not included. Style (New York / baked / no-bake) is not specified by the record.",
+      "notes": "Record identified via the mirror's generic cheesecake page, which cites FDC ID 172711."
+    },
+    {
+      "food_class": "chicken_curry",
+      "food_name": "Chicken curry",
+      "preparation_method": "Prepared chicken curry with sauce, no rice",
+      "reference_description": "Chicken curry",
+      "nutrition_per_100g": {
+        "calories_kcal": 107.0,
+        "protein_g": 6.48,
+        "carbohydrates_g": 6.54,
+        "fat_g": 6.48
+      },
+      "match_type": "DIRECT_MATCH",
+      "data_quality": "MEDIUM",
+      "source": {
+        "name": "USDA FoodData Central - FNDDS",
+        "dataset": "FNDDS",
+        "record_id": "FDC ID 2706437",
+        "url": "https://fdc.nal.usda.gov/food-details/2706437/nutrients",
+        "mirror_url": "https://getfoodfacts.com/food/chicken-curry-2706437",
+        "dataset_version": "USDA FoodData Central, April 30 2026 release (as reported by the mirror)",
+        "licence": "USDA FoodData Central data are in the public domain in the United States (US Government work); USDA asks that the database be cited. Confirm before redistribution.",
+        "carbohydrate_definition": "Carbohydrate, by difference (USDA convention; includes fibre)"
+      },
+      "verification_status": "SOURCE_RECORD_READ_VIA_FDC_MIRROR_NOT_INSPECTED_ON_USDA_SITE",
+      "limitations": "FNDDS survey recipe; the record does not state whether it represents home-cooked or restaurant/takeaway preparation, nor the regional style. At 107 kcal/100 g it is lower than many restaurant curries, which use more oil and cream. Excludes rice (the separate USDA 'Chicken curry with rice' record is 116 kcal/100 g).",
+      "notes": "Protein and fat are both 6.48 g; this coincidence was re-checked on a second page of the mirror and is what the source reports."
+    },
+    {
+      "food_class": "chole_bhature",
+      "food_name": "Chole bhature (complete dish)",
+      "preparation_method": "Spiced chickpea curry served with deep-fried leavened bread",
+      "reference_description": null,
+      "nutrition_per_100g": {
+        "calories_kcal": null,
+        "protein_g": null,
+        "carbohydrates_g": null,
+        "fat_g": null
+      },
+      "match_type": "UNAVAILABLE",
+      "data_quality": "NONE",
+      "source": {
+        "name": null,
+        "dataset": null,
+        "record_id": null,
+        "url": null,
+        "mirror_url": null,
+        "dataset_version": null,
+        "licence": null,
+        "carbohydrate_definition": null
+      },
+      "verification_status": "REQUIRES_RESEARCH",
+      "limitations": "No composition record was found for the COMPLETE dish. Searches for 'chole', 'bhatura' and 'chana masala' in FoodData Central returned no bhatura/bhature record at all, and only chickpea-curry components. Per the project brief, chickpea curry alone must not be presented as the complete dish, and the fried bread contributes a large share of the energy, so no value is reported.",
+      "notes": "Components located but NOT used: 'Punjabi Choley' (branded, FDC ID 484207, 162 kcal/100 g) for the curry, and 'Bread, puri' (FNDDS, FDC ID 2707714, 409 kcal/100 g) as a fried-bread proxy. A composite could be built from these two if a serving ratio is chosen, but that ratio would be an assumption, not sourced data."
+    },
+    {
+      "food_class": "dal_makhani",
+      "food_name": "Dal makhani (branded ready-meal)",
+      "preparation_method": "Black gram and kidney bean lentil curry with butter and cream",
+      "reference_description": "Dal Makhani - Mother India (branded)",
+      "nutrition_per_100g": {
+        "calories_kcal": 140.0,
+        "protein_g": 6.0,
+        "carbohydrates_g": 14.0,
+        "fat_g": 6.7
+      },
+      "match_type": "APPROXIMATE_MATCH",
+      "data_quality": "LOW",
+      "source": {
+        "name": "USDA FoodData Central - Branded Foods",
+        "dataset": "Branded Foods",
+        "record_id": "FDC ID 1862742",
+        "url": "https://fdc.nal.usda.gov/food-details/1862742/nutrients",
+        "mirror_url": "https://getfoodfacts.com/food/dal-makhani-1862742",
+        "dataset_version": "USDA FoodData Central, April 30 2026 release (as reported by the mirror)",
+        "licence": "USDA FoodData Central data are in the public domain in the United States (US Government work); USDA asks that the database be cited. Confirm before redistribution.",
+        "carbohydrate_definition": "Total carbohydrate as declared on the manufacturer's US Nutrition Facts label (includes fibre); label-rounded"
+      },
+      "verification_status": "SOURCE_RECORD_READ_VIA_FDC_MIRROR; SOME_VALUES_ARITHMETICALLY SCALED_FROM_DECLARED_SERVING",
+      "limitations": "MANUFACTURER-SPECIFIC branded product, not a universal composition for dal makhani. Submitted ingredients do include butter and cream, matching the dish. Carbohydrate and fat were arithmetically scaled from the declared 150 g serving values (21 g and 10 g), so they inherit label rounding. Other branded dal makhani products in FDC range from 105 to 225 kcal/100 g, which shows how much recipe variation exists. Restaurant dal makhani typically uses more butter and cream than a retail ready-meal.",
+      "notes": "No generic (non-branded) USDA record for dal makhani exists; the generic USDA 'Dal' record (FDC ID 2707427, 145 kcal/100 g) lacks the butter and cream that define this dish."
+    },
+    {
+      "food_class": "dhokla",
+      "food_name": "Dhokla (steamed savoury gram-flour cake)",
+      "preparation_method": "Steamed fermented gram-flour batter, tempered",
+      "reference_description": null,
+      "nutrition_per_100g": {
+        "calories_kcal": null,
+        "protein_g": null,
+        "carbohydrates_g": null,
+        "fat_g": null
+      },
+      "match_type": "UNAVAILABLE",
+      "data_quality": "NONE",
+      "source": {
+        "name": null,
+        "dataset": null,
+        "record_id": null,
+        "url": null,
+        "mirror_url": null,
+        "dataset_version": null,
+        "licence": null,
+        "carbohydrate_definition": null
+      },
+      "verification_status": "REQUIRES_RESEARCH",
+      "limitations": "No composition record for PREPARED steamed dhokla was found. The only FoodData Central match is a dry instant mix ('Deep, Indian Gourmet Dhokla Mix', branded, 360 kcal/100 g), which the project brief explicitly rules out, since a dry mix is not the ready-to-eat steamed food.",
+      "notes": "Entries exist on community calorie-counter sites, but those lack documented analytical methodology and permissive reuse terms, so they were not used."
+    },
+    {
+      "food_class": "fried_rice",
+      "food_name": "Fried rice (type not further specified)",
+      "preparation_method": "Stir-fried cooked rice with oil",
+      "reference_description": "Rice, fried, NFS",
+      "nutrition_per_100g": {
+        "calories_kcal": 174.0,
+        "protein_g": 3.84,
+        "carbohydrates_g": 32.5,
+        "fat_g": 3.19
+      },
+      "match_type": "DIRECT_MATCH",
+      "data_quality": "MEDIUM",
+      "source": {
+        "name": "USDA FoodData Central - FNDDS",
+        "dataset": "FNDDS",
+        "record_id": "FDC ID 2708952",
+        "url": "https://fdc.nal.usda.gov/food-details/2708952/nutrients",
+        "mirror_url": "https://getfoodfacts.com/food/rice-fried-nfs-2708952",
+        "dataset_version": "USDA FoodData Central, April 30 2026 release (as reported by the mirror)",
+        "licence": "USDA FoodData Central data are in the public domain in the United States (US Government work); USDA asks that the database be cited. Confirm before redistribution.",
+        "carbohydrate_definition": "Carbohydrate, by difference (USDA convention; includes fibre)"
+      },
+      "verification_status": "SOURCE_RECORD_READ_VIA_FDC_MIRROR_NOT_INSPECTED_ON_USDA_SITE",
+      "limitations": "NFS generic: egg, meat and vegetable content are not specified by the record. USDA sibling records are tightly clustered (meatless 174, chicken 173, pork 179, beef 178, shrimp 166 kcal/100 g), so the generic value is a reasonable class reference. Restaurant fried rice made with more oil would be higher.",
+      "notes": "The narrow spread across protein variants supports use of the NFS record."
+    },
+    {
+      "food_class": "ice_cream",
+      "food_name": "Vanilla ice cream",
+      "preparation_method": "Frozen dairy dessert, regular fat, vanilla",
+      "reference_description": "Ice cream, vanilla",
+      "nutrition_per_100g": {
+        "calories_kcal": 207.0,
+        "protein_g": 3.5,
+        "carbohydrates_g": 23.6,
+        "fat_g": 11.0
+      },
+      "match_type": "DIRECT_MATCH",
+      "data_quality": "HIGH",
+      "source": {
+        "name": "USDA FoodData Central - FNDDS",
+        "dataset": "FNDDS",
+        "record_id": "FDC ID 2705630",
+        "url": "https://fdc.nal.usda.gov/food-details/2705630/nutrients",
+        "mirror_url": "https://getfoodfacts.com/food/ice-cream-vanilla-2705630",
+        "dataset_version": "USDA FoodData Central, April 30 2026 release (as reported by the mirror)",
+        "licence": "USDA FoodData Central data are in the public domain in the United States (US Government work); USDA asks that the database be cited. Confirm before redistribution.",
+        "carbohydrate_definition": "Carbohydrate, by difference (USDA convention; includes fibre)"
+      },
+      "verification_status": "SOURCE_RECORD_READ_VIA_FDC_MIRROR_NOT_INSPECTED_ON_USDA_SITE",
+      "limitations": "Flavour fixed to vanilla and fat level is regular. Premium/rich ice creams, light and reduced-fat products, and chocolate or mix-in flavours differ. Cones, sauces and toppings are not included.",
+      "notes": "Vanilla selected as the standard reference flavour; SR Legacy carries an equivalent record (FDC ID 167575) with the same 207 kcal/100 g."
+    },
+    {
+      "food_class": "idli",
+      "food_name": "Idli (steamed rice and lentil cake)",
+      "preparation_method": "Steamed fermented rice and black-gram batter",
+      "reference_description": "Idli",
+      "nutrition_per_100g": {
+        "calories_kcal": 128.0,
+        "protein_g": 6.36,
+        "carbohydrates_g": 25.0,
+        "fat_g": 0.35
+      },
+      "match_type": "DIRECT_MATCH",
+      "data_quality": "HIGH",
+      "source": {
+        "name": "USDA FoodData Central - FNDDS",
+        "dataset": "FNDDS",
+        "record_id": "FDC ID 2708346",
+        "url": "https://fdc.nal.usda.gov/food-details/2708346/nutrients",
+        "mirror_url": "https://getfoodfacts.com/food/idli-2708346",
+        "dataset_version": "USDA FoodData Central, April 30 2026 release (as reported by the mirror)",
+        "licence": "USDA FoodData Central data are in the public domain in the United States (US Government work); USDA asks that the database be cited. Confirm before redistribution.",
+        "carbohydrate_definition": "Carbohydrate, by difference (USDA convention; includes fibre)"
+      },
+      "verification_status": "SOURCE_RECORD_READ_VIA_FDC_MIRROR_NOT_INSPECTED_ON_USDA_SITE",
+      "limitations": "Steamed preparation, as required. Accompaniments (sambar, coconut chutney, podi, ghee) are NOT included and would add substantially to fat and energy in a typical served portion. The near-zero fat (0.35 g/100 g) confirms a plain steamed reference.",
+      "notes": "Record is the prepared food, not a dry idli batter or mix."
+    },
+    {
+      "food_class": "jalebi",
+      "food_name": "Jalebi (fried batter spirals in sugar syrup)",
+      "preparation_method": "Deep-fried fermented batter soaked in sugar syrup",
+      "reference_description": null,
+      "nutrition_per_100g": {
+        "calories_kcal": null,
+        "protein_g": null,
+        "carbohydrates_g": null,
+        "fat_g": null
+      },
+      "match_type": "UNAVAILABLE",
+      "data_quality": "NONE",
+      "source": {
+        "name": null,
+        "dataset": null,
+        "record_id": null,
+        "url": null,
+        "mirror_url": null,
+        "dataset_version": null,
+        "licence": null,
+        "carbohydrate_definition": null
+      },
+      "verification_status": "REQUIRES_RESEARCH",
+      "limitations": "No record found. Searches for 'jalebi' and the alternate spelling 'jilebi' in FoodData Central returned no matches at all, generic or branded. The Indian Food Composition Tables 2017 (IFCT, 543 records) were also checked and contain only raw and basic foods, no prepared sweets.",
+      "notes": "Remaining gap: a composition record for prepared jalebi that captures both frying oil uptake and sugar-syrup absorption. Community calorie-counter entries exist but have no documented methodology or clear reuse licence."
+    },
+    {
+      "food_class": "kaathi_rolls",
+      "food_name": "Kathi roll (approximated by a generic filled wrap)",
+      "preparation_method": "Filled flatbread wrap",
+      "reference_description": "Sandwich wrap, NFS",
+      "nutrition_per_100g": {
+        "calories_kcal": 232.0,
+        "protein_g": 12.8,
+        "carbohydrates_g": 23.3,
+        "fat_g": 9.4
+      },
+      "match_type": "APPROXIMATE_MATCH",
+      "data_quality": "LOW",
+      "source": {
+        "name": "USDA FoodData Central - FNDDS",
+        "dataset": "FNDDS",
+        "record_id": "FDC ID 2706881",
+        "url": "https://fdc.nal.usda.gov/food-details/2706881/nutrients",
+        "mirror_url": "https://getfoodfacts.com/food/sandwich-wrap-nfs-2706881",
+        "dataset_version": "USDA FoodData Central, April 30 2026 release (as reported by the mirror)",
+        "licence": "USDA FoodData Central data are in the public domain in the United States (US Government work); USDA asks that the database be cited. Confirm before redistribution.",
+        "carbohydrate_definition": "Carbohydrate, by difference (USDA convention; includes fibre)"
+      },
+      "verification_status": "SOURCE_RECORD_READ_VIA_FDC_MIRROR_NOT_INSPECTED_ON_USDA_SITE",
+      "limitations": "KEY LIMITATION: this is a generic filled wrap, NOT a kathi roll. A kathi roll uses a paratha or roti that is typically pan-fried in oil, often with an egg coating, and is filled with spiced chicken, mutton or paneer. The USDA generic wrap is tortilla-based and its filling is unspecified, so this reference most likely UNDERSTATES fat and energy. Treat the number as indicative only.",
+      "notes": "No kathi roll, frankie or comparable Indian roll record exists in FoodData Central; a shawarma search returned only one branded lavash wrap, which is no closer a match."
+    },
+    {
+      "food_class": "kadai_paneer",
+      "food_name": "Kadai paneer (approximated by paneer makhani)",
+      "preparation_method": "Paneer cooked in a spiced tomato-based gravy",
+      "reference_description": "Paneer Makhani - Haldiram Snacks Pvt. Ltd. (branded)",
+      "nutrition_per_100g": {
+        "calories_kcal": 204.0,
+        "protein_g": 4.9,
+        "carbohydrates_g": 9.2,
+        "fat_g": 16.2
+      },
+      "match_type": "APPROXIMATE_MATCH",
+      "data_quality": "LOW",
+      "source": {
+        "name": "USDA FoodData Central - Branded Foods",
+        "dataset": "Branded Foods",
+        "record_id": "FDC ID 484203",
+        "url": "https://fdc.nal.usda.gov/food-details/484203/nutrients",
+        "mirror_url": "https://getfoodfacts.com/food/paneer-makhani-484203",
+        "dataset_version": "USDA FoodData Central, April 30 2026 release (as reported by the mirror)",
+        "licence": "USDA FoodData Central data are in the public domain in the United States (US Government work); USDA asks that the database be cited. Confirm before redistribution.",
+        "carbohydrate_definition": "Total carbohydrate as declared on the manufacturer's US Nutrition Facts label (includes fibre); label-rounded"
+      },
+      "verification_status": "SOURCE_RECORD_READ_VIA_FDC_MIRROR; SOME_VALUES_ARITHMETICALLY SCALED_FROM_DECLARED_SERVING",
+      "limitations": "KEY LIMITATION: this is paneer MAKHANI, a butter- and cream-based paneer curry, not kadai paneer, which is built on onion, tomato and capsicum with less dairy fat. The reference therefore probably OVERSTATES fat. It is also a single manufacturer's recipe. Carbohydrate and fat were scaled from the declared 142 g serving values (13 g and 23 g) and inherit label rounding.",
+      "notes": "Used in preference to plain paneer cheese (FDC ID 2705740, 299 kcal/100 g), which is an ingredient rather than the prepared dish. No kadai paneer record exists in FoodData Central."
+    },
+    {
+      "food_class": "kulfi",
+      "food_name": "Kulfi (dense Indian frozen dairy dessert)",
+      "preparation_method": "Reduced sweetened milk, frozen",
+      "reference_description": null,
+      "nutrition_per_100g": {
+        "calories_kcal": null,
+        "protein_g": null,
+        "carbohydrates_g": null,
+        "fat_g": null
+      },
+      "match_type": "UNAVAILABLE",
+      "data_quality": "NONE",
+      "source": {
+        "name": null,
+        "dataset": null,
+        "record_id": null,
+        "url": null,
+        "mirror_url": null,
+        "dataset_version": null,
+        "licence": null,
+        "carbohydrate_definition": null
+      },
+      "verification_status": "REQUIRES_RESEARCH",
+      "limitations": "No usable record found. FoodData Central searches returned a dry dessert mix (Gits Kesar Kulfi Dessert Mix, 400 kcal/100 g, not a prepared food) and two kulfi bar products whose individual record pages could not be opened to read macronutrients, so their IDs could not be confirmed. Ordinary ice cream was deliberately NOT substituted: kulfi is made from reduced milk, is denser and is not churned.",
+      "notes": "Remaining gap: a verifiable prepared-kulfi record with full macronutrients."
+    },
+    {
+      "food_class": "masala_dosa",
+      "food_name": "Dosa with filling",
+      "preparation_method": "Fermented rice and lentil crepe, griddle-cooked, with filling",
+      "reference_description": "Dosa, with filling",
+      "nutrition_per_100g": {
+        "calories_kcal": 184.0,
+        "protein_g": 5.46,
+        "carbohydrates_g": 30.8,
+        "fat_g": 4.27
+      },
+      "match_type": "APPROXIMATE_MATCH",
+      "data_quality": "MEDIUM",
+      "source": {
+        "name": "USDA FoodData Central - FNDDS",
+        "dataset": "FNDDS",
+        "record_id": "FDC ID 2709129",
+        "url": "https://fdc.nal.usda.gov/food-details/2709129/nutrients",
+        "mirror_url": "https://getfoodfacts.com/food/dosa-with-filling-2709129",
+        "dataset_version": "USDA FoodData Central, April 30 2026 release (as reported by the mirror)",
+        "licence": "USDA FoodData Central data are in the public domain in the United States (US Government work); USDA asks that the database be cited. Confirm before redistribution.",
+        "carbohydrate_definition": "Carbohydrate, by difference (USDA convention; includes fibre)"
+      },
+      "verification_status": "SOURCE_RECORD_READ_VIA_FDC_MIRROR_NOT_INSPECTED_ON_USDA_SITE",
+      "limitations": "The record is a FILLED dosa, which is the right category, but USDA does not state that the filling is potato masala specifically. For contrast the plain dosa record is 210 kcal/100 g (FDC ID 2708347). Sambar and chutney served alongside are not included.",
+      "notes": "Chosen over plain dosa because the brief requires a filled dosa reference where available."
+    },
+    {
+      "food_class": "momos",
+      "food_name": "Steamed dumplings (momo-style)",
+      "preparation_method": "Steamed filled dough dumplings",
+      "reference_description": "Wonton, dumpling or pot sticker, steamed",
+      "nutrition_per_100g": {
+        "calories_kcal": 113.0,
+        "protein_g": 6.9,
+        "carbohydrates_g": 11.1,
+        "fat_g": 4.6
+      },
+      "match_type": "APPROXIMATE_MATCH",
+      "data_quality": "MEDIUM",
+      "source": {
+        "name": "USDA FoodData Central - FNDDS",
+        "dataset": "FNDDS",
+        "record_id": "FDC ID 2708708",
+        "url": "https://fdc.nal.usda.gov/food-details/2708708/nutrients",
+        "mirror_url": "https://getfoodfacts.com/food/wonton-dumpling-or-pot-sticker-steamed-2708708",
+        "dataset_version": "USDA FoodData Central, April 30 2026 release (as reported by the mirror)",
+        "licence": "USDA FoodData Central data are in the public domain in the United States (US Government work); USDA asks that the database be cited. Confirm before redistribution.",
+        "carbohydrate_definition": "Carbohydrate, by difference (USDA convention; includes fibre)"
+      },
+      "verification_status": "SOURCE_RECORD_READ_VIA_FDC_MIRROR_NOT_INSPECTED_ON_USDA_SITE",
+      "limitations": "Generic East Asian steamed dumpling rather than a Nepali/Tibetan momo, and the filling is unspecified. Cooking method IS steamed, as required. FRIED momos would be substantially higher in fat and energy and are not represented by this record. The low energy density reflects the high moisture content of steamed dumplings.",
+      "notes": "No generic USDA momo record exists; branded momo products carried no confirmable cooking method."
+    },
+    {
+      "food_class": "omelette",
+      "food_name": "Plain omelette",
+      "preparation_method": "Whole eggs cooked as an omelette",
+      "reference_description": "Egg, whole, cooked, omelet",
+      "nutrition_per_100g": {
+        "calories_kcal": 154.0,
+        "protein_g": 10.6,
+        "carbohydrates_g": 0.64,
+        "fat_g": 11.7
+      },
+      "match_type": "DIRECT_MATCH",
+      "data_quality": "HIGH",
+      "source": {
+        "name": "USDA FoodData Central - SR Legacy",
+        "dataset": "SR Legacy",
+        "record_id": "FDC ID 172185",
+        "url": "https://fdc.nal.usda.gov/food-details/172185/nutrients",
+        "mirror_url": "https://getfoodfacts.com/food/egg-whole-cooked-omelet-172185",
+        "dataset_version": "USDA FoodData Central, April 30 2026 release (as reported by the mirror)",
+        "licence": "USDA FoodData Central data are in the public domain in the United States (US Government work); USDA asks that the database be cited. Confirm before redistribution.",
+        "carbohydrate_definition": "Carbohydrate, by difference (USDA convention; includes fibre)"
+      },
+      "verification_status": "SOURCE_RECORD_READ_VIA_FDC_MIRROR_NOT_INSPECTED_ON_USDA_SITE",
+      "limitations": "Plain omelette. Cheese, vegetables, onions, meat and masala are NOT included; USDA treats those as separate ingredient records. The source page gives no explicit note on cooking fat, but the fat level (11.7 g/100 g versus about 10 g for raw whole egg) is consistent with a modest amount of added fat.",
+      "notes": "An Indian masala omelette with onion, chilli and extra oil would differ from this reference."
+    },
+    {
+      "food_class": "paani_puri",
+      "food_name": "Pani puri / golgappa (complete serving)",
+      "preparation_method": "Crisp hollow puri filled with spiced water, potato and chickpea",
+      "reference_description": null,
+      "nutrition_per_100g": {
+        "calories_kcal": null,
+        "protein_g": null,
+        "carbohydrates_g": null,
+        "fat_g": null
+      },
+      "match_type": "UNAVAILABLE",
+      "data_quality": "NONE",
+      "source": {
+        "name": null,
+        "dataset": null,
+        "record_id": null,
+        "url": null,
+        "mirror_url": null,
+        "dataset_version": null,
+        "licence": null,
+        "carbohydrate_definition": null
+      },
+      "verification_status": "REQUIRES_RESEARCH",
+      "limitations": "No record found for the complete dish; searches for 'pani puri' in FoodData Central returned no matches. Plain puri was deliberately NOT substituted: the USDA 'Bread, puri' record (FDC ID 2707714) is 409 kcal/100 g, whereas a served pani puri is dominated by spiced water and would have a far lower energy density. Using the bread alone would overstate energy by a large margin.",
+      "notes": "Remaining gap: a composition record for an assembled pani puri serving including the spiced water and fillings."
+    },
+    {
+      "food_class": "pakode",
+      "food_name": "Pakora (gram-flour vegetable fritter)",
+      "preparation_method": "Battered vegetables, fried",
+      "reference_description": "Pakora",
+      "nutrition_per_100g": {
+        "calories_kcal": 125.0,
+        "protein_g": 4.92,
+        "carbohydrates_g": 16.2,
+        "fat_g": 4.77
+      },
+      "match_type": "DIRECT_MATCH",
+      "data_quality": "MEDIUM",
+      "source": {
+        "name": "USDA FoodData Central - FNDDS",
+        "dataset": "FNDDS",
+        "record_id": "FDC ID 2710066",
+        "url": "https://fdc.nal.usda.gov/food-details/2710066/nutrients",
+        "mirror_url": "https://getfoodfacts.com/food/pakora-2710066",
+        "dataset_version": "USDA FoodData Central, April 30 2026 release (as reported by the mirror)",
+        "licence": "USDA FoodData Central data are in the public domain in the United States (US Government work); USDA asks that the database be cited. Confirm before redistribution.",
+        "carbohydrate_definition": "Carbohydrate, by difference (USDA convention; includes fibre)"
+      },
+      "verification_status": "SOURCE_RECORD_READ_VIA_FDC_MIRROR_NOT_INSPECTED_ON_USDA_SITE",
+      "limitations": "FLAGGED FOR REVIEW: at 125 kcal and 4.77 g fat per 100 g this record is markedly lower than values commonly cited for Indian deep-fried pakoda, which are usually in the 250-320 kcal/100 g range. The USDA survey recipe may represent a preparation that absorbs much less oil, or a higher-moisture vegetable fritter. The record's own energy and macronutrients are internally consistent, so this is a recipe difference rather than a data error. Verify against your own use case before relying on it.",
+      "notes": "The record name matches the dish exactly, but the preparation behind the survey recipe is not documented on the source page."
+    },
+    {
+      "food_class": "pav_bhaji",
+      "food_name": "Pav bhaji - bhaji component only",
+      "preparation_method": "Spiced mashed vegetable curry with butter (bread NOT included)",
+      "reference_description": "Authentic Indian Mashed Vegetable Curry Pav Bhaji - Kitchens of India (branded)",
+      "nutrition_per_100g": {
+        "calories_kcal": 136.0,
+        "protein_g": 2.4,
+        "carbohydrates_g": 8.0,
+        "fat_g": 10.4
+      },
+      "match_type": "APPROXIMATE_MATCH",
+      "data_quality": "LOW",
+      "source": {
+        "name": "USDA FoodData Central - Branded Foods",
+        "dataset": "Branded Foods",
+        "record_id": "FDC ID 2677881",
+        "url": "https://fdc.nal.usda.gov/food-details/2677881/nutrients",
+        "mirror_url": "https://getfoodfacts.com/food/authentic-indian-mashed-vegetable-curry-pav-bhaji-2677881",
+        "dataset_version": "USDA FoodData Central, April 30 2026 release (as reported by the mirror)",
+        "licence": "USDA FoodData Central data are in the public domain in the United States (US Government work); USDA asks that the database be cited. Confirm before redistribution.",
+        "carbohydrate_definition": "Total carbohydrate as declared on the manufacturer's US Nutrition Facts label (includes fibre); label-rounded"
+      },
+      "verification_status": "SOURCE_RECORD_READ_VIA_FDC_MIRROR; SOME_VALUES_ARITHMETICALLY SCALED_FROM_DECLARED_SERVING",
+      "limitations": "KEY LIMITATION: this is the BHAJI ONLY. The pav (buttered bread rolls) is not included, even though the product name contains 'Pav Bhaji'. A complete pav bhaji serving includes bread and additional butter and would have a different composition. It is also a single manufacturer's recipe. Carbohydrate and fat were scaled from the declared 125 g serving values (10 g and 13 g) and inherit label rounding.",
+      "notes": "Submitted ingredients (potato, tomato, bell pepper, peas, butter, cream) confirm it is a genuine bhaji. If your app shows the complete dish, this value will understate it."
+    },
+    {
+      "food_class": "pizza",
+      "food_name": "Cheese pizza, regular crust",
+      "preparation_method": "Baked, regular crust, cheese topping (pizza-chain reference)",
+      "reference_description": "Fast Food, Pizza Chain, 14 inch pizza, cheese topping, regular crust",
+      "nutrition_per_100g": {
+        "calories_kcal": 266.0,
+        "protein_g": 11.4,
+        "carbohydrates_g": 33.3,
+        "fat_g": 9.69
+      },
+      "match_type": "DIRECT_MATCH",
+      "data_quality": "HIGH",
+      "source": {
+        "name": "USDA FoodData Central - SR Legacy",
+        "dataset": "SR Legacy",
+        "record_id": "FDC ID 173292",
+        "url": "https://fdc.nal.usda.gov/food-details/173292/nutrients",
+        "mirror_url": "https://getfoodfacts.com/food/fast-food-pizza-chain-14-pizza-cheese-topping-regular-crust-173292",
+        "dataset_version": "USDA FoodData Central, April 30 2026 release (as reported by the mirror)",
+        "licence": "USDA FoodData Central data are in the public domain in the United States (US Government work); USDA asks that the database be cited. Confirm before redistribution.",
+        "carbohydrate_definition": "Carbohydrate, by difference (USDA convention; includes fibre)"
+      },
+      "verification_status": "SOURCE_RECORD_READ_VIA_FDC_MIRROR_NOT_INSPECTED_ON_USDA_SITE",
+      "limitations": "Cheese topping and regular crust specifically. Meat toppings (pepperoni, sausage), thin or stuffed crusts, and extra-cheese versions differ. The comparable frozen cooked cheese pizza record is 268 kcal/100 g, which is close.",
+      "notes": "Restaurant/pizza-chain reference chosen as most representative of photographed pizza."
+    },
+    {
+      "food_class": "samosa",
+      "food_name": "Samosa",
+      "preparation_method": "Filled pastry, fried",
+      "reference_description": "Samosa",
+      "nutrition_per_100g": {
+        "calories_kcal": 310.0,
+        "protein_g": 5.14,
+        "carbohydrates_g": 33.2,
+        "fat_g": 17.5
+      },
+      "match_type": "DIRECT_MATCH",
+      "data_quality": "MEDIUM",
+      "source": {
+        "name": "USDA FoodData Central - FNDDS",
+        "dataset": "FNDDS",
+        "record_id": "FDC ID 2708730",
+        "url": "https://fdc.nal.usda.gov/food-details/2708730/nutrients",
+        "mirror_url": "https://getfoodfacts.com/food/samosa-2708730",
+        "dataset_version": "USDA FoodData Central, April 30 2026 release (as reported by the mirror)",
+        "licence": "USDA FoodData Central data are in the public domain in the United States (US Government work); USDA asks that the database be cited. Confirm before redistribution.",
+        "carbohydrate_definition": "Carbohydrate, by difference (USDA convention; includes fibre)"
+      },
+      "verification_status": "SOURCE_RECORD_READ_VIA_FDC_MIRROR_NOT_INSPECTED_ON_USDA_SITE",
+      "limitations": "The USDA record does not state the filling, so it cannot be confirmed as the vegetable (potato and pea) samosa that the brief specifies as the intended reference; meat-filled samosas would differ in protein and fat. Chutneys are not included. The fat level (17.5 g/100 g) is consistent with deep-frying.",
+      "notes": "This is the only generic samosa record in FoodData Central."
+    },
+    {
+      "food_class": "sushi",
+      "food_name": "Sushi (variety not further specified)",
+      "preparation_method": "Prepared sushi, variety unspecified",
+      "reference_description": "Sushi, NFS",
+      "nutrition_per_100g": {
+        "calories_kcal": 94.0,
+        "protein_g": 2.92,
+        "carbohydrates_g": 18.4,
+        "fat_g": 0.67
+      },
+      "match_type": "DIRECT_MATCH",
+      "data_quality": "MEDIUM",
+      "source": {
+        "name": "USDA FoodData Central - FNDDS",
+        "dataset": "FNDDS",
+        "record_id": "FDC ID 2708959",
+        "url": "https://fdc.nal.usda.gov/food-details/2708959/nutrients",
+        "mirror_url": "https://getfoodfacts.com/food/sushi-nfs-2708959",
+        "dataset_version": "USDA FoodData Central, April 30 2026 release (as reported by the mirror)",
+        "licence": "USDA FoodData Central data are in the public domain in the United States (US Government work); USDA asks that the database be cited. Confirm before redistribution.",
+        "carbohydrate_definition": "Carbohydrate, by difference (USDA convention; includes fibre)"
+      },
+      "verification_status": "SOURCE_RECORD_READ_VIA_FDC_MIRROR_NOT_INSPECTED_ON_USDA_SITE",
+      "limitations": "NFS generic: the variety is not specified, and sushi varieties differ greatly. The very low fat (0.67 g/100 g) indicates the reference does NOT represent tempura rolls, mayonnaise-dressed rolls or fatty-fish nigiri, all of which would be considerably higher in fat and energy. Soy sauce is not included.",
+      "notes": "Per the brief, this value should not be assumed to apply to all sushi types."
+    }
+  ]
+}

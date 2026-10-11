@@ -1,0 +1,85 @@
+# Python environments
+.venv/
+.venv-gpu/
+venv/
+__pycache__/
+*.py[cod]
+
+# Testing and coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Frontend dependencies and build output
+frontend/node_modules/
+frontend/dist/
+frontend/coverage/
+
+# Environment secrets
+.env
+.env.*
+!.env.example
+
+# Local application data
+storage/*
+!storage/.gitkeep
+
+# Backups and archives
+backups/
+*.zip
+
+# Editor and operating system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Large datasets
+data/processed/
+data/real_world_test/
+
+# Keep dataset documentation and metadata
+!data/metadata/
+!data/manifests/
+
+
+# Dataset files: publish documentation and metadata only
+data/processed/
+data/real_world_test/
+data/intake/
+data/external/
+data/real_world_review/
+
+# Local runtime data
+storage/
+
+# Nested project copy
+FoodCal-AI/
+
+
+# Old and experimental model checkpoints
+models/custom_cnn/
+models/efficientnet_b0_v2/
+
+# Source backups
+*.backup
+*.bak
+
+# Private or generated feedback artifacts
+reports/feedback/
+reports/intake/
+reports/phase1_audit/review/
+
+
+# Experimental model checkpoints
+models/custom_cnn/
+models/efficientnet_b0_v2/
+
+# Backup files
+*.backup
+*.bak
+
+# Feedback and generated review artifacts
+reports/feedback/
+reports/intake/
+reports/phase1_audit/review/

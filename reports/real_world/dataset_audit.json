@@ -1,0 +1,596 @@
+{
+  "report_type": "dataset_audit",
+  "schema_version": 1,
+  "generated_at": "2026-10-10T14:37:41+00:00",
+  "checkpoint": "models/efficientnet_b0/food_efficientnet_b0_best.pth",
+  "class_names": [
+    "Baked Potato",
+    "Crispy Chicken",
+    "Donut",
+    "Fries",
+    "Hot Dog",
+    "Sandwich",
+    "Taco",
+    "Taquito",
+    "apple_pie",
+    "burger",
+    "butter_naan",
+    "chai",
+    "chapati",
+    "cheesecake",
+    "chicken_curry",
+    "chole_bhature",
+    "dal_makhani",
+    "dhokla",
+    "fried_rice",
+    "ice_cream",
+    "idli",
+    "jalebi",
+    "kaathi_rolls",
+    "kadai_paneer",
+    "kulfi",
+    "masala_dosa",
+    "momos",
+    "omelette",
+    "paani_puri",
+    "pakode",
+    "pav_bhaji",
+    "pizza",
+    "samosa",
+    "sushi"
+  ],
+  "source_archive": "C:\\Users\\tamil\\.cache\\huggingface\\hub\\datasets--ewanlong--Food_Classification_Dataset\\snapshots\\36ef1209e436bb0147deede11ea6bfca3b3984e8\\Food_Classification_Dataset.zip",
+  "source_archive_classes": {
+    "images": 23873,
+    "class_folders": 34,
+    "images_per_class": {
+      "Baked Potato": 1500,
+      "Crispy Chicken": 1500,
+      "Donut": 1500,
+      "Fries": 1500,
+      "Hot Dog": 1548,
+      "Sandwich": 1500,
+      "Taco": 1500,
+      "Taquito": 1500,
+      "apple_pie": 1000,
+      "burger": 331,
+      "butter_naan": 307,
+      "chai": 344,
+      "chapati": 327,
+      "cheesecake": 1000,
+      "chicken_curry": 1000,
+      "chole_bhature": 376,
+      "dal_makhani": 295,
+      "dhokla": 245,
+      "fried_rice": 350,
+      "ice_cream": 1000,
+      "idli": 302,
+      "jalebi": 288,
+      "kaathi_rolls": 279,
+      "kadai_paneer": 334,
+      "kulfi": 214,
+      "masala_dosa": 273,
+      "momos": 323,
+      "omelette": 1000,
+      "paani_puri": 144,
+      "pakode": 269,
+      "pav_bhaji": 305,
+      "pizza": 275,
+      "samosa": 244,
+      "sushi": 1000
+    },
+    "folders_not_in_model": [],
+    "model_classes_not_in_archive": []
+  },
+  "processed": {
+    "path": "data/processed",
+    "images_per_split": {
+      "train": 16699,
+      "validation": 3572,
+      "test": 3602
+    },
+    "images_per_class": {
+      "train": {
+        "Baked Potato": 1050,
+        "Crispy Chicken": 1050,
+        "Donut": 1050,
+        "Fries": 1050,
+        "Hot Dog": 1083,
+        "Sandwich": 1050,
+        "Taco": 1050,
+        "Taquito": 1050,
+        "apple_pie": 700,
+        "burger": 231,
+        "butter_naan": 214,
+        "chai": 240,
+        "chapati": 228,
+        "cheesecake": 700,
+        "chicken_curry": 700,
+        "chole_bhature": 263,
+        "dal_makhani": 206,
+        "dhokla": 171,
+        "fried_rice": 244,
+        "ice_cream": 700,
+        "idli": 211,
+        "jalebi": 201,
+        "kaathi_rolls": 195,
+        "kadai_paneer": 233,
+        "kulfi": 149,
+        "masala_dosa": 191,
+        "momos": 226,
+        "omelette": 700,
+        "paani_puri": 100,
+        "pakode": 188,
+        "pav_bhaji": 213,
+        "pizza": 192,
+        "samosa": 170,
+        "sushi": 700
+      },
+      "validation": {
+        "Baked Potato": 225,
+        "Crispy Chicken": 225,
+        "Donut": 225,
+        "Fries": 225,
+        "Hot Dog": 232,
+        "Sandwich": 225,
+        "Taco": 225,
+        "Taquito": 225,
+        "apple_pie": 150,
+        "burger": 49,
+        "butter_naan": 46,
+        "chai": 51,
+        "chapati": 49,
+        "cheesecake": 150,
+        "chicken_curry": 150,
+        "chole_bhature": 56,
+        "dal_makhani": 44,
+        "dhokla": 36,
+        "fried_rice": 52,
+        "ice_cream": 150,
+        "idli": 45,
+        "jalebi": 43,
+        "kaathi_rolls": 41,
+        "kadai_paneer": 50,
+        "kulfi": 32,
+        "masala_dosa": 40,
+        "momos": 48,
+        "omelette": 150,
+        "paani_puri": 21,
+        "pakode": 40,
+        "pav_bhaji": 45,
+        "pizza": 41,
+        "samosa": 36,
+        "sushi": 150
+      },
+      "test": {
+        "Baked Potato": 225,
+        "Crispy Chicken": 225,
+        "Donut": 225,
+        "Fries": 225,
+        "Hot Dog": 233,
+        "Sandwich": 225,
+        "Taco": 225,
+        "Taquito": 225,
+        "apple_pie": 150,
+        "burger": 51,
+        "butter_naan": 47,
+        "chai": 53,
+        "chapati": 50,
+        "cheesecake": 150,
+        "chicken_curry": 150,
+        "chole_bhature": 57,
+        "dal_makhani": 45,
+        "dhokla": 38,
+        "fried_rice": 54,
+        "ice_cream": 150,
+        "idli": 46,
+        "jalebi": 44,
+        "kaathi_rolls": 43,
+        "kadai_paneer": 51,
+        "kulfi": 33,
+        "masala_dosa": 42,
+        "momos": 49,
+        "omelette": 150,
+        "paani_puri": 23,
+        "pakode": 41,
+        "pav_bhaji": 47,
+        "pizza": 42,
+        "samosa": 38,
+        "sushi": 150
+      }
+    },
+    "folder_issues": {
+      "train": {
+        "missing_class_folders": [],
+        "unexpected_folders": [],
+        "empty_class_folders": []
+      },
+      "validation": {
+        "missing_class_folders": [],
+        "unexpected_folders": [],
+        "empty_class_folders": []
+      },
+      "test": {
+        "missing_class_folders": [],
+        "unexpected_folders": [],
+        "empty_class_folders": []
+      }
+    },
+    "exact_duplicate_groups": 449,
+    "exact_duplicate_extra_copies": 480,
+    "cross_split_duplicate_groups": 203,
+    "conflicting_label_groups": 3,
+    "conflicting_label_examples": [
+      [
+        {
+          "path": "data/processed/test/pav_bhaji/000031.jpg",
+          "label": "pav_bhaji"
+        },
+        {
+          "path": "data/processed/train/pizza/000040.jpg",
+          "label": "pizza"
+        }
+      ],
+      [
+        {
+          "path": "data/processed/test/Sandwich/000018.jpg",
+          "label": "Sandwich"
+        },
+        {
+          "path": "data/processed/train/Sandwich/000402.jpg",
+          "label": "Sandwich"
+        },
+        {
+          "path": "data/processed/train/Sandwich/000413.jpg",
+          "label": "Sandwich"
+        },
+        {
+          "path": "data/processed/validation/Hot Dog/000217.jpg",
+          "label": "Hot Dog"
+        }
+      ],
+      [
+        {
+          "path": "data/processed/train/Donut/000102.jpg",
+          "label": "Donut"
+        },
+        {
+          "path": "data/processed/train/Sandwich/000095.jpg",
+          "label": "Sandwich"
+        },
+        {
+          "path": "data/processed/train/Sandwich/000662.jpg",
+          "label": "Sandwich"
+        }
+      ]
+    ],
+    "cross_split_examples": [
+      [
+        {
+          "path": "data/processed/test/Baked Potato/000020.jpg",
+          "label": "Baked Potato"
+        },
+        {
+          "path": "data/processed/train/Baked Potato/001027.jpg",
+          "label": "Baked Potato"
+        }
+      ],
+      [
+        {
+          "path": "data/processed/test/Baked Potato/000021.jpg",
+          "label": "Baked Potato"
+        },
+        {
+          "path": "data/processed/train/Baked Potato/000749.jpg",
+          "label": "Baked Potato"
+        }
+      ],
+      [
+        {
+          "path": "data/processed/test/Baked Potato/000044.jpg",
+          "label": "Baked Potato"
+        },
+        {
+          "path": "data/processed/train/Baked Potato/000349.jpg",
+          "label": "Baked Potato"
+        },
+        {
+          "path": "data/processed/train/Baked Potato/000472.jpg",
+          "label": "Baked Potato"
+        }
+      ],
+      [
+        {
+          "path": "data/processed/test/Baked Potato/000050.jpg",
+          "label": "Baked Potato"
+        },
+        {
+          "path": "data/processed/train/Baked Potato/000713.jpg",
+          "label": "Baked Potato"
+        }
+      ],
+      [
+        {
+          "path": "data/processed/test/Baked Potato/000078.jpg",
+          "label": "Baked Potato"
+        },
+        {
+          "path": "data/processed/train/Baked Potato/000407.jpg",
+          "label": "Baked Potato"
+        }
+      ],
+      [
+        {
+          "path": "data/processed/test/Baked Potato/000083.jpg",
+          "label": "Baked Potato"
+        },
+        {
+          "path": "data/processed/train/Baked Potato/000453.jpg",
+          "label": "Baked Potato"
+        }
+      ],
+      [
+        {
+          "path": "data/processed/test/Baked Potato/000098.jpg",
+          "label": "Baked Potato"
+        },
+        {
+          "path": "data/processed/train/Baked Potato/000461.jpg",
+          "label": "Baked Potato"
+        }
+      ],
+      [
+        {
+          "path": "data/processed/test/Baked Potato/000113.jpg",
+          "label": "Baked Potato"
+        },
+        {
+          "path": "data/processed/train/Baked Potato/001004.jpg",
+          "label": "Baked Potato"
+        }
+      ],
+      [
+        {
+          "path": "data/processed/test/Baked Potato/000114.jpg",
+          "label": "Baked Potato"
+        },
+        {
+          "path": "data/processed/train/Baked Potato/000836.jpg",
+          "label": "Baked Potato"
+        }
+      ],
+      [
+        {
+          "path": "data/processed/test/Baked Potato/000124.jpg",
+          "label": "Baked Potato"
+        },
+        {
+          "path": "data/processed/train/Baked Potato/000241.jpg",
+          "label": "Baked Potato"
+        }
+      ],
+      [
+        {
+          "path": "data/processed/test/Baked Potato/000140.jpg",
+          "label": "Baked Potato"
+        },
+        {
+          "path": "data/processed/train/Baked Potato/000917.jpg",
+          "label": "Baked Potato"
+        }
+      ],
+      [
+        {
+          "path": "data/processed/test/Baked Potato/000154.jpg",
+          "label": "Baked Potato"
+        },
+        {
+          "path": "data/processed/train/Baked Potato/000161.jpg",
+          "label": "Baked Potato"
+        }
+      ],
+      [
+        {
+          "path": "data/processed/test/Baked Potato/000162.jpg",
+          "label": "Baked Potato"
+        },
+        {
+          "path": "data/processed/train/Baked Potato/000499.jpg",
+          "label": "Baked Potato"
+        }
+      ],
+      [
+        {
+          "path": "data/processed/test/Baked Potato/000164.jpg",
+          "label": "Baked Potato"
+        },
+        {
+          "path": "data/processed/validation/Baked Potato/000036.jpg",
+          "label": "Baked Potato"
+        }
+      ],
+      [
+        {
+          "path": "data/processed/test/Baked Potato/000167.jpg",
+          "label": "Baked Potato"
+        },
+        {
+          "path": "data/processed/train/Baked Potato/000027.jpg",
+          "label": "Baked Potato"
+        }
+      ],
+      [
+        {
+          "path": "data/processed/test/Baked Potato/000170.jpg",
+          "label": "Baked Potato"
+        },
+        {
+          "path": "data/processed/train/Baked Potato/000656.jpg",
+          "label": "Baked Potato"
+        }
+      ],
+      [
+        {
+          "path": "data/processed/test/Baked Potato/000178.jpg",
+          "label": "Baked Potato"
+        },
+        {
+          "path": "data/processed/train/Baked Potato/000313.jpg",
+          "label": "Baked Potato"
+        },
+        {
+          "path": "data/processed/train/Baked Potato/001048.jpg",
+          "label": "Baked Potato"
+        }
+      ],
+      [
+        {
+          "path": "data/processed/test/Baked Potato/000189.jpg",
+          "label": "Baked Potato"
+        },
+        {
+          "path": "data/processed/train/Baked Potato/000357.jpg",
+          "label": "Baked Potato"
+        }
+      ],
+      [
+        {
+          "path": "data/processed/test/Baked Potato/000221.jpg",
+          "label": "Baked Potato"
+        },
+        {
+          "path": "data/processed/train/Baked Potato/000638.jpg",
+          "label": "Baked Potato"
+        }
+      ],
+      [
+        {
+          "path": "data/processed/test/Baked Potato/000224.jpg",
+          "label": "Baked Potato"
+        },
+        {
+          "path": "data/processed/train/Baked Potato/000758.jpg",
+          "label": "Baked Potato"
+        }
+      ]
+    ],
+    "validation_images_with_exact_copy_in_train": 96,
+    "test_images_with_exact_copy_in_train": 96,
+    "validation_images_with_possible_near_duplicate_in_train": 145,
+    "test_images_with_possible_near_duplicate_in_train": 151,
+    "near_duplicate_max_distance": 3
+  },
+  "real_world": {
+    "path": "data/real_world_test",
+    "exists": true,
+    "valid_images": 0,
+    "invalid_images": [],
+    "unsupported_files": [],
+    "unexpected_entries": [],
+    "missing_class_folders": [],
+    "images_per_class": {
+      "Baked Potato": 0,
+      "Crispy Chicken": 0,
+      "Donut": 0,
+      "Fries": 0,
+      "Hot Dog": 0,
+      "Sandwich": 0,
+      "Taco": 0,
+      "Taquito": 0,
+      "apple_pie": 0,
+      "burger": 0,
+      "butter_naan": 0,
+      "chai": 0,
+      "chapati": 0,
+      "cheesecake": 0,
+      "chicken_curry": 0,
+      "chole_bhature": 0,
+      "dal_makhani": 0,
+      "dhokla": 0,
+      "fried_rice": 0,
+      "ice_cream": 0,
+      "idli": 0,
+      "jalebi": 0,
+      "kaathi_rolls": 0,
+      "kadai_paneer": 0,
+      "kulfi": 0,
+      "masala_dosa": 0,
+      "momos": 0,
+      "omelette": 0,
+      "paani_puri": 0,
+      "pakode": 0,
+      "pav_bhaji": 0,
+      "pizza": 0,
+      "samosa": 0,
+      "sushi": 0
+    },
+    "classes_without_images": [
+      "Baked Potato",
+      "Crispy Chicken",
+      "Donut",
+      "Fries",
+      "Hot Dog",
+      "Sandwich",
+      "Taco",
+      "Taquito",
+      "apple_pie",
+      "burger",
+      "butter_naan",
+      "chai",
+      "chapati",
+      "cheesecake",
+      "chicken_curry",
+      "chole_bhature",
+      "dal_makhani",
+      "dhokla",
+      "fried_rice",
+      "ice_cream",
+      "idli",
+      "jalebi",
+      "kaathi_rolls",
+      "kadai_paneer",
+      "kulfi",
+      "masala_dosa",
+      "momos",
+      "omelette",
+      "paani_puri",
+      "pakode",
+      "pav_bhaji",
+      "pizza",
+      "samosa",
+      "sushi"
+    ],
+    "classes_below_minimum": [],
+    "min_images_per_class": 10,
+    "exact_duplicates_within": [],
+    "near_duplicates_within": [],
+    "exact_overlaps": [],
+    "near_duplicate_overlaps": [],
+    "overlap_reference": {
+      "processed/test": 3602,
+      "processed/train": 16699,
+      "processed/validation": 3572,
+      "source-archive": 23873
+    },
+    "near_duplicate_max_distance": 3,
+    "provenance": {
+      "file": "data/real_world_test/provenance.csv",
+      "present": false,
+      "required_columns": [
+        "file",
+        "source"
+      ],
+      "missing_columns": [],
+      "documented_images": 0,
+      "undocumented_images": 0,
+      "entries_without_image": []
+    },
+    "independence_status": "not_assessed",
+    "independence_note": "There are no valid real-world images to assess.",
+    "duplicate_detection_limits": "Exact duplicates are found by SHA-256 of file bytes, so any re-encoding, resizing, cropping or metadata change hides a copy. Possible near-duplicates are found with a 64-bit difference hash (Hamming distance <= 3); this can miss crops, rotations, mirrored or heavily edited copies and can occasionally match different but similar-looking photos, so matches need manual review.",
+    "warnings": [
+      "No valid real-world images were found, so no real-world metrics can be calculated."
+    ],
+    "images": []
+  }
+}
