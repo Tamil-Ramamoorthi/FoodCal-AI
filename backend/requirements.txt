@@ -1,0 +1,20 @@
+# FoodCal AI backend - runtime dependencies for deployment (e.g. Render).
+# Install from the project root:
+#     pip install -r backend/requirements.txt
+#
+# CPU-only PyTorch: the default Linux wheels from PyPI bundle several GB of
+# CUDA libraries that a CPU host cannot use. These versions match the ones the
+# production checkpoint was tested with (torch 2.11 / torchvision 0.26).
+# Training and evaluation tools need the root requirements.txt instead.
+--extra-index-url https://download.pytorch.org/whl/cpu
+
+torch==2.11.0+cpu
+torchvision==0.26.0+cpu
+numpy==2.5.2
+pillow==12.3.0
+
+fastapi==0.143.0
+starlette==1.7.0
+pydantic==2.14.0
+python-multipart==0.0.32
+uvicorn[standard]==0.54.0

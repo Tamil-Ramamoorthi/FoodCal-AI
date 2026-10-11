@@ -71,8 +71,10 @@ DEFAULT_CORS_ORIGINS = [
     "http://localhost:5174",
     "http://127.0.0.1:5174",
 ]
+# Browsers send the Origin header without a trailing slash, so a pasted
+# "https://example.com/" would otherwise never match.
 CORS_ORIGINS = [
-    origin.strip()
+    origin.strip().rstrip("/")
     for origin in os.environ.get("FOODCAL_CORS_ORIGINS", "").split(",")
     if origin.strip()
 ] or DEFAULT_CORS_ORIGINS
