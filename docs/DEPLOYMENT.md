@@ -130,6 +130,14 @@ Check current prices on <https://render.com/pricing> before choosing.
 ## Not included
 
 - No custom domain, authentication or rate limiting. Anyone with the URL can
-  upload photos and read or delete history.
+  upload photos and read or delete history, including
+  `DELETE /api/history?confirm=all`, which deletes every saved prediction,
+  its feedback and its thumbnail. There are no user accounts, so records are
+  not per-user: this affects everything the backend has stored.
+  `?confirm=all` only guards against accidental requests. CORS stops other
+  websites from calling it in a browser, but not direct requests (e.g. curl).
+  Before exposing the backend at a public URL (a Render service or a
+  Cloudflare Tunnel), put access control in front of it, such as Cloudflare
+  Access; otherwise keep it on `127.0.0.1`.
 - The nutrition rebuild and training tools need files that are not committed
   (`data/external/`, datasets) and are not part of the deployment.

@@ -1,15 +1,19 @@
 import assert from "node:assert/strict";
 import { afterEach, test } from "node:test";
-import { API_BASE_URL, ApiError, getNutrition, getNutritionCoverage } from "./api.js";
+import {
+  API_BASE_URL, ApiError, clearHistory, deleteHistoryRecord, getNutrition, getNutritionCoverage,
+} from "./api.js";
 
 // fetch is replaced by a stub that records the URL and returns `reply`.
 // The bodies are shape fixtures, not nutrition data.
 const realFetch = globalThis.fetch;
 let requested = [];
+let methods = [];
 
 function reply(status, body) {
-  globalThis.fetch = async (url) => {
+  globalThis.fetch = async (url, options) => {
     requested.push(url);
+    methods.push(options?.method || "GET");
     return { ok: status >= 200 && status < 300, status, json: async () => body };
   };
 }
@@ -17,6 +21,7 @@ function reply(status, body) {
 afterEach(() => {
   globalThis.fetch = realFetch;
   requested = [];
+  methods = [];
 });
 
 const VALUES = { calories_kcal: 1, protein_g: 1, carbohydrates_g: 1, fat_g: 1 };
@@ -76,4 +81,37 @@ test("validation errors and mismatched responses are not shown as nutrition", as
   await assert.rejects(() => getNutrition("idli", 100), (error) => error.kind === "invalid-response");
   reply(200, { ...nutrition("idli"), estimated_nutrition: { ...VALUES, fat_g: null } });
   await assert.rejects(() => getNutrition("idli", 100), (error) => error.kind === "invalid-response");
+});
+
+// ---- History deletion ---------------------------------------------------
+
+test("clear all history sends DELETE /api/history with the confirmation", async () => {
+  reply(200, { deleted_records: 3, deleted_thumbnails: 2 });
+  assert.deepEqual(await clearHistory(), { deleted_records: 3, deleted_thumbnails: 2 });
+  reply(200, { deleted_records: 0, deleted_thumbnails: 0 });
+  assert.deepEqual(await clearHistory(), { deleted_records: 0, deleted_thumbnails: 0 }, "empty history is not an error");
+  assert.deepEqual(requested, Array(2).fill("http://127.0.0.1:8000/api/history?confirm=all"));
+  assert.deepEqual(methods, ["DELETE", "DELETE"]);
+});
+
+test("a clear-all failure is reported, never treated as success", async () => {
+  reply(500, { detail: "The history database could not be accessed." });
+  await assert.rejects(clearHistory, (error) => error.kind === "http" && error.status === 500
+    && /could not be accessed\. \(HTTP 500\)/.test(error.message));
+  reply(200, { deleted: "x" });
+  await assert.rejects(clearHistory, (error) => error.kind === "invalid-response");
+  reply(405, { detail: "Method Not Allowed" });
+  await assert.rejects(clearHistory, /cannot clear history \(HTTP 405\)\. Restart the FoodCal AI backend/);
+});
+
+test("deleting one record needs the backend to confirm that record", async () => {
+  const id = "a".repeat(32);
+  reply(200, { deleted: id });
+  await deleteHistoryRecord(id);
+  assert.deepEqual(requested, [`http://127.0.0.1:8000/api/history/${id}`]);
+  assert.deepEqual(methods, ["DELETE"]);
+  reply(200, { deleted: "b".repeat(32) });
+  await assert.rejects(() => deleteHistoryRecord(id), (error) => error.kind === "invalid-response");
+  reply(404, { detail: "Prediction not found." });
+  await assert.rejects(() => deleteHistoryRecord(id), (error) => error.status === 404);
 });

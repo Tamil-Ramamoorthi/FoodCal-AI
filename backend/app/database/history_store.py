@@ -11,6 +11,7 @@ import json
 import os
 import re
 import sqlite3
+import time
 import uuid
 from contextlib import contextmanager
 from datetime import datetime, timezone
@@ -20,6 +21,12 @@ from pathlib import Path
 SCHEMA_VERSION = 1
 
 _SHA256 = re.compile(r"^[0-9a-f]{64}$")
+# Names written by save_thumbnail; cleanup never touches any other file.
+_THUMBNAIL_NAME = re.compile(r"^[0-9a-f]{64}\.jpg$")
+_TEMPORARY_NAME = re.compile(r"^[0-9a-f]{64}\.[0-9a-f]{32}\.tmp$")
+# A temporary file this old is left over from an interrupted write, not
+# one still being written.
+STALE_TEMPORARY_SECONDS = 3600
 
 _SCHEMA = """
 CREATE TABLE IF NOT EXISTS predictions (
@@ -134,6 +141,36 @@ class HistoryStore:
         if not in_use:
             self.thumbnail_path(image_sha256).unlink(missing_ok=True)
 
+    def remove_unused_thumbnails(self):
+        """Removes thumbnails no record refers to and stale temporary files.
+
+        Returns the number of files removed. A file that cannot be removed
+        is skipped; the next cleanup tries it again.
+        """
+        with self._connect() as conn:
+            in_use = {
+                row[0]
+                for row in conn.execute(
+                    "SELECT DISTINCT image_sha256 FROM predictions"
+                )
+            }
+        stale_before = time.time() - STALE_TEMPORARY_SECONDS
+        removed = 0
+        for path in self.thumbnail_dir.iterdir():
+            try:
+                if _THUMBNAIL_NAME.match(path.name):
+                    unused = path.name[:64] not in in_use
+                elif _TEMPORARY_NAME.match(path.name):
+                    unused = path.stat().st_mtime < stale_before
+                else:
+                    continue
+                if unused and path.is_file():
+                    path.unlink()
+                    removed += 1
+            except OSError as error:
+                print(f"WARNING: could not remove {path.name}: {error}")
+        return removed
+
     # ---------------------------------------------------------------
     # Records
     # ---------------------------------------------------------------
@@ -243,9 +280,31 @@ class HistoryStore:
             if row is None:
                 return False
             conn.execute("DELETE FROM predictions WHERE id = ?", (record_id,))
-        # Only after the delete has committed.
-        self.remove_thumbnail_if_unused(row["image_sha256"])
+        # Only after the delete has committed. The record is gone either
+        # way; a thumbnail left behind is removed by the next cleanup.
+        try:
+            self.remove_thumbnail_if_unused(row["image_sha256"])
+        except (OSError, sqlite3.Error) as error:
+            print(f"WARNING: thumbnail not removed: {error}")
         return True
+
+    def clear_predictions(self):
+        """Deletes every prediction record, then the thumbnails they used.
+
+        Returns (records_deleted, thumbnails_removed). The table, schema and
+        database file are kept. A prediction saved while this runs keeps its
+        record; at worst its thumbnail is then reported as unavailable.
+        """
+        with self._connect() as conn:
+            deleted = conn.execute("DELETE FROM predictions").rowcount
+        # Only after the delete has committed, which must still be reported
+        # as done if the cleanup fails.
+        try:
+            removed = self.remove_unused_thumbnails()
+        except (OSError, sqlite3.Error) as error:
+            print(f"WARNING: thumbnails not cleaned up: {error}")
+            removed = 0
+        return deleted, removed
 
     # ---------------------------------------------------------------
     # Live evaluation (user-verified labels only)

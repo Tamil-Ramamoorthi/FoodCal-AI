@@ -565,6 +565,27 @@ def list_history(
     }
 
 
+@app.delete("/api/history")
+def clear_history(confirm: str = Query("", max_length=10)):
+    # There are no user accounts: this deletes every record this backend
+    # has stored. ?confirm=all guards against an accidental request; it is
+    # not access control.
+    require_storage()
+    if confirm != "all":
+        raise HTTPException(
+            status_code=400,
+            detail=(
+                "Deleting all prediction history needs ?confirm=all. "
+                "Nothing was deleted."
+            ),
+        )
+    deleted_records, deleted_thumbnails = history_store.clear_predictions()
+    return {
+        "deleted_records": deleted_records,
+        "deleted_thumbnails": deleted_thumbnails,
+    }
+
+
 @app.patch("/api/history/{prediction_id}/feedback")
 def set_feedback(prediction_id: PredictionId, feedback: FeedbackRequest):
     require_storage()

@@ -275,6 +275,32 @@ export async function deleteHistoryRecord(predictionId) {
   return data;
 }
 
+// Deletes every saved prediction on the backend (there are no user
+// accounts) and the thumbnails they used.
+export async function clearHistory() {
+  let data;
+  try {
+    data = await request("/api/history?confirm=all", { method: "DELETE" }, HISTORY_TIMEOUT_MS);
+  } catch (error) {
+    // A backend started before this route existed only allows GET here.
+    if (error instanceof ApiError && error.status === 405) {
+      throw new ApiError(
+        "http",
+        `The backend at ${API_BASE_URL} cannot clear history (HTTP 405). `
+          + "Restart the FoodCal AI backend so it runs the current code.",
+        405,
+        error.detail,
+      );
+    }
+    throw error;
+  }
+
+  if (!Number.isInteger(data.deleted_records) || !Number.isInteger(data.deleted_thumbnails)) {
+    throw new ApiError("invalid-response", "The backend did not confirm that history was cleared.");
+  }
+  return data;
+}
+
 export async function getLiveEvaluation() {
   const data = await request("/api/evaluation/live", {}, HISTORY_TIMEOUT_MS);
 

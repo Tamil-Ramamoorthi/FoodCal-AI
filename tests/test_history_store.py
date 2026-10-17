@@ -4,9 +4,12 @@ temporary directory, so the real storage/ data is never touched.
 Run from the project root:
     .venv-gpu\\Scripts\\python.exe -B -m unittest discover -s tests -v
 """
+import os
 import sqlite3
+import stat
 import sys
 import tempfile
+import time
 import unittest
 from contextlib import closing
 from pathlib import Path
@@ -15,6 +18,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from backend.app.database.history_store import (  # noqa: E402
     SCHEMA_VERSION,
+    STALE_TEMPORARY_SECONDS,
     HistoryStore,
 )
 
@@ -170,6 +174,80 @@ class HistoryStoreTests(unittest.TestCase):
         self.assertTrue(self.store.delete_prediction(second["id"]))
         self.assertFalse(self.store.thumbnail_path(HASH_A).exists())
         self.assertFalse(self.store.delete_prediction(second["id"]))
+
+    def test_thumbnail_removal_failure_does_not_fail_a_committed_delete(self):
+        record = self.add(image_hash=HASH_A)
+        # A directory where the thumbnail should be cannot be unlinked.
+        self.store.thumbnail_path(HASH_A).mkdir()
+        self.assertTrue(self.store.delete_prediction(record["id"]))
+        self.assertIsNone(self.store.get_prediction(record["id"]))
+
+        self.add(image_hash=HASH_A)
+        self.assertEqual(self.store.clear_predictions(), (1, 0))
+        self.assertEqual(self.store.list_predictions(limit=10, offset=0), ([], 0))
+
+    def test_clear_deletes_every_record_and_its_thumbnails_only(self):
+        self.store.save_thumbnail(HASH_A, b"jpeg-a")
+        self.store.save_thumbnail(HASH_B, b"jpeg-b")
+        self.add(image_hash=HASH_A)
+        self.store.set_feedback(self.add(image_hash=HASH_A)["id"], "samosa")
+        self.add(predicted="burger", image_hash=HASH_B)
+        unrelated = [
+            self.store.thumbnail_dir / "notes.txt",
+            self.store.thumbnail_dir / f"{'c' * 63}.jpg",  # not a name the store writes
+            self.data_dir / "keep.json",
+        ]
+        for path in unrelated:
+            path.write_bytes(b"keep")
+
+        self.assertEqual(self.store.clear_predictions(), (3, 2))
+        self.assertEqual(self.store.list_predictions(limit=10, offset=0), ([], 0))
+        metrics = self.store.live_metrics()
+        self.assertEqual((metrics["total_predictions"], metrics["verified"], metrics["most_predicted"]), (0, 0, None))
+        self.assertFalse(self.store.thumbnail_path(HASH_A).exists())
+        self.assertFalse(self.store.thumbnail_path(HASH_B).exists())
+        for path in unrelated:
+            self.assertEqual(path.read_bytes(), b"keep", path.name)
+
+        # The database file and schema are kept and still usable.
+        self.assertTrue(self.store.db_path.is_file())
+        with self.raw() as conn:
+            self.assertEqual(conn.execute("PRAGMA user_version").fetchone()[0], SCHEMA_VERSION)
+        self.assertIsNotNone(self.store.get_prediction(self.add()["id"]))
+
+    def test_clearing_empty_history_is_not_an_error(self):
+        self.assertEqual(self.store.clear_predictions(), (0, 0))
+        self.assertEqual(self.store.clear_predictions(), (0, 0))
+
+    def test_cleanup_keeps_referenced_thumbnails_and_fresh_temporary_files(self):
+        self.store.save_thumbnail(HASH_A, b"in-use")
+        self.add(image_hash=HASH_A)
+        orphan = self.store.thumbnail_path(HASH_B)
+        orphan.write_bytes(b"orphan")
+        stale = self.store.thumbnail_dir / f"{HASH_B}.{'0' * 32}.tmp"
+        fresh = self.store.thumbnail_dir / f"{HASH_A}.{'1' * 32}.tmp"
+        for path in (stale, fresh):
+            path.write_bytes(b"partial")
+        old = time.time() - STALE_TEMPORARY_SECONDS - 60
+        os.utime(stale, (old, old))
+
+        self.assertEqual(self.store.remove_unused_thumbnails(), 2)
+        self.assertTrue(self.store.thumbnail_path(HASH_A).exists(), "still used by a record")
+        self.assertTrue(fresh.exists(), "may still be being written")
+        self.assertFalse(orphan.exists())
+        self.assertFalse(stale.exists())
+
+    def test_clear_rolls_back_when_the_database_cannot_be_written(self):
+        self.store.save_thumbnail(HASH_A, b"jpeg-a")
+        record = self.add(image_hash=HASH_A)
+        os.chmod(self.store.db_path, stat.S_IREAD)
+        try:
+            with self.assertRaises(sqlite3.Error):
+                self.store.clear_predictions()
+        finally:
+            os.chmod(self.store.db_path, stat.S_IREAD | stat.S_IWRITE)
+        self.assertIsNotNone(self.store.get_prediction(record["id"]))
+        self.assertTrue(self.store.thumbnail_path(HASH_A).exists())
 
     # ---- live metrics -------------------------------------------------------
     def test_live_metrics_known_case(self):

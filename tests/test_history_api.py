@@ -261,6 +261,81 @@ class HistoryApiTests(unittest.TestCase):
         self.assertEqual(pizza["verification_status"], "incorrect")
         self.assertEqual(self.server.request("GET", pizza["thumbnail_url"])[0], 200)
 
+    def test_11_clear_all_requires_confirmation(self):
+        status, before = self.server.json("GET", "/api/history")
+        for path in ("/api/history", "/api/history?confirm=yes", "/api/history?confirm=ALL"):
+            with self.subTest(path=path):
+                status, body = self.server.json("DELETE", path)
+                self.assertEqual(status, 400)
+                self.assertIn("Nothing was deleted", body["detail"])
+        self.assertEqual(self.server.json("GET", "/api/history"), (200, before))
+
+        status, headers, _ = self.server.request("OPTIONS", "/api/history", headers={
+            "Origin": "http://localhost:5173", "Access-Control-Request-Method": "DELETE",
+        })
+        self.assertEqual(status, 200)
+        self.assertEqual(headers.get("access-control-allow-origin"), "http://localhost:5173")
+        self.assertIn("DELETE", headers.get("access-control-allow-methods", ""))
+        status, headers, _ = self.server.request("OPTIONS", "/api/history", headers={
+            "Origin": "https://unknown.example", "Access-Control-Request-Method": "DELETE",
+        })
+        self.assertNotIn("access-control-allow-origin", headers, "other sites cannot call it from a browser")
+
+    def test_12_clear_all_history(self):
+        checkpoint = ROOT / "models" / "efficientnet_b0" / "food_efficientnet_b0_best.pth"
+        checkpoint_sha = hashlib.sha256(checkpoint.read_bytes()).hexdigest()
+        thumbnails = self.data_dir / "thumbnails"
+        unrelated = [self.data_dir / "notes.txt", thumbnails / "README.txt"]
+        for path in unrelated:
+            path.write_text("keep")
+        status, before = self.server.json("GET", "/api/history")
+        self.assertEqual(before["total"], 3)
+        self.assertEqual(len(list(thumbnails.glob("*.jpg"))), 3)
+
+        status, body = self.server.json("DELETE", "/api/history?confirm=all")
+        self.assertEqual((status, body), (200, {"deleted_records": 3, "deleted_thumbnails": 3}))
+
+        status, history = self.server.json("GET", "/api/history")
+        self.assertEqual((status, history["items"], history["total"]), (200, [], 0))
+        status, live = self.server.json("GET", "/api/evaluation/live")
+        self.assertEqual(
+            (live["total_predictions"], live["verified"], live["accuracy"], live["per_class"], live["most_predicted"]),
+            (0, 0, None, [], None),
+            "dashboard metrics come from the same table",
+        )
+        old_id = self.ids["pizza"]
+        self.assertEqual(self.server.request("GET", f"/api/history/{old_id}/thumbnail")[0], 404)
+        self.assertEqual(self.server.json("DELETE", f"/api/history/{old_id}")[0], 404)
+
+        self.assertEqual(sorted(p.name for p in thumbnails.iterdir()), ["README.txt"])
+        for path in unrelated:
+            self.assertEqual(path.read_text(), "keep")
+        self.assertTrue((self.data_dir / "foodcal.db").is_file(), "database file is kept")
+        self.assertEqual(hashlib.sha256(checkpoint.read_bytes()).hexdigest(), checkpoint_sha)
+
+    def test_13_after_clearing_everything_else_keeps_working(self):
+        status, body = self.server.json("DELETE", "/api/history?confirm=all")
+        self.assertEqual((status, body), (200, {"deleted_records": 0, "deleted_thumbnails": 0}), "already empty")
+
+        status, home = self.server.json("GET", "/")
+        self.assertEqual((status, home["classes"], home["history_storage"], home["nutrition_reference"]), (200, 34, "ok", "ok"))
+        status, classes = self.server.json("GET", "/api/classes")
+        self.assertEqual((status, classes["count"]), (200, 34))
+        self.assertEqual(self.server.json("GET", "/api/nutrition")[0], 200)
+        status, nutrition = self.server.json("GET", "/api/nutrition/pizza?grams=100")
+        self.assertEqual((status, nutrition["food_class"]), (200, "pizza"))
+        status, evaluation = self.server.json("GET", "/api/evaluation")
+        self.assertEqual((status, evaluation["num_classes"]), (200, 34))
+        self.assertEqual(self.server.json("GET", "/api/evaluation/real-world")[0], 200)
+
+        status, result, _ = self.server.predict("pizza")
+        self.assertEqual(status, 200, "the model still predicts")
+        self.assertTrue(result["saved"], "and history is still written")
+        status, history = self.server.json("GET", "/api/history")
+        self.assertEqual([r["id"] for r in history["items"]], [result["prediction_id"]])
+        self.assertEqual(self.server.request("GET", history["items"][0]["thumbnail_url"])[0], 200)
+        self.assertEqual(self.server.json("GET", "/api/evaluation/live")[1]["total_predictions"], 1)
+
 
 class StorageFailureTests(unittest.TestCase):
     """A storage failure must never be reported as a saved record."""
@@ -298,6 +373,7 @@ class StorageFailureTests(unittest.TestCase):
         self.assertEqual(status, 503)
         self.assertIn("History storage is unavailable", body["detail"])
         self.assertEqual(self.server.json("GET", "/api/evaluation/live")[0], 503)
+        self.assertEqual(self.server.json("DELETE", "/api/history?confirm=all")[0], 503)
 
     def test_database_write_failure_during_prediction(self):
         self.server = Server(self.data_dir)
@@ -310,6 +386,23 @@ class StorageFailureTests(unittest.TestCase):
         status, history = self.server.json("GET", "/api/history")
         self.assertEqual((status, history["total"]), (200, 0), "nothing pretends to be saved")
         self.assertEqual(list((self.data_dir / "thumbnails").iterdir()), [], "no orphan thumbnail")
+
+    def test_clear_history_database_failure_deletes_nothing(self):
+        self.server = Server(self.data_dir)
+        self.server.start()
+        status, result, _ = self.server.predict("pizza")
+        self.assertTrue(result["saved"])
+        db = self.data_dir / "foodcal.db"
+        os.chmod(db, stat.S_IREAD)  # read-only
+        try:
+            status, body = self.server.json("DELETE", "/api/history?confirm=all")
+        finally:
+            os.chmod(db, stat.S_IREAD | stat.S_IWRITE)
+        # A generic message: no SQL, file paths or exception text.
+        self.assertEqual((status, body), (500, {"detail": "The history database could not be accessed."}))
+        status, history = self.server.json("GET", "/api/history")
+        self.assertEqual([r["id"] for r in history["items"]], [result["prediction_id"]])
+        self.assertEqual(self.server.request("GET", history["items"][0]["thumbnail_url"])[0], 200)
 
 
 if __name__ == "__main__":

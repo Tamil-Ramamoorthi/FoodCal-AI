@@ -1,8 +1,9 @@
-﻿import { Fragment, useEffect, useRef, useState } from "react";
+﻿import { Fragment, useEffect, useId, useLayoutEffect, useRef, useState } from "react";
 import {
   API_BASE_URL,
   checkApi,
   clearFeedback,
+  clearHistory,
   deleteHistoryRecord,
   getFoodClasses,
   getHistory,
@@ -70,7 +71,12 @@ function App() {
   const [feedbackError, setFeedbackError] = useState("");
   const [classes, setClasses] = useState([]);
   const [editingId, setEditingId] = useState(null);
-  const [pendingDeleteId, setPendingDeleteId] = useState(null);
+  // What the open confirmation dialog would delete: null, or
+  // { kind: "record", record } or { kind: "all" }.
+  const [pendingDelete, setPendingDelete] = useState(null);
+  const [deleting, setDeleting] = useState(false);
+  const [deleteError, setDeleteError] = useState("");
+  const [historyNotice, setHistoryNotice] = useState("");
   const [busyRecordId, setBusyRecordId] = useState(null);
   const [historyActionError, setHistoryActionError] = useState("");
   const inputRef = useRef(null);
@@ -82,6 +88,8 @@ function App() {
   const historyRequest = useRef(0);
   const searchTimer = useRef(null);
   const healthCheckInFlight = useRef(false);
+  // Blocks a second delete request from a repeated click.
+  const deleteInFlight = useRef(false);
   // Set while the backend is unreachable, so saved data is reloaded once
   // it answers again.
   const lostConnection = useRef(false);
@@ -369,11 +377,64 @@ function App() {
     setHistoryActionError(await updateRecord(record.id, () => clearFeedback(record.id)));
   }
 
-  async function deleteRecord(record) {
+  function requestDelete(target) {
+    if (deleteInFlight.current) return;
+    setPendingDelete(target);
+    setDeleteError("");
+    setHistoryNotice("");
     setHistoryActionError("");
-    setPendingDeleteId(null);
-    if (editingId === record.id) setEditingId(null);
-    setHistoryActionError(await updateRecord(record.id, () => deleteHistoryRecord(record.id)));
+  }
+
+  function cancelDelete() {
+    if (!deleteInFlight.current) setPendingDelete(null);
+  }
+
+  // Runs the deletion confirmed in the dialog. The dialog stays open with
+  // the error when the request fails, so a failure never looks like success.
+  async function confirmDelete() {
+    const target = pendingDelete;
+    if (!target || deleteInFlight.current) return;
+    deleteInFlight.current = true;
+    setDeleting(true);
+    setDeleteError("");
+    if (target.kind === "record") setBusyRecordId(target.record.id);
+
+    try {
+      if (target.kind === "all") {
+        const { deleted_records: count } = await clearHistory();
+        setCurrentRecord(null);
+        setEditingId(null);
+        setHistoryNotice(count
+          ? `Deleted all ${count} saved prediction${count === 1 ? "" : "s"}.`
+          : "There was no saved prediction history to delete.");
+        await Promise.all([loadHistory(0), loadRecent(), loadLive()]);
+      } else {
+        const { record } = target;
+        try {
+          await deleteHistoryRecord(record.id);
+          setHistoryNotice(`Deleted the ${formatFood(record.predicted_food)} prediction (${record.original_filename}).`);
+        } catch (err) {
+          if (err.status !== 404) throw err;
+          setHistoryNotice("That prediction had already been deleted. The history has been refreshed.");
+        }
+        setCurrentRecord((previous) => (previous?.id === record.id ? null : previous));
+        setEditingId((previous) => (previous === record.id ? null : previous));
+        await refreshSaved();
+      }
+      setPendingDelete(null);
+    } catch (err) {
+      // After a timeout or an unreadable reply the backend may still have
+      // deleted the data, so the history is reloaded to show what remains.
+      const uncertain = err.kind === "timeout" || err.kind === "invalid-response";
+      setDeleteError(`${err.message || "The request failed."} ${uncertain
+        ? "The history has been reloaded to show what remains."
+        : "Nothing was deleted."}`);
+      if (uncertain) refreshSaved();
+    } finally {
+      deleteInFlight.current = false;
+      setDeleting(false);
+      setBusyRecordId(null);
+    }
   }
 
   const liveData = live.data;
@@ -722,7 +783,7 @@ function App() {
             <button
               key={item.id}
               className={`nav-item ${page === item.id ? "active" : ""}`}
-              onClick={() => { setPage(item.id); setError(""); }}
+              onClick={() => { setPage(item.id); setError(""); setHistoryNotice(""); }}
             >
               <span className="nav-icon">{item.icon}</span>
               <span>{item.label}</span>
@@ -788,8 +849,18 @@ function App() {
                         : `${history.total} ${search.trim() ? "matching " : ""}record${history.total === 1 ? "" : "s"}${liveData && !search.trim() ? ` · ${liveData.verified} verified` : ""}`}
                     </p>
                   </div>
-                  <button className="button button-secondary" onClick={() => refreshSaved()} disabled={history.status === "loading"}>↻ Refresh</button>
+                  <div className="section-title-actions">
+                    <button className="button button-secondary" onClick={() => refreshSaved()} disabled={history.status === "loading"}>↻ Refresh</button>
+                    <button
+                      className="button button-secondary button-secondary-danger"
+                      disabled={deleting || Boolean(busyRecordId) || liveData?.total_predictions === 0 || (!liveData && !history.total)}
+                      onClick={() => requestDelete({ kind: "all" })}
+                    >
+                      <TrashIcon /> Clear All History
+                    </button>
+                  </div>
                 </div>
+                {historyNotice && <div className="success-banner history-banner" role="status">{historyNotice}</div>}
                 {historyActionError && <div className="error-banner history-banner" role="alert">{historyActionError}</div>}
                 {history.status === "error" && (
                   <LoadError message={`Could not load saved history. ${history.error}`} onRetry={() => loadHistory()} />
@@ -802,15 +873,13 @@ function App() {
                       actions={{
                         classes,
                         editingId,
-                        pendingDeleteId,
                         busyRecordId,
-                        onEdit: (record) => { setEditingId(record.id); setPendingDeleteId(null); setHistoryActionError(""); },
+                        locked: deleting,
+                        onEdit: (record) => { setEditingId(record.id); setHistoryNotice(""); setHistoryActionError(""); },
                         onCancelEdit: () => setEditingId(null),
                         onSaveFeedback: saveHistoryFeedback,
                         onClearFeedback: clearHistoryFeedback,
-                        onRequestDelete: (record) => { setPendingDeleteId(record.id); setEditingId(null); },
-                        onCancelDelete: () => setPendingDeleteId(null),
-                        onDelete: deleteRecord,
+                        onRequestDelete: (record) => requestDelete({ kind: "record", record }),
                       }}
                     />
                     <Pagination
@@ -823,9 +892,39 @@ function App() {
                 ) : history.status === "loading" ? (
                   <LoadingRow label="Loading saved history..." />
                 ) : history.status === "ready" && (
-                  <div className="table-empty"><div className="empty-icon small">◷</div><strong>{search.trim() ? "No matching predictions" : "No saved predictions yet"}</strong><span>{search.trim() ? "Try a different search term." : "Analyze a food image to create your first record."}</span></div>
+                  <div className="table-empty"><div className="empty-icon small">◷</div><strong>{search.trim() ? "No matching predictions" : "No prediction history yet"}</strong><span>{search.trim() ? "Try a different search term." : "Analyze a food image to create your first record."}</span></div>
                 )}
               </section>
+              {pendingDelete && (
+                <ConfirmDialog
+                  title={pendingDelete.kind === "all" ? "Clear all prediction history?" : "Delete this prediction?"}
+                  confirmLabel={pendingDelete.kind === "all" ? "Clear All History" : "Delete prediction"}
+                  busy={deleting}
+                  error={deleteError}
+                  onConfirm={confirmDelete}
+                  onCancel={cancelDelete}
+                >
+                  {pendingDelete.kind === "all" ? (
+                    <>
+                      <p>
+                        This permanently deletes {liveData ? <strong>all {liveData.total_predictions} saved prediction{liveData.total_predictions === 1 ? "" : "s"}</strong> : "every saved prediction"},
+                        {" "}their feedback labels and their stored thumbnails from the FoodCal AI backend&apos;s local database.
+                      </p>
+                      <p>FoodCal AI has no user accounts, so this removes every record saved by this backend, not only predictions made in this browser. A search filter does not limit it.</p>
+                      <p>Not affected: the EfficientNet-B0 model, its 34 food classes, nutrition data and the recorded evaluation reports. This cannot be undone.</p>
+                    </>
+                  ) : (
+                    <>
+                      <p>
+                        <strong className="food-name">{formatFood(pendingDelete.record.predicted_food)}</strong>
+                        {" · "}{pendingDelete.record.original_filename}
+                        {" · "}<time dateTime={pendingDelete.record.created_at}>{new Date(pendingDelete.record.created_at).toLocaleString()}</time>
+                      </p>
+                      <p>The saved prediction and its feedback are permanently deleted. Its thumbnail is removed unless another saved prediction uses the same image. This cannot be undone.</p>
+                    </>
+                  )}
+                </ConfirmDialog>
+              )}
             </>
           )}
 
@@ -899,18 +998,18 @@ function HistoryTable({ items, actions, lowConfidenceThreshold }) {
                 <td><span className={`status-pill ${STATUS_STYLES[status]}`}><span className="status-dot" />{STATUS_LABELS[status]}</span></td>
                 {actions && (
                   <td>
-                    {actions.pendingDeleteId === item.id ? (
-                      <div className="row-actions">
-                        <button className="text-button text-button-danger" disabled={busy} onClick={() => actions.onDelete(item)}>Confirm delete</button>
-                        <button className="text-button text-button-muted" onClick={actions.onCancelDelete}>Cancel</button>
-                      </div>
-                    ) : (
-                      <div className="row-actions">
-                        <button className="text-button" disabled={busy} onClick={() => actions.onEdit(item)}>{status === "unverified" ? "Verify" : "Edit"}</button>
-                        {status !== "unverified" && <button className="text-button text-button-muted" disabled={busy} onClick={() => actions.onClearFeedback(item)}>Undo</button>}
-                        <button className="text-button text-button-danger" disabled={busy} onClick={() => actions.onRequestDelete(item)}>Delete</button>
-                      </div>
-                    )}
+                    <div className="row-actions">
+                      <button className="text-button" disabled={busy || actions.locked} onClick={() => actions.onEdit(item)}>{status === "unverified" ? "Verify" : "Edit"}</button>
+                      {status !== "unverified" && <button className="text-button text-button-muted" disabled={busy || actions.locked} onClick={() => actions.onClearFeedback(item)}>Undo</button>}
+                      <button
+                        className="text-button text-button-danger icon-text-button"
+                        disabled={busy || actions.locked}
+                        aria-label={`Delete ${formatFood(item.predicted_food)} prediction (${item.original_filename})`}
+                        onClick={() => actions.onRequestDelete(item)}
+                      >
+                        <TrashIcon /> Delete
+                      </button>
+                    </div>
                   </td>
                 )}
               </tr>
@@ -986,6 +1085,49 @@ function LoadError({ message, onRetry }) {
       <div className="error-banner" role="alert">{message}</div>
       <button className="button button-secondary" onClick={onRetry}>↻ Try again</button>
     </div>
+  );
+}
+
+// Modal confirmation for a destructive action. Escape cancels unless the
+// request is already running; focus starts on Cancel.
+function ConfirmDialog({ title, confirmLabel, busy, error, onConfirm, onCancel, children }) {
+  const dialogRef = useRef(null);
+  const titleId = useId();
+
+  // A layout effect, so the dialog closes (and the browser restores focus)
+  // before React removes it from the page.
+  useLayoutEffect(() => {
+    const dialog = dialogRef.current;
+    if (!dialog.open) dialog.showModal();
+    return () => dialog.close();
+  }, []);
+
+  return (
+    <dialog
+      ref={dialogRef}
+      className="confirm-dialog"
+      aria-labelledby={titleId}
+      aria-busy={busy}
+      onCancel={(event) => { event.preventDefault(); if (!busy) onCancel(); }}
+    >
+      <h2 id={titleId}>{title}</h2>
+      <div className="confirm-dialog-body">{children}</div>
+      {error && <div className="error-banner" role="alert">{error}</div>}
+      <div className="confirm-dialog-actions">
+        <button className="button button-secondary" disabled={busy} onClick={onCancel}>Cancel</button>
+        <button className="button button-danger" disabled={busy} onClick={onConfirm}>
+          {busy ? <><span className="spinner" /> Deleting...</> : <><TrashIcon /> {confirmLabel}</>}
+        </button>
+      </div>
+    </dialog>
+  );
+}
+
+function TrashIcon() {
+  return (
+    <svg className="trash-icon" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+      <path d="M6 2.5h4M2.5 4.5h11M4 4.5l.7 8.6a1 1 0 0 0 1 .9h4.6a1 1 0 0 0 1-.9l.7-8.6M6.6 7v4.5M9.4 7v4.5" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
   );
 }
 
