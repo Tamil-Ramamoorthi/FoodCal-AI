@@ -10,7 +10,7 @@ function checkProductionApiUrl(value) {
   try {
     url = new URL(value)
   } catch {
-    throw new Error('VITE_API_BASE_URL must be set to the deployed backend URL for a production build, e.g. https://foodcal-ai-api.onrender.com')
+    throw new Error('VITE_API_BASE_URL must be set to the deployed backend URL for a production build, e.g. the Cloudflare Tunnel URL https://<name>.trycloudflare.com (see docs/DEPLOYMENT.md)')
   }
   if (url.protocol !== 'https:' || ['localhost', '127.0.0.1', '0.0.0.0', '[::1]'].includes(url.hostname)) {
     throw new Error(`VITE_API_BASE_URL must be an https URL of the deployed backend, not ${value}`)

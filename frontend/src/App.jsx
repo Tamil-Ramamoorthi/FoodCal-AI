@@ -5,12 +5,14 @@ import {
   clearFeedback,
   clearHistory,
   deleteHistoryRecord,
+  getAdminToken,
   getFoodClasses,
   getHistory,
   getLiveEvaluation,
   isConnectionError,
   predictFood,
   saveFeedback,
+  setAdminToken,
   thumbnailSrc,
 } from "./services/api";
 import Metric from "./components/Metric";
@@ -79,6 +81,9 @@ function App() {
   const [historyNotice, setHistoryNotice] = useState("");
   const [busyRecordId, setBusyRecordId] = useState(null);
   const [historyActionError, setHistoryActionError] = useState("");
+  const [adminTokenInput, setAdminTokenInput] = useState(() => getAdminToken());
+  const [adminTokenSet, setAdminTokenSet] = useState(() => Boolean(getAdminToken()));
+  const [adminTokenNotice, setAdminTokenNotice] = useState("");
   const inputRef = useRef(null);
   // Guards against duplicate concurrent predictions and lets responses
   // for a previously selected image be discarded.
@@ -946,6 +951,26 @@ function App() {
                 {apiStatus === "offline" && apiError && <SettingRow label="Connection error" value={apiError} />}
                 <SettingRow label="Prediction history" value="Saved locally in SQLite by the backend" />
                 <button className="button button-secondary" disabled={apiStatus === "checking"} onClick={() => refreshApiStatus()}>↻ Check API connection</button>
+                <form
+                  className="admin-token-form"
+                  onSubmit={(event) => {
+                    event.preventDefault();
+                    setAdminToken(adminTokenInput);
+                    setAdminTokenSet(Boolean(adminTokenInput.trim()));
+                    setAdminTokenNotice(adminTokenInput.trim() ? "Admin token saved in this browser." : "Admin token removed from this browser.");
+                  }}
+                >
+                  <label htmlFor="admin-token"><strong>Admin token</strong> <span>{adminTokenSet ? "Saved in this browser" : "Not set"}</span></label>
+                  <p>Needed only when you use FoodCal AI through its public URL, to verify, delete or clear saved history. It must match FOODCAL_ADMIN_TOKEN on the backend and is kept only in this browser.</p>
+                  <div className="admin-token-row">
+                    <input id="admin-token" className="text-input" type="password" autoComplete="off" spellCheck="false" value={adminTokenInput} onChange={(event) => { setAdminTokenInput(event.target.value); setAdminTokenNotice(""); }} />
+                    <button className="button button-secondary" type="submit">Save token</button>
+                    {adminTokenSet && (
+                      <button className="text-button text-button-muted" type="button" onClick={() => { setAdminToken(""); setAdminTokenInput(""); setAdminTokenSet(false); setAdminTokenNotice("Admin token removed from this browser."); }}>Remove</button>
+                    )}
+                  </div>
+                  {adminTokenNotice && <div className="success-banner" role="status">{adminTokenNotice}</div>}
+                </form>
               </section>
             </>
           )}

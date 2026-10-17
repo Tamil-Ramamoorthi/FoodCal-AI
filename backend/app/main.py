@@ -1,7 +1,10 @@
 ﻿import hashlib
+import hmac
 import json
 import os
 import sqlite3
+import time
+from collections import defaultdict, deque
 from datetime import datetime
 from pathlib import Path
 from io import BytesIO
@@ -10,7 +13,7 @@ from typing import Annotated
 import torch
 from PIL import Image, ImageOps, UnidentifiedImageError
 
-from fastapi import FastAPI, File, HTTPException, Query, Request, UploadFile
+from fastapi import Depends, FastAPI, File, HTTPException, Query, Request, UploadFile
 from fastapi import Path as PathParam
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, JSONResponse
@@ -66,6 +69,9 @@ DATA_DIR = Path(
 ).resolve()
 
 DEFAULT_CORS_ORIGINS = [
+    # The deployed frontend (Vercel), which reaches this backend through
+    # the Cloudflare Tunnel. See docs/DEPLOYMENT.md.
+    "https://food-cal-ai-sigma.vercel.app",
     "http://localhost:5173",
     "http://127.0.0.1:5173",
     "http://localhost:5174",
@@ -80,6 +86,27 @@ CORS_ORIGINS = [
 ] or DEFAULT_CORS_ORIGINS
 
 THUMBNAIL_SIZE = 256
+
+MAX_UPLOAD_BYTES = 10 * 1024 * 1024
+
+# Feedback, deletion and clearing change or remove saved history. A
+# request made directly on this computer (the local dev frontend) may do
+# so as before. A request that arrived through a proxy such as the
+# Cloudflare Tunnel needs this token in the X-FoodCal-Admin-Token header,
+# and is refused when no token is set. There are no user accounts.
+ADMIN_TOKEN = os.environ.get("FOODCAL_ADMIN_TOKEN", "").strip()
+ADMIN_TOKEN_HEADER = "X-FoodCal-Admin-Token"
+
+# Headers that cloudflared and other reverse proxies add to a request.
+PROXY_HEADERS = (
+    "cf-connecting-ip", "cf-ray", "x-forwarded-for", "x-forwarded-host",
+    "x-real-ip", "forwarded",
+)
+LOOPBACK_HOSTS = {"127.0.0.1", "::1"}
+
+# Predictions per client per minute through a proxy. Each saved prediction
+# adds a database row and a thumbnail on this computer's disk.
+REMOTE_PREDICTIONS_PER_MINUTE = 20
 
 # Top-1 confidence (percent) below which a prediction is flagged as
 # uncertain. 50 was chosen on the validation split by
@@ -164,14 +191,82 @@ try:
     history_store.initialize()
     STORAGE_ERROR = None
 except (OSError, sqlite3.Error, RuntimeError) as error:
-    # Predictions keep working; history endpoints report the problem.
-    STORAGE_ERROR = f"History storage is unavailable: {error}"
-    print(f"WARNING: {STORAGE_ERROR} (data directory: {DATA_DIR})")
+    # Predictions keep working; history endpoints report the problem. The
+    # details (which can include local paths) only go to the console.
+    STORAGE_ERROR = (
+        "History storage is unavailable. "
+        "The backend console shows the cause."
+    )
+    print(f"WARNING: history storage is unavailable: {error} (data directory: {DATA_DIR})")
 
 
 def require_storage():
     if STORAGE_ERROR:
         raise HTTPException(status_code=503, detail=STORAGE_ERROR)
+
+
+# =========================================================
+# 3b-2. ACCESS CONTROL AND LIMITS FOR PROXIED REQUESTS
+# =========================================================
+
+def is_proxied(request):
+    # uvicorn trusts X-Forwarded-For from 127.0.0.1 (where cloudflared
+    # connects from), so a tunnelled request has the visitor's address as
+    # its client and keeps the proxy headers.
+    client = request.client.host if request.client else ""
+    return client not in LOOPBACK_HOSTS or any(
+        header in request.headers for header in PROXY_HEADERS
+    )
+
+
+def require_admin(request: Request):
+    if not is_proxied(request):
+        return
+    if not ADMIN_TOKEN:
+        raise HTTPException(
+            status_code=403,
+            detail=(
+                "Changing or deleting saved history is disabled for remote "
+                "access. Set FOODCAL_ADMIN_TOKEN on the backend to enable it."
+            ),
+        )
+    supplied = request.headers.get(ADMIN_TOKEN_HEADER, "")
+    if not hmac.compare_digest(supplied.encode(), ADMIN_TOKEN.encode()):
+        raise HTTPException(
+            status_code=403,
+            detail=(
+                "A valid admin token is needed to change or delete saved "
+                "history. Enter it in Settings."
+            ),
+        )
+
+
+_recent_remote_predictions = defaultdict(deque)
+
+
+# async, so it runs on the event loop and never concurrently with itself.
+async def limit_remote_predictions(request: Request):
+    if not is_proxied(request):
+        return
+    # Cloudflare sets CF-Connecting-IP itself, so a visitor cannot forge it.
+    client = request.headers.get("cf-connecting-ip") or (
+        request.client.host if request.client else "unknown"
+    )
+    now = time.monotonic()
+    for key in list(_recent_remote_predictions):
+        times = _recent_remote_predictions[key]
+        while times and now - times[0] >= 60:
+            times.popleft()
+        if not times:
+            del _recent_remote_predictions[key]
+    times = _recent_remote_predictions[client]
+    if len(times) >= REMOTE_PREDICTIONS_PER_MINUTE:
+        raise HTTPException(
+            status_code=429,
+            detail="Too many predictions from this address. Try again in a minute.",
+            headers={"Retry-After": "60"},
+        )
+    times.append(now)
 
 
 def to_api_record(record):
@@ -201,8 +296,11 @@ try:
 except NutritionDataError as error:
     # Predictions keep working; nutrition endpoints report the problem.
     nutrition_reference = None
-    NUTRITION_ERROR = f"Nutrition data is unavailable: {error}"
-    print(f"WARNING: {NUTRITION_ERROR}")
+    NUTRITION_ERROR = (
+        "Nutrition data is unavailable. "
+        "The backend console shows the cause."
+    )
+    print(f"WARNING: nutrition data is unavailable: {error}")
 
 
 def require_nutrition():
@@ -416,7 +514,7 @@ def get_real_world_evaluation():
 # 8. FOOD IMAGE PREDICTION ENDPOINT
 # =========================================================
 
-@app.post("/api/predict")
+@app.post("/api/predict", dependencies=[Depends(limit_remote_predictions)])
 async def predict_food(file: UploadFile = File(...)):
 
     # Validate image content type when supplied.
@@ -429,8 +527,9 @@ async def predict_food(file: UploadFile = File(...)):
             detail="Please upload an image.",
         )
 
-    # Read uploaded file.
-    contents = await file.read()
+    # Read at most one byte past the limit, so an oversized upload is
+    # never held in memory whole.
+    contents = await file.read(MAX_UPLOAD_BYTES + 1)
 
     # Reject empty files.
     if not contents:
@@ -440,7 +539,7 @@ async def predict_food(file: UploadFile = File(...)):
         )
 
     # Limit upload size to 10 MB.
-    if len(contents) > 10 * 1024 * 1024:
+    if len(contents) > MAX_UPLOAD_BYTES:
         raise HTTPException(
             status_code=413,
             detail="Image must be 10 MB or smaller.",
@@ -517,7 +616,11 @@ async def predict_food(file: UploadFile = File(...)):
             )
             prediction_id = record["id"]
         except (OSError, sqlite3.Error) as error:
-            storage_error = f"The prediction could not be saved: {error}"
+            print(f"WARNING: prediction not saved: {error}")
+            storage_error = (
+                "The prediction could not be saved to history. "
+                "The backend console shows the cause."
+            )
             try:
                 history_store.remove_thumbnail_if_unused(image_sha256)
             except (OSError, sqlite3.Error):
@@ -565,7 +668,7 @@ def list_history(
     }
 
 
-@app.delete("/api/history")
+@app.delete("/api/history", dependencies=[Depends(require_admin)])
 def clear_history(confirm: str = Query("", max_length=10)):
     # There are no user accounts: this deletes every record this backend
     # has stored. ?confirm=all guards against an accidental request; it is
@@ -586,7 +689,7 @@ def clear_history(confirm: str = Query("", max_length=10)):
     }
 
 
-@app.patch("/api/history/{prediction_id}/feedback")
+@app.patch("/api/history/{prediction_id}/feedback", dependencies=[Depends(require_admin)])
 def set_feedback(prediction_id: PredictionId, feedback: FeedbackRequest):
     require_storage()
     if feedback.actual_food not in CLASS_NAMES:
@@ -603,7 +706,7 @@ def set_feedback(prediction_id: PredictionId, feedback: FeedbackRequest):
     return to_api_record(record)
 
 
-@app.delete("/api/history/{prediction_id}/feedback")
+@app.delete("/api/history/{prediction_id}/feedback", dependencies=[Depends(require_admin)])
 def clear_feedback(prediction_id: PredictionId):
     require_storage()
     record = history_store.clear_feedback(prediction_id)
@@ -612,7 +715,7 @@ def clear_feedback(prediction_id: PredictionId):
     return to_api_record(record)
 
 
-@app.delete("/api/history/{prediction_id}")
+@app.delete("/api/history/{prediction_id}", dependencies=[Depends(require_admin)])
 def delete_history_record(prediction_id: PredictionId):
     require_storage()
     if not history_store.delete_prediction(prediction_id):

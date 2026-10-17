@@ -170,6 +170,13 @@ tbody tr:last-child td { border-bottom: 0; }
 .setting-row span { color: var(--muted); }
 .setting-row strong { overflow-wrap: anywhere; text-align: right; font-size: 11px; }
 .settings-panel > .button { margin-top: 18px; }
+.admin-token-form { margin-top: 22px; padding-top: 18px; border-top: 1px solid #f0f1f5; font-size: 12px; }
+.admin-token-form label { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 15px; }
+.admin-token-form label span { color: var(--muted); font-size: 11px; }
+.admin-token-form p { margin: 6px 0 10px; color: var(--muted); font-size: 11px; line-height: 1.6; }
+.admin-token-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; }
+.admin-token-row .text-input { flex: 1 1 220px; width: auto; }
+.admin-token-form .success-banner { margin-top: 10px; }
 .app-footer { display: flex; align-items: center; flex-wrap: wrap; gap: 10px 20px; padding: 13px 25px; border-top: 1px solid #e9e8f1; color: #64748b; font-size: 9px; }
 .app-footer > span:first-child { display: inline-flex; align-items: center; gap: 6px; }
 .app-footer > span:not(:last-child)::after { content: "•"; margin-left: 12px; color: #cbd5e1; }

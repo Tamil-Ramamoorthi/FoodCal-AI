@@ -38,14 +38,17 @@ def free_port():
 
 
 class Server:
-    def __init__(self, data_dir):
+    def __init__(self, data_dir, env=None):
         self.data_dir = data_dir
+        self.extra_env = env or {}
         self.port = free_port()
         self.base = f"http://127.0.0.1:{self.port}"
         self.process = None
 
     def start(self):
         env = {**os.environ, "FOODCAL_DATA_DIR": str(self.data_dir), "PYTHONDONTWRITEBYTECODE": "1"}
+        env.pop("FOODCAL_ADMIN_TOKEN", None)  # only what a test sets
+        env.update(self.extra_env)
         self.process = subprocess.Popen(
             [sys.executable, "-m", "uvicorn", "backend.app.main:app",
              "--host", "127.0.0.1", "--port", str(self.port)],
@@ -92,18 +95,22 @@ class Server:
         status, _, raw = self.request(method, path, body)
         return status, json.loads(raw) if raw else None
 
-    def predict(self, food):
-        content = image_path(food).read_bytes()
+    def upload(self, filename, content, content_type="image/jpeg", headers=None):
         boundary = uuid.uuid4().hex
         body = (
             f"--{boundary}\r\nContent-Disposition: form-data; name=\"file\"; "
-            f"filename=\"{food}.jpg\"\r\nContent-Type: image/jpeg\r\n\r\n"
+            f"filename=\"{filename}\"\r\nContent-Type: {content_type}\r\n\r\n"
         ).encode() + content + f"\r\n--{boundary}--\r\n".encode()
-        status, _, raw = self.request(
+        status, response_headers, raw = self.request(
             "POST", "/api/predict", body,
-            {"Content-Type": f"multipart/form-data; boundary={boundary}"},
+            {**(headers or {}), "Content-Type": f"multipart/form-data; boundary={boundary}"},
         )
-        return status, json.loads(raw), content
+        return status, response_headers, json.loads(raw)
+
+    def predict(self, food, headers=None):
+        content = image_path(food).read_bytes()
+        status, _, result = self.upload(f"{food}.jpg", content, headers=headers)
+        return status, result, content
 
 
 class HistoryApiTests(unittest.TestCase):
@@ -336,6 +343,126 @@ class HistoryApiTests(unittest.TestCase):
         self.assertEqual(self.server.request("GET", history["items"][0]["thumbnail_url"])[0], 200)
         self.assertEqual(self.server.json("GET", "/api/evaluation/live")[1]["total_predictions"], 1)
 
+    def test_14_remote_changes_are_refused_without_an_admin_token(self):
+        # This server has no FOODCAL_ADMIN_TOKEN. X-Forwarded-For marks a
+        # request as proxied, as cloudflared's requests are.
+        status, history = self.server.json("GET", "/api/history")
+        record_id = history["items"][0]["id"]
+        remote = {"X-Forwarded-For": "203.0.113.9", "X-FoodCal-Admin-Token": "guess"}
+        for method, path in (("DELETE", "/api/history?confirm=all"), ("DELETE", f"/api/history/{record_id}"),
+                             ("DELETE", f"/api/history/{record_id}/feedback")):
+            with self.subTest(method=method, path=path):
+                status, _, raw = self.server.request(method, path, headers=remote)
+                self.assertEqual(status, 403)
+                self.assertIn("disabled for remote access", json.loads(raw)["detail"])
+        self.assertEqual(self.server.json("GET", "/api/history"), (200, history), "nothing changed")
+
+
+class RemoteAccessTests(unittest.TestCase):
+    """Requests through a proxy such as the Cloudflare Tunnel need the admin
+    token to change saved history; reading and predicting do not."""
+
+    TOKEN = "test-admin-token-123"
+    ORIGIN = "https://food-cal-ai-sigma.vercel.app"
+
+    @classmethod
+    def setUpClass(cls):
+        cls._tmp = tempfile.TemporaryDirectory()
+        cls.server = Server(Path(cls._tmp.name) / "storage", env={"FOODCAL_ADMIN_TOKEN": cls.TOKEN})
+        cls.server.start()
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.server.stop()
+        cls._tmp.cleanup()
+
+    def remote(self, method, path, body=None, token=None, ip="203.0.113.7"):
+        headers = {"X-Forwarded-For": ip, "Origin": self.ORIGIN}
+        if token is not None:
+            headers["X-FoodCal-Admin-Token"] = token
+        if isinstance(body, dict):
+            body = json.dumps(body).encode()
+            headers["Content-Type"] = "application/json"
+        status, response_headers, raw = self.server.request(method, path, body, headers)
+        return status, response_headers, json.loads(raw) if raw else None
+
+    def test_changes_need_the_admin_token(self):
+        status, result, _ = self.server.predict("pizza")
+        record_id, predicted = result["prediction_id"], result["predicted_food"]
+        changes = [
+            ("PATCH", f"/api/history/{record_id}/feedback", {"actual_food": predicted}),
+            ("DELETE", f"/api/history/{record_id}/feedback", None),
+            ("DELETE", f"/api/history/{record_id}", None),
+            ("DELETE", "/api/history?confirm=all", None),
+        ]
+        for method, path, body in changes:
+            for token in (None, "", "wrong", self.TOKEN + "x", self.TOKEN.upper()):
+                with self.subTest(method=method, path=path, token=token):
+                    status, headers, reply = self.remote(method, path, body, token)
+                    self.assertEqual(status, 403)
+                    self.assertIn("valid admin token", reply["detail"])
+                    self.assertEqual(headers.get("access-control-allow-origin"), self.ORIGIN,
+                                     "the browser can read the refusal")
+        status, history = self.server.json("GET", "/api/history")
+        self.assertEqual((history["total"], history["items"][0]["verification_status"]), (1, "unverified"))
+
+        # Reading works remotely without a token.
+        for path in ("/", "/api/history", "/api/classes", "/api/nutrition", "/api/evaluation", "/api/evaluation/live"):
+            with self.subTest(path=path):
+                self.assertEqual(self.remote("GET", path)[0], 200)
+
+        # With the token, each change goes through.
+        status, _, record = self.remote("PATCH", changes[0][1], changes[0][2], self.TOKEN)
+        self.assertEqual((status, record["verification_status"]), (200, "correct"))
+        status, _, record = self.remote("DELETE", changes[1][1], token=self.TOKEN)
+        self.assertEqual((status, record["verification_status"]), (200, "unverified"))
+        status, _, body = self.remote("DELETE", changes[2][1], token=self.TOKEN)
+        self.assertEqual((status, body), (200, {"deleted": record_id}))
+        self.server.predict("samosa")
+        status, _, body = self.remote("DELETE", changes[3][1], token=self.TOKEN)
+        self.assertEqual((status, body["deleted_records"]), (200, 1))
+
+    def test_browser_preflight_allows_the_token_header_from_the_deployed_frontend(self):
+        status, headers, _ = self.server.request("OPTIONS", "/api/history", headers={
+            "Origin": self.ORIGIN, "Access-Control-Request-Method": "DELETE",
+            "Access-Control-Request-Headers": "x-foodcal-admin-token",
+        })
+        self.assertEqual(status, 200)
+        self.assertEqual(headers.get("access-control-allow-origin"), self.ORIGIN)
+        self.assertIn("x-foodcal-admin-token", headers.get("access-control-allow-headers", "").lower())
+
+    def test_remote_predictions_are_rate_limited_per_client(self):
+        content = image_path("idli").read_bytes()
+        limited = {"X-Forwarded-For": "198.51.100.20"}
+        for _ in range(20):
+            status, _, _ = self.server.upload("idli.jpg", content, headers=limited)
+            self.assertEqual(status, 200)
+        status, headers, body = self.server.upload("idli.jpg", content, headers=limited)
+        self.assertEqual(status, 429)
+        self.assertEqual(headers.get("retry-after"), "60")
+        self.assertIn("Too many predictions", body["detail"])
+        self.assertEqual(self.server.upload("idli.jpg", content, headers={"X-Forwarded-For": "198.51.100.21"})[0], 200,
+                         "other visitors are not affected")
+        self.assertEqual(self.server.upload("idli.jpg", content)[0], 200, "local requests are not limited")
+        self.server.json("DELETE", "/api/history?confirm=all")
+
+    def test_invalid_uploads_are_rejected_without_saving(self):
+        status, before = self.server.json("GET", "/api/history")
+        too_big = b"\xff\xd8\xff" + b"0" * (10 * 1024 * 1024)
+        cases = [
+            ("big.jpg", too_big, "image/jpeg", 413),
+            ("empty.jpg", b"", "image/jpeg", 400),
+            ("notes.txt", b"hello", "text/plain", 400),
+            ("broken.jpg", b"\xff\xd8\xffnot really a jpeg", "image/jpeg", 400),
+            ("../../evil.jpg", b"not an image", "image/png", 400),
+        ]
+        for filename, content, content_type, expected in cases:
+            with self.subTest(filename=filename):
+                status, _, body = self.server.upload(filename, content, content_type)
+                self.assertEqual(status, expected)
+                self.assertIsInstance(body["detail"], str)
+        self.assertEqual(self.server.json("GET", "/api/history")[1]["total"], before["total"])
+
 
 class StorageFailureTests(unittest.TestCase):
     """A storage failure must never be reported as a saved record."""
@@ -372,6 +499,7 @@ class StorageFailureTests(unittest.TestCase):
         status, body = self.server.json("GET", "/api/history")
         self.assertEqual(status, 503)
         self.assertIn("History storage is unavailable", body["detail"])
+        self.assertNotIn(self.data_dir.parent.name, body["detail"], "no local paths in responses")
         self.assertEqual(self.server.json("GET", "/api/evaluation/live")[0], 503)
         self.assertEqual(self.server.json("DELETE", "/api/history?confirm=all")[0], 503)
 
@@ -383,6 +511,7 @@ class StorageFailureTests(unittest.TestCase):
         self.assertEqual(status, 200)
         self.assert_unsaved_prediction(result)
         self.assertIn("could not be saved", result["storage_error"])
+        self.assertNotIn(self.data_dir.parent.name, result["storage_error"], "no local paths in responses")
         status, history = self.server.json("GET", "/api/history")
         self.assertEqual((status, history["total"]), (200, 0), "nothing pretends to be saved")
         self.assertEqual(list((self.data_dir / "thumbnails").iterdir()), [], "no orphan thumbnail")

@@ -195,6 +195,7 @@ class MissingReferenceTests(unittest.TestCase):
                     status, body = server.json("GET", path)
                     self.assertEqual(status, 503)
                     self.assertIn("Nutrition data is unavailable", body["detail"])
+                    self.assertNotIn("missing.json", body["detail"], "no local paths in responses")
                 status, body, _ = server.predict("pizza")
                 self.assertEqual(status, 200)
                 self.assertEqual(set(body), PREDICT_KEYS)

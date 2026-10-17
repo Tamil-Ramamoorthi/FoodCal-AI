@@ -8,6 +8,36 @@ export const API_BASE_URL = (
   import.meta.env?.VITE_API_BASE_URL || "http://127.0.0.1:8000"
 ).replace(/\/+$/, "");
 
+// The backend's FOODCAL_ADMIN_TOKEN, entered in Settings. It is kept only
+// in this browser (never in the bundle) and sent only with requests that
+// change or delete saved history. Storage can be unavailable (private
+// windows, blocked site data); the app then works without a token.
+const ADMIN_TOKEN_KEY = "foodcal-admin-token";
+let memoryAdminToken = "";
+
+export function getAdminToken() {
+  try {
+    return globalThis.localStorage?.getItem(ADMIN_TOKEN_KEY) || memoryAdminToken;
+  } catch {
+    return memoryAdminToken;
+  }
+}
+
+export function setAdminToken(token) {
+  memoryAdminToken = token.trim();
+  try {
+    if (memoryAdminToken) globalThis.localStorage?.setItem(ADMIN_TOKEN_KEY, memoryAdminToken);
+    else globalThis.localStorage?.removeItem(ADMIN_TOKEN_KEY);
+  } catch {
+    // Kept in memory for this page only.
+  }
+}
+
+function adminHeaders(headers = {}) {
+  const token = getAdminToken();
+  return token ? { ...headers, "X-FoodCal-Admin-Token": token } : headers;
+}
+
 const HEALTH_TIMEOUT_MS = 5000;
 const HISTORY_TIMEOUT_MS = 10000;
 const PREDICT_TIMEOUT_MS = 60000;
@@ -246,7 +276,7 @@ export async function saveFeedback(predictionId, actualFood) {
     `/api/history/${encodeURIComponent(predictionId)}/feedback`,
     {
       method: "PATCH",
-      headers: { "Content-Type": "application/json" },
+      headers: adminHeaders({ "Content-Type": "application/json" }),
       body: JSON.stringify({ actual_food: actualFood }),
     },
     HISTORY_TIMEOUT_MS,
@@ -257,7 +287,7 @@ export async function saveFeedback(predictionId, actualFood) {
 export async function clearFeedback(predictionId) {
   const data = await request(
     `/api/history/${encodeURIComponent(predictionId)}/feedback`,
-    { method: "DELETE" },
+    { method: "DELETE", headers: adminHeaders() },
     HISTORY_TIMEOUT_MS,
   );
   return validatedRecord(data);
@@ -266,7 +296,7 @@ export async function clearFeedback(predictionId) {
 export async function deleteHistoryRecord(predictionId) {
   const data = await request(
     `/api/history/${encodeURIComponent(predictionId)}`,
-    { method: "DELETE" },
+    { method: "DELETE", headers: adminHeaders() },
     HISTORY_TIMEOUT_MS,
   );
   if (data.deleted !== predictionId) {
@@ -280,7 +310,7 @@ export async function deleteHistoryRecord(predictionId) {
 export async function clearHistory() {
   let data;
   try {
-    data = await request("/api/history?confirm=all", { method: "DELETE" }, HISTORY_TIMEOUT_MS);
+    data = await request("/api/history?confirm=all", { method: "DELETE", headers: adminHeaders() }, HISTORY_TIMEOUT_MS);
   } catch (error) {
     // A backend started before this route existed only allows GET here.
     if (error instanceof ApiError && error.status === 405) {

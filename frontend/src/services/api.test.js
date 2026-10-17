@@ -1,7 +1,8 @@
 import assert from "node:assert/strict";
 import { afterEach, test } from "node:test";
 import {
-  API_BASE_URL, ApiError, clearHistory, deleteHistoryRecord, getNutrition, getNutritionCoverage,
+  API_BASE_URL, ApiError, clearFeedback, clearHistory, deleteHistoryRecord, getNutrition,
+  getNutritionCoverage, saveFeedback, setAdminToken,
 } from "./api.js";
 
 // fetch is replaced by a stub that records the URL and returns `reply`.
@@ -9,11 +10,13 @@ import {
 const realFetch = globalThis.fetch;
 let requested = [];
 let methods = [];
+let sentHeaders = [];
 
 function reply(status, body) {
   globalThis.fetch = async (url, options) => {
     requested.push(url);
     methods.push(options?.method || "GET");
+    sentHeaders.push(options?.headers || {});
     return { ok: status >= 200 && status < 300, status, json: async () => body };
   };
 }
@@ -22,6 +25,8 @@ afterEach(() => {
   globalThis.fetch = realFetch;
   requested = [];
   methods = [];
+  sentHeaders = [];
+  setAdminToken("");
 });
 
 const VALUES = { calories_kcal: 1, protein_g: 1, carbohydrates_g: 1, fat_g: 1 };
@@ -114,4 +119,39 @@ test("deleting one record needs the backend to confirm that record", async () =>
   await assert.rejects(() => deleteHistoryRecord(id), (error) => error.kind === "invalid-response");
   reply(404, { detail: "Prediction not found." });
   await assert.rejects(() => deleteHistoryRecord(id), (error) => error.status === 404);
+});
+
+test("the admin token is sent only with requests that change saved history", async () => {
+  const id = "c".repeat(32);
+  const record = {
+    id, predicted_food: "idli", confidence: 90, created_at: "2026-01-01T00:00:00+00:00",
+    verification_status: "unverified", actual_food: null,
+  };
+  const changes = [
+    () => saveFeedback(id, "idli"), () => clearFeedback(id), () => deleteHistoryRecord(id), () => clearHistory(),
+  ];
+  const replies = [
+    { ...record, verification_status: "correct", actual_food: "idli" }, record,
+    { deleted: id }, { deleted_records: 1, deleted_thumbnails: 1 },
+  ];
+
+  for (const [index, change] of changes.entries()) {
+    reply(200, replies[index]);
+    await change();
+  }
+  assert.ok(sentHeaders.every((headers) => !("X-FoodCal-Admin-Token" in headers)), "no token set, none sent");
+
+  sentHeaders = [];
+  setAdminToken("  secret-token  ");
+  for (const [index, change] of changes.entries()) {
+    reply(200, replies[index]);
+    await change();
+  }
+  assert.deepEqual(sentHeaders.map((headers) => headers["X-FoodCal-Admin-Token"]), Array(4).fill("secret-token"));
+  assert.equal(sentHeaders[0]["Content-Type"], "application/json", "existing headers are kept");
+
+  sentHeaders = [];
+  reply(200, { total_classes: 1, foods: [{ food_class: "idli", match_type: "DIRECT_MATCH" }] });
+  await getNutritionCoverage();
+  assert.ok(!("X-FoodCal-Admin-Token" in sentHeaders[0]), "never sent with read-only requests");
 });
