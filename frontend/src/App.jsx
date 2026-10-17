@@ -23,6 +23,10 @@ import "./App.css";
 const HISTORY_PAGE_SIZE = 10;
 const RECENT_COUNT = 4;
 const SEARCH_DELAY_MS = 300;
+// Background health checks: frequent while offline so the status recovers
+// once the backend has finished loading the model, rare while online.
+const HEALTH_RETRY_MS = 5000;
+const HEALTH_POLL_MS = 30000;
 
 const STATUS_LABELS = { unverified: "Unverified", correct: "Correct", incorrect: "Incorrect" };
 const STATUS_STYLES = { unverified: "muted", correct: "success", incorrect: "danger" };
@@ -77,9 +81,14 @@ function App() {
   // Discards history responses that arrive after a newer request.
   const historyRequest = useRef(0);
   const searchTimer = useRef(null);
+  const healthCheckInFlight = useRef(false);
+  // Set while the backend is unreachable, so saved data is reloaded once
+  // it answers again.
+  const lostConnection = useRef(false);
 
-  async function refreshApiStatus(isActive = () => true) {
-    setApiStatus("checking");
+  // A background check leaves the current status shown until it resolves.
+  async function refreshApiStatus(isActive = () => true, { background = false } = {}) {
+    if (!background) setApiStatus("checking");
     try {
       const data = await checkApi();
       if (!isActive()) return;
@@ -136,6 +145,18 @@ function App() {
     return Promise.all([loadHistory(), loadRecent(), loadLive()]);
   }
 
+  async function loadClasses(isActive = () => true) {
+    try {
+      const data = await getFoodClasses();
+      if (isActive()) {
+        setClasses(data.classes || []);
+        setClassCount(data.count || data.classes?.length || 34);
+      }
+    } catch {
+      // API status and upload remain independently usable.
+    }
+  }
+
   useEffect(() => {
     let active = true;
 
@@ -143,16 +164,7 @@ function App() {
       await refreshApiStatus(() => active);
       if (!active) return;
       refreshSaved();
-
-      try {
-        const data = await getFoodClasses();
-        if (active) {
-          setClasses(data.classes || []);
-          setClassCount(data.count || data.classes?.length || 34);
-        }
-      } catch {
-        // API status and upload remain independently usable.
-      }
+      loadClasses(() => active);
     }
 
     initialize();
@@ -163,6 +175,39 @@ function App() {
     // Runs once on mount; refreshSaved reads the initial page and search.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // Re-checks the backend so the status follows it starting or stopping
+  // after the page loaded. Skipped while the tab is hidden.
+  useEffect(() => {
+    if (apiStatus === "checking") return undefined;
+    let active = true;
+    const timer = setInterval(async () => {
+      if (document.hidden || healthCheckInFlight.current) return;
+      healthCheckInFlight.current = true;
+      try {
+        await refreshApiStatus(() => active, { background: true });
+      } finally {
+        healthCheckInFlight.current = false;
+      }
+    }, apiStatus === "offline" ? HEALTH_RETRY_MS : HEALTH_POLL_MS);
+    return () => {
+      active = false;
+      clearInterval(timer);
+    };
+  }, [apiStatus]);
+
+  // Saved history and the class list failed to load while the backend was
+  // unreachable; reload them once it answers again.
+  useEffect(() => {
+    if (apiStatus === "offline") {
+      lostConnection.current = true;
+    } else if (apiStatus !== "checking" && lostConnection.current) {
+      lostConnection.current = false;
+      refreshSaved();
+      loadClasses();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [apiStatus]);
 
   useEffect(() => {
     return () => {
